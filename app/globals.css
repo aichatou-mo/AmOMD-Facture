@@ -1,0 +1,295 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: #F4F7FB;
+  --foreground: #0F172A;
+  --primary-emerald: #059669;
+  --primary-emerald-hover: #047857;
+  --primary-mint: #ECFDF5;
+  --card-bg: #FFFFFF;
+}
+
+/* Dark mode theme support */
+.dark {
+  --background: #0B0F17;
+  --foreground: #F8FAFC;
+  --card-bg: #131A26;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  /* Safe area insets for notched phones (iPhone X+) */
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+/* Prevent content from going under mobile browser chrome */
+@supports (padding: max(0px)) {
+  body {
+    padding-left: max(0px, env(safe-area-inset-left));
+    padding-right: max(0px, env(safe-area-inset-right));
+  }
+}
+
+/* Better tap targets on mobile */
+@media (max-width: 1023px) {
+  button, a, select, input {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}
+
+/* Custom scrollbar for desktop */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+/* Hide scrollbar on mobile drawer */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Modal explicit, comfortable, draggable scrollbar */
+.modal-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #64748B #E2E8F0;
+  overscroll-behavior: contain;
+}
+.modal-scrollbar::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+  display: block !important;
+}
+.modal-scrollbar::-webkit-scrollbar-track {
+  background: #F1F5F9;
+  border-radius: 9999px;
+}
+.modal-scrollbar::-webkit-scrollbar-thumb {
+  background: #94A3B8;
+  border-radius: 9999px;
+  border: 2px solid #F1F5F9;
+}
+.modal-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+.font-mono-numbers {
+  font-family: 'JetBrains Mono', monospace;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+/* Micro-animations and tactile feedback */
+@keyframes popClick {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+.animate-pop-click {
+  animation: popClick 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.animate-drawer-in {
+  animation: slideInLeft 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleUp {
+  from { opacity: 0; transform: scale(0.95) translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.animate-slide-up-fade {
+  animation: slideUpFade 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-stagger-1 {
+  animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.04s backwards;
+}
+
+.animate-stagger-2 {
+  animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.12s backwards;
+}
+
+.animate-stagger-3 {
+  animation: slideUpFade 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.20s backwards;
+}
+
+/* Interactive click bounce utility */
+.btn-tactile {
+  transition: transform 0.15s cubic-bezier(0.25, 0.46, 0.45, 0.94), background-color 0.15s ease, box-shadow 0.15s ease;
+}
+.btn-tactile:active {
+  transform: scale(0.95);
+}
+
+.card-tactile {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card-tactile:active {
+  transform: scale(0.98);
+}
+
+/* ========================================================= */
+/* IMPRESSION STRICTE HAUTE FIDÉLITÉ (FORMAT A4 OHADA)       */
+/* ========================================================= */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+    font-size: 10pt !important;
+    overflow: visible !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Masquer tous les composants UI, barre latérale, en-tête, formulaires, champs et actions */
+  header,
+  aside,
+  nav,
+  button,
+  .no-print,
+  .print-hidden,
+  .print\:hidden,
+  .form-print-hidden,
+  [data-no-print="true"] {
+    display: none !important;
+  }
+
+  /* Réinitialiser les conteneurs parents principaux */
+  body > div,
+  main,
+  div[class*="lg:pl-"],
+  div[class*="xl:pl-"] {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    overflow: visible !important;
+    float: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+  }
+
+  /* La colonne de prévisualisation et conteneur de facture sont forcés visibles en flux normal */
+  .preview-print-column,
+  .print-container {
+    display: block !important;
+    visibility: visible !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    position: static !important;
+    overflow: visible !important;
+    float: none !important;
+  }
+
+  /* Facture officielle imprimable : flux normal A4 */
+  #printable-invoice {
+    display: block !important;
+    visibility: visible !important;
+    position: relative !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    background: #ffffff !important;
+    overflow: visible !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  #printable-invoice * {
+    visibility: visible !important;
+  }
+}
+
