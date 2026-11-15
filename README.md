@@ -1,4 +1,4 @@
-# 📄 iziFACTURE
+# 📄 AmOMD Facture
 
 > Plateforme moderne de facturation et de gestion commerciale spécialement conçue et calibrée pour les entreprises, PME et organisations de l'espace **OHADA / UEMOA / Sahel** (Niger, Côte d'Ivoire, Sénégal, Burkina Faso, Mali, Bénin, Togo, etc.).
 
@@ -38,8 +38,8 @@
 
 ```bash
 # 1. Cloner le projet
-git clone https://github.com/aichatou-mo/iziFacture.git
-cd iziFacture
+git clone https://github.com/aichatou-mo/AmOMD-Facture.git
+cd AmOMD-Facture
 
 # 2. Installer les dépendances
 npm install
@@ -68,4 +68,4 @@ Ouvrez ensuite [http://localhost:3000](http://localhost:3000) dans votre navigat
 
 ## 📄 Licence
 
-Tous droits réservés © iziFACTURE.
+Tous droits réservés © AmOMD Facture.

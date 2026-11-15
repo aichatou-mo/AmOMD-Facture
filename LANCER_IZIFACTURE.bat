@@ -1,7 +1,7 @@
 @echo off
-title iziFACTURE - Serveur Local
+title AmOMD Facture - Serveur Local
 echo ========================================================
-echo          Lancement de iziFACTURE en Local
+echo          Lancement de AmOMD Facture en Local
 echo ========================================================
 cd /d "%~dp0"
 set NODE_OPTIONS=--max-old-space-size=2048
