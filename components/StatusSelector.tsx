@@ -41,17 +41,17 @@ export default function StatusSelector({
       id: "payee",
       label: t.statusPaid || "Payée",
       icon: "✅",
-      colorBg: "bg-emerald-50 hover:bg-emerald-100",
-      colorText: "text-emerald-800",
-      dotColor: "bg-emerald-500",
+      colorBg: "bg-[#d9f0df] hover:bg-[#c5e4cb]",
+      colorText: "text-[#285b35]",
+      dotColor: "bg-[#285b35]",
     },
     {
       id: "envoyee",
       label: t.statusSent || "Envoyée",
       icon: "📬",
-      colorBg: "bg-amber-50 hover:bg-amber-100",
-      colorText: "text-amber-800",
-      dotColor: "bg-amber-500",
+      colorBg: "bg-[#fff0a6] hover:bg-[#ffe36a]",
+      colorText: "text-[#453700]",
+      dotColor: "bg-[#a18400]",
     },
     {
       id: "en_retard",
@@ -65,9 +65,9 @@ export default function StatusSelector({
       id: "brouillon",
       label: t.statusDraft || "Brouillon",
       icon: "📝",
-      colorBg: "bg-slate-100 hover:bg-slate-200",
-      colorText: "text-slate-700",
-      dotColor: "bg-slate-400",
+      colorBg: "bg-[#edece6] hover:bg-[#e4e2d9]",
+      colorText: "text-[#5f6571]",
+      dotColor: "bg-[#697080]",
     },
   ];
 
@@ -166,13 +166,13 @@ export default function StatusSelector({
             e.stopPropagation();
             setIsOpen(!isOpen);
           }}
-          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold shadow-sm transition-all duration-150 active:scale-95 border border-slate-700 cursor-pointer"
+          className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#111522] hover:bg-[#191f30] text-white text-xs font-bold shadow-sm transition-all duration-150 active:scale-95 border border-white/15 cursor-pointer"
           title={t.changeStatusAction || "Changer de statut"}
         >
           <span className={`w-2 h-2 rounded-full ${currentInfo.dotColor} shadow-sm animate-pulse`} />
           <span className="truncate">{t.changeStatusAction || "Changer de statut"}</span>
           <svg
-            className={`w-3.5 h-3.5 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+            className={`w-3.5 h-3.5 transition-transform duration-200 text-[#ffdc45] ${isOpen ? "rotate-180" : ""}`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -188,12 +188,12 @@ export default function StatusSelector({
             e.stopPropagation();
             setIsOpen(!isOpen);
           }}
-          className="p-1.5 rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 transition active:scale-95 flex items-center gap-1 text-[11px] font-bold cursor-pointer"
+          className="p-1.5 rounded-lg text-[#5f6571] hover:text-[#111522] hover:bg-[#f2f0e8] border border-[#e4e2d9] transition active:scale-95 flex items-center gap-1 text-[11px] font-bold cursor-pointer"
           title="Changer statut"
         >
           <span className={`w-2 h-2 rounded-full ${currentInfo.dotColor}`} />
           <span className="hidden sm:inline">Statut</span>
-          <svg className={`w-3 h-3 text-slate-400 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <svg className={`w-3 h-3 text-[#697080] transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
           </svg>
         </button>
@@ -208,12 +208,12 @@ export default function StatusSelector({
           }}
           className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold transition-all duration-150 active:scale-95 border cursor-pointer select-none ${
             currentStatus === "payee"
-              ? "bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100/80"
+              ? "bg-[#d9f0df] text-[#285b35] border-[#c5e4cb] hover:bg-[#c5e4cb]"
               : currentStatus === "envoyee"
-              ? "bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100/80"
+              ? "bg-[#fff0a6] text-[#453700] border-[#ffe36a] hover:bg-[#ffe36a]"
               : currentStatus === "en_retard"
               ? "bg-rose-50 text-rose-800 border-rose-200 hover:bg-rose-100/80"
-              : "bg-slate-100 text-slate-700 border-slate-200 hover:bg-slate-200/80"
+              : "bg-[#edece6] text-[#5f6571] border-[#e4e2d9] hover:bg-[#e4e2d9]"
           }`}
           title="Cliquer pour changer de statut"
         >
@@ -235,12 +235,12 @@ export default function StatusSelector({
             left: `${coords.left}px`,
             zIndex: 99999,
           }}
-          className="w-52 rounded-2xl bg-white shadow-[0_12px_40px_-4px_rgba(15,23,42,0.22)] border border-slate-200/90 py-1.5 focus:outline-none animate-scale-up"
+          className="w-52 rounded-2xl bg-white shadow-[0_12px_40px_-4px_rgba(17,21,34,0.28)] border border-[#e8e7e2] py-1.5 focus:outline-none animate-scale-up"
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="px-3.5 py-1.5 border-b border-slate-100 flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-slate-400">
+          <div className="px-3.5 py-1.5 border-b border-[#edece6] flex items-center justify-between text-[10px] font-bold uppercase tracking-wider text-[#697080]">
             <span>{t.changeStatusAction || "Changer le statut"}</span>
-            <span className="text-[10px] lowercase font-semibold text-slate-400">4 statuts</span>
+            <span className="text-[10px] lowercase font-semibold text-[#697080]">4 statuts</span>
           </div>
           <div className="p-1.5 space-y-1">
             {statuses.map((item) => {
@@ -256,7 +256,7 @@ export default function StatusSelector({
                   }}
                   className={`w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer ${
                     isSelected
-                      ? "bg-slate-900 text-white shadow-sm ring-1 ring-slate-800"
+                      ? "bg-[#111522] text-white shadow-sm ring-1 ring-[#ffdc45]/40"
                       : `${item.colorBg} ${item.colorText}`
                   }`}
                 >
@@ -265,9 +265,9 @@ export default function StatusSelector({
                     <span>{item.label}</span>
                   </div>
                   {isSelected ? (
-                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-400">
+                    <span className="inline-flex items-center gap-1 text-[10px] font-bold text-[#ffdc45]">
                       <span>✓</span>
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ffdc45]" />
                     </span>
                   ) : (
                     <span className={`w-2 h-2 rounded-full ${item.dotColor} opacity-70`} />

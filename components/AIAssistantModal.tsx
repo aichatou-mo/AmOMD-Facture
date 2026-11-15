@@ -708,7 +708,7 @@ export default function AIAssistantModal({
     <div className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150">
       {/* Fond obscurci */}
       <div
-        className="fixed inset-0 bg-slate-950/75 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#0c111d]/75 backdrop-blur-sm transition-opacity"
         onClick={() => {
           if (isListening || isLocalAudioRecording) {
             stopUnifiedVoice();
@@ -717,20 +717,20 @@ export default function AIAssistantModal({
         }}
       />
 
-      {/* Boîte de dialogue iziBot - Spacieuse style ChatGPT / Claude (max-w-4xl) */}
-      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden flex flex-col h-[90vh] sm:h-[88vh] z-10">
+      {/* Boîte de dialogue Assistant IA - Spacieuse style ChatGPT / Claude (max-w-4xl) */}
+      <div className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-[#e8e7e2] overflow-hidden flex flex-col h-[90vh] sm:h-[88vh] z-10">
         {/* En-tête de l'Agent IA */}
-        <div className="px-5 py-3.5 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800 shrink-0">
+        <div className="px-5 py-3.5 bg-[#111522] text-white flex items-center justify-between border-b border-white/10 shrink-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-md shadow-emerald-500/20 text-lg">
+            <div className="w-10 h-10 rounded-2xl bg-[#ffdc45] text-[#111522] flex items-center justify-center shadow-md shadow-[#ffdc45]/20 text-lg font-bold">
               ✨
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="font-extrabold text-sm sm:text-base tracking-tight text-white">
-                  iziBot IA — Assistant Vocal & Facturation
+                <h3 className="font-serif font-medium text-base sm:text-lg tracking-tight text-white">
+                  Assistant IA AMOMD — Vocal &amp; Facturation
                 </h3>
-                <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-[#ffdc45]/15 text-[#ffdc45] border border-[#ffdc45]/30">
                   Actif
                 </span>
                 {isListening && (
@@ -744,7 +744,7 @@ export default function AIAssistantModal({
                   </span>
                 )}
               </div>
-              <p className="text-xs text-slate-300 mt-0.5">
+              <p className="text-xs text-[#c4c7d1] mt-0.5">
                 Dictez au micro, écrivez ou importez une facture
               </p>
             </div>
@@ -755,10 +755,10 @@ export default function AIAssistantModal({
             <button
               type="button"
               onClick={handleNewChat}
-              className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 hover:text-white border border-slate-700 hover:border-emerald-500/40 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm active:scale-95"
+              className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-[#e5e6ea] hover:text-white border border-white/15 hover:border-[#ffdc45]/50 text-xs font-bold transition flex items-center gap-1.5 cursor-pointer shadow-sm active:scale-95"
               title="Nouvelle conversation (comme ChatGPT ou Claude)"
             >
-              <span className="text-emerald-400 font-extrabold text-sm">+</span>
+              <span className="text-[#ffdc45] font-extrabold text-sm">+</span>
               <span className="hidden sm:inline">Nouveau chat</span>
             </button>
 
@@ -770,7 +770,7 @@ export default function AIAssistantModal({
                 }
                 onClose();
               }}
-              className="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center transition cursor-pointer"
+              className="w-8 h-8 rounded-full bg-white/10 hover:bg-rose-600 text-[#c4c7d1] hover:text-white flex items-center justify-center transition cursor-pointer"
               title="Fermer"
             >
               <IconClose className="w-4 h-4" />
@@ -780,14 +780,14 @@ export default function AIAssistantModal({
 
         {/* Modal / Tiroir : Importer une facture similaire */}
         {showSimilarPicker && (
-          <div className="p-4 bg-slate-900 text-white border-b border-slate-800 animate-fade-in space-y-3 max-h-[50vh] overflow-y-auto modal-scrollbar">
+          <div className="p-4 bg-[#111522] text-white border-b border-white/10 animate-fade-in space-y-3 max-h-[50vh] overflow-y-auto modal-scrollbar">
             <div className="flex items-center justify-between">
               <div>
                 <h4 className="font-extrabold text-sm text-white flex items-center gap-2">
                   <span>📋</span>
                   <span>Sélectionnez une facture à dupliquer / imiter :</span>
                 </h4>
-                <p className="text-[11px] text-slate-400 mt-0.5">
+                <p className="text-[11px] text-[#9096a5] mt-0.5">
                   L&apos;IA reprendra les lignes, montants et réductions en cascade pour un autre client.
                 </p>
               </div>
@@ -797,7 +797,7 @@ export default function AIAssistantModal({
                   setShowSimilarPicker(false);
                   setSelectedBaseInvoice(null);
                 }}
-                className="text-xs text-slate-400 hover:text-white px-2 py-1 bg-slate-800 rounded-lg cursor-pointer"
+                className="text-xs text-[#c4c7d1] hover:text-white px-2.5 py-1 bg-white/10 hover:bg-white/20 rounded-lg cursor-pointer"
               >
                 Fermer
               </button>
@@ -807,19 +807,19 @@ export default function AIAssistantModal({
             {!selectedBaseInvoice ? (
               <div className="space-y-2">
                 <div className="relative">
-                  <IconSearch className="w-3.5 h-3.5 absolute left-3 top-2.5 text-slate-400" />
+                  <IconSearch className="w-3.5 h-3.5 absolute left-3 top-2.5 text-[#9096a5]" />
                   <input
                     type="text"
                     value={invoiceSearchQuery}
                     onChange={(e) => setInvoiceSearchQuery(e.target.value)}
                     placeholder="Rechercher par N° facture, client ou objet..."
-                    className="w-full pl-8 pr-3 py-2 bg-slate-800 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-400 focus:outline-none focus:border-emerald-500"
+                    className="w-full pl-8 pr-3 py-2 bg-[#191f30] border border-white/10 rounded-xl text-xs text-white placeholder-[#9096a5] focus:outline-none focus:border-[#ffdc45]"
                   />
                 </div>
 
                 <div className="max-h-48 overflow-y-auto space-y-1.5 modal-scrollbar">
                   {filteredInvoices.length === 0 ? (
-                    <p className="text-xs text-slate-400 p-3 text-center">
+                    <p className="text-xs text-[#9096a5] p-3 text-center">
                       Aucune facture trouvée pour &quot;{invoiceSearchQuery}&quot;.
                     </p>
                   ) : (
@@ -830,26 +830,26 @@ export default function AIAssistantModal({
                           setSelectedBaseInvoice(inv);
                           setTargetClientName(inv.clientName);
                         }}
-                        className="p-2.5 bg-slate-800/80 hover:bg-slate-750 border border-slate-750 hover:border-emerald-500/50 rounded-xl flex items-center justify-between text-xs transition cursor-pointer"
+                        className="p-2.5 bg-[#191f30] hover:bg-[#1f273d] border border-white/10 hover:border-[#ffdc45]/50 rounded-xl flex items-center justify-between text-xs transition cursor-pointer"
                       >
                         <div className="min-w-0 pr-2">
                           <div className="font-mono font-bold text-white flex items-center gap-2">
                             <span>{inv.number}</span>
-                            <span className="text-[10px] font-normal text-slate-400">
+                            <span className="text-[10px] font-normal text-[#9096a5]">
                               · {inv.clientName}
                             </span>
                           </div>
                           {inv.object && (
-                            <p className="text-[11px] text-slate-400 truncate mt-0.5">
+                            <p className="text-[11px] text-[#9096a5] truncate mt-0.5">
                               {inv.object}
                             </p>
                           )}
                         </div>
                         <div className="text-right shrink-0">
-                          <span className="font-mono font-bold text-emerald-400">
+                          <span className="font-mono font-bold text-[#ffdc45]">
                             {formatFCFA(inv.netToPay ?? inv.totalTTC)}
                           </span>
-                          <span className="block text-[9px] text-slate-400">
+                          <span className="block text-[9px] text-[#9096a5]">
                             {inv.items?.length || 1} prestation(s)
                           </span>
                         </div>
@@ -860,24 +860,24 @@ export default function AIAssistantModal({
               </div>
             ) : (
               /* Facture sélectionnée : Choix du client de destination */
-              <div className="p-3.5 bg-slate-800 rounded-2xl border border-emerald-500/40 space-y-3 animate-fade-in">
+              <div className="p-3.5 bg-[#191f30] rounded-2xl border border-[#ffdc45]/40 space-y-3 animate-fade-in">
                 <div className="flex items-center justify-between">
                   <div className="text-xs">
-                    <span className="text-slate-400">Modèle source : </span>
-                    <strong className="font-mono text-emerald-400">{selectedBaseInvoice.number}</strong>
-                    <span className="text-slate-400"> ({formatFCFA(selectedBaseInvoice.netToPay ?? selectedBaseInvoice.totalTTC)})</span>
+                    <span className="text-[#9096a5]">Modèle source : </span>
+                    <strong className="font-mono text-[#ffdc45]">{selectedBaseInvoice.number}</strong>
+                    <span className="text-[#9096a5]"> ({formatFCFA(selectedBaseInvoice.netToPay ?? selectedBaseInvoice.totalTTC)})</span>
                   </div>
                   <button
                     type="button"
                     onClick={() => setSelectedBaseInvoice(null)}
-                    className="text-[11px] text-slate-400 hover:text-white underline cursor-pointer"
+                    className="text-[11px] text-[#c4c7d1] hover:text-white underline cursor-pointer"
                   >
                     Changer de modèle
                   </button>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-bold text-slate-300 mb-1">
+                  <label className="block text-[11px] font-bold text-[#e5e6ea] mb-1">
                     Pour quel client émettre cette facture similaire ?
                   </label>
                   <input
@@ -885,14 +885,14 @@ export default function AIAssistantModal({
                     value={targetClientName}
                     onChange={(e) => setTargetClientName(e.target.value)}
                     placeholder="Tapez le nom du client (ex : Société STS, M. Ibrahim...)"
-                    className="w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-xl text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500 font-bold"
+                    className="w-full px-3 py-2 bg-[#111522] border border-white/15 rounded-xl text-xs text-white placeholder-[#808392] focus:outline-none focus:border-[#ffdc45] font-bold"
                   />
-                  <div className="mt-1 flex items-center justify-between text-[10px] text-slate-400">
+                  <div className="mt-1 flex items-center justify-between text-[10px] text-[#9096a5]">
                     <span>
                       {clients.some((c) => c.name.toLowerCase() === targetClientName.trim().toLowerCase()) ? (
-                        <span className="text-emerald-400 font-bold">✓ Client existant dans l&apos;annuaire</span>
+                        <span className="text-[#b9dfc8] font-bold">✓ Client existant dans l&apos;annuaire</span>
                       ) : targetClientName.trim() ? (
-                        <span className="text-amber-400 font-bold">✨ Nouveau client (sera ajouté à l&apos;annuaire)</span>
+                        <span className="text-[#ffdc45] font-bold">✨ Nouveau client (sera ajouté à l&apos;annuaire)</span>
                       ) : (
                         <span>Sélectionnez ou tapez un nom</span>
                       )}
@@ -904,7 +904,7 @@ export default function AIAssistantModal({
                             key={cl.id}
                             type="button"
                             onClick={() => setTargetClientName(cl.name)}
-                            className="text-[9.5px] px-1.5 py-0.5 bg-slate-700 hover:bg-slate-600 rounded text-slate-200 cursor-pointer"
+                            className="text-[9.5px] px-1.5 py-0.5 bg-white/10 hover:bg-white/20 rounded text-[#e5e6ea] cursor-pointer"
                           >
                             {cl.name}
                           </button>
@@ -918,7 +918,7 @@ export default function AIAssistantModal({
                   <button
                     type="button"
                     onClick={() => setSelectedBaseInvoice(null)}
-                    className="px-3 py-1.5 rounded-xl bg-slate-700 hover:bg-slate-600 text-xs font-bold text-slate-300 cursor-pointer"
+                    className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-bold text-[#e5e6ea] cursor-pointer"
                   >
                     Annuler
                   </button>
@@ -928,7 +928,7 @@ export default function AIAssistantModal({
                       handleCreateSimilarInvoice(selectedBaseInvoice, targetClientName)
                     }
                     disabled={!targetClientName.trim()}
-                    className="px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white text-xs font-extrabold transition cursor-pointer flex items-center gap-1.5"
+                    className="px-3.5 py-1.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] disabled:opacity-50 text-[#111522] text-xs font-extrabold transition cursor-pointer flex items-center gap-1.5"
                   >
                     <span>⚡ Générer la facture similaire</span>
                   </button>
@@ -939,7 +939,7 @@ export default function AIAssistantModal({
         )}
 
         {/* Zone des messages de conversation */}
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-slate-50/60 modal-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6 space-y-4 bg-[#f8f7f3] modal-scrollbar">
           {/* Liste des messages */}
           {messages.map((m) => {
             const isSaved = m.generatedResult ? savedInvoiceIds.has(m.generatedResult.invoice.id) : false;
@@ -954,13 +954,13 @@ export default function AIAssistantModal({
               >
                 <div
                   className={`max-w-[88%] sm:max-w-[82%] rounded-2xl p-3.5 sm:p-4 text-xs sm:text-sm leading-relaxed ${m.sender === "user"
-                      ? "bg-slate-900 text-white rounded-br-xs shadow-md"
-                      : "bg-white text-slate-800 rounded-bl-xs border border-slate-200/90 shadow-sm"
+                      ? "bg-[#111522] text-white rounded-br-xs shadow-md"
+                      : "bg-white text-[#111522] rounded-bl-xs border border-[#e8e7e2] shadow-sm"
                     }`}
                 >
                   {/* Prévisualisation de l'image si importée de l'extérieur */}
                   {m.imagePreviewUrl && (
-                    <div className="mb-2.5 rounded-xl overflow-hidden border border-slate-700/60 max-w-[220px] shadow-sm">
+                    <div className="mb-2.5 rounded-xl overflow-hidden border border-white/15 max-w-[220px] shadow-sm">
                       <img
                         src={m.imagePreviewUrl}
                         alt={m.fileName || "Facture importée"}
@@ -973,11 +973,11 @@ export default function AIAssistantModal({
 
                   {/* Bouton Copier le texte du message bot ("tu me copies ça aussi") */}
                   {m.sender === "bot" && m.id !== "welcome" && (
-                    <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-end text-[10px]">
+                    <div className="mt-2 pt-2 border-t border-[#edece6] flex items-center justify-end text-[10px]">
                       <button
                         type="button"
                         onClick={() => handleCopyText(m.id, m.text)}
-                        className="text-slate-400 hover:text-emerald-700 font-semibold flex items-center gap-1 transition cursor-pointer"
+                        className="text-[#697080] hover:text-[#111522] font-semibold flex items-center gap-1 transition cursor-pointer"
                         title="Copier ce texte dans le presse-papier"
                       >
                         <span>{copiedMessageId === m.id ? "✓ Texte copié !" : "📋 Copier le texte"}</span>
@@ -987,23 +987,23 @@ export default function AIAssistantModal({
 
                   {/* Carte interactive si une facture a été générée */}
                   {m.generatedResult && (
-                    <div className="mt-3.5 pt-3.5 border-t border-slate-200/80 space-y-2.5">
+                    <div className="mt-3.5 pt-3.5 border-t border-[#edece6] space-y-2.5">
                       {/* Badge d'indication sur le client */}
-                      <div className="flex items-center justify-between text-[10.5px] p-2 rounded-xl bg-slate-50 border border-slate-200/70">
+                      <div className="flex items-center justify-between text-[10.5px] p-2 rounded-xl bg-[#f8f7f3] border border-[#e8e7e2]">
                         <div className="flex items-center gap-1.5 font-bold">
                           {isClientAlreadyKnown ? (
-                            <span className="text-slate-700 flex items-center gap-1">
+                            <span className="text-[#111522] flex items-center gap-1">
                               <span>👤</span>
                               <span>Client existant : <strong>{m.generatedResult.invoice.clientName}</strong> (aucun doublon)</span>
                             </span>
                           ) : (
-                            <span className="text-emerald-800 flex items-center gap-1">
+                            <span className="text-[#453700] flex items-center gap-1">
                               <span>✨</span>
                               <span>Nouveau client : <strong>{m.generatedResult.invoice.clientName}</strong> (sera ajouté au CRM)</span>
                             </span>
                           )}
                         </div>
-                        <span className="font-mono font-bold text-slate-900">
+                        <span className="font-mono font-bold text-[#111522]">
                           {formatFCFA(m.generatedResult.invoice.netToPay ?? 0)}
                         </span>
                       </div>
@@ -1021,14 +1021,14 @@ export default function AIAssistantModal({
                           }
                           disabled={isSaved}
                           className={`px-2 py-2 rounded-xl font-extrabold text-[11px] transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer ${isSaved
-                              ? "bg-emerald-100 text-emerald-800 border border-emerald-300 cursor-default"
-                              : "bg-slate-900 hover:bg-slate-800 text-white shadow-md shadow-slate-900/10"
+                              ? "bg-[#d9f0df] text-[#285b35] border border-[#b9dfc8] cursor-default"
+                              : "bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] shadow-md shadow-[#ffdc45]/15"
                             }`}
                           title={isSaved ? "Cette facture est déjà enregistrée" : "Enregistrer cette facture dans vos données"}
                         >
                           {isSaved ? (
                             <>
-                              <IconCheck className="w-3.5 h-3.5 text-emerald-700" />
+                              <IconCheck className="w-3.5 h-3.5 text-[#285b35]" />
                               <span>Enregistrée</span>
                             </>
                           ) : (
@@ -1051,7 +1051,7 @@ export default function AIAssistantModal({
                               onClose();
                             }
                           }}
-                          className="px-2 py-2 rounded-xl bg-white hover:bg-slate-100 text-slate-800 font-bold text-[11px] border border-slate-200 transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
+                          className="px-2 py-2 rounded-xl bg-white hover:bg-[#f2f0e8] text-[#111522] font-bold text-[11px] border border-[#e4e2d9] transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
                           title="Ouvrir dans le formulaire pour ajuster les champs"
                         >
                           <span>✏️ Modifier</span>
@@ -1061,7 +1061,7 @@ export default function AIAssistantModal({
                         <button
                           type="button"
                           onClick={() => downloadInvoicePdf(m.generatedResult!.invoice, activeCompany)}
-                          className="px-2 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-[11px] border border-emerald-200 transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
+                          className="px-2 py-2 rounded-xl bg-[#111522] hover:bg-[#191f30] text-[#ffdc45] font-bold text-[11px] border border-[#111522] transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
                           title="Télécharger le PDF A4 officiel"
                         >
                           <IconDownload className="w-3.5 h-3.5" />
@@ -1072,7 +1072,7 @@ export default function AIAssistantModal({
                         <button
                           type="button"
                           onClick={() => handleCopyInvoice(m.generatedResult!.invoice)}
-                          className="px-2 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 font-bold text-[11px] border border-amber-200 transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
+                          className="px-2 py-2 rounded-xl bg-[#fff0a6] hover:bg-[#ffdc45] text-[#453700] font-bold text-[11px] border border-[#ffe36a] transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
                           title="Copier les données de la facture dans le presse-papier"
                         >
                           <span>{copiedInvoiceId === m.generatedResult!.invoice.id ? "✓ Copié !" : "📋 Copier"}</span>
@@ -1087,25 +1087,25 @@ export default function AIAssistantModal({
                               onClose();
                             }
                           }}
-                          className="px-2 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-900 font-bold text-[10.5px] border border-slate-300 transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
+                          className="px-2 py-2 rounded-xl bg-[#f2f0e8] hover:bg-[#e8e7e2] text-[#111522] font-bold text-[10.5px] border border-[#e4e2d9] transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
                           title="Afficher l'aperçu complet de la facture"
                         >
-                          <IconEye className="w-3.5 h-3.5 text-slate-700" />
+                          <IconEye className="w-3.5 h-3.5 text-[#5f6571]" />
                           <span>Aperçu</span>
                         </button>
                       </div>
                     </div>
                   )}
                 </div>
-                <span className="text-[10px] text-slate-400 px-1 font-mono">{m.timestamp}</span>
+                <span className="text-[10px] text-[#808392] px-1 font-mono">{m.timestamp}</span>
               </div>
             );
           })}
 
           {/* Animation pendant la génération */}
           {isGenerating && (
-            <div className="flex items-center gap-2 p-3.5 rounded-2xl bg-white border border-slate-200/90 text-xs text-slate-600 animate-pulse w-fit">
-              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
+            <div className="flex items-center gap-2 p-3.5 rounded-2xl bg-white border border-[#e8e7e2] text-xs text-[#5f6571] animate-pulse w-fit">
+              <span className="w-2 h-2 rounded-full bg-[#ffdc45] animate-ping" />
               <span>Calcul en cascade des déductions et génération de la facture...</span>
             </div>
           )}
@@ -1115,14 +1115,14 @@ export default function AIAssistantModal({
 
         {/* Message de statut vocal avec confirmation & bouton rapide de génération */}
         {!isListening && !isLocalAudioRecording && !isTranscribing && voiceFeedback && (
-          <div className="px-4 py-2 bg-slate-900 border-t border-slate-800 text-xs text-slate-200 flex items-center justify-between animate-fade-in">
+          <div className="px-4 py-2 bg-[#111522] border-t border-white/10 text-xs text-[#e5e6ea] flex items-center justify-between animate-fade-in">
             <span className="truncate font-medium">{voiceFeedback}</span>
             <div className="flex items-center gap-2 shrink-0 ml-2">
               {inputText.trim() && (
                 <button
                   type="button"
                   onClick={() => handleSendPrompt()}
-                  className="px-2.5 py-1 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-lg text-[11px] font-extrabold transition active:scale-95 cursor-pointer flex items-center gap-1 shadow-sm"
+                  className="px-2.5 py-1 bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] rounded-lg text-[11px] font-extrabold transition active:scale-95 cursor-pointer flex items-center gap-1 shadow-sm"
                 >
                   <span>⚡ Générer</span>
                 </button>
@@ -1130,7 +1130,7 @@ export default function AIAssistantModal({
               <button
                 type="button"
                 onClick={() => setVoiceFeedback(null)}
-                className="text-slate-400 hover:text-slate-200 font-bold cursor-pointer px-1"
+                className="text-[#9096a5] hover:text-white font-bold cursor-pointer px-1"
               >
                 ✕
               </button>
@@ -1139,7 +1139,7 @@ export default function AIAssistantModal({
         )}
 
         {/* Barre de saisie style ChatGPT / Claude (Spacieuse, bouton +, champ input toujours présent, micro & 3 boutons) */}
-        <div className="p-3.5 sm:p-4 bg-slate-950 border-t border-slate-800 relative shrink-0">
+        <div className="p-3.5 sm:p-4 bg-[#0c111d] border-t border-white/10 relative shrink-0">
           {/* Backdrop pour fermer le menu + au clic à l'extérieur */}
           {showImportMenu && (
             <div
@@ -1150,23 +1150,23 @@ export default function AIAssistantModal({
 
           {/* Menu flottant déclenché par le bouton + (Style ChatGPT/Claude) */}
           {showImportMenu && (
-            <div className="absolute bottom-24 left-4 z-30 bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl p-2 w-72 sm:w-80 animate-in fade-in slide-in-from-bottom-2 duration-150">
-              <div className="text-[10px] font-extrabold text-slate-400 px-3 py-1.5 uppercase tracking-wider border-b border-slate-800 mb-1">
-                Actions & Importation
+            <div className="absolute bottom-24 left-4 z-30 bg-[#111522] border border-white/15 rounded-2xl shadow-2xl p-2 w-72 sm:w-80 animate-in fade-in slide-in-from-bottom-2 duration-150">
+              <div className="text-[10px] font-extrabold text-[#9096a5] px-3 py-1.5 uppercase tracking-wider border-b border-white/10 mb-1">
+                Actions &amp; Importation
               </div>
 
               {/* 1. Nouvelle conversation */}
               <button
                 type="button"
                 onClick={handleNewChat}
-                className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2.5 transition cursor-pointer group"
+                className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-white/10 text-white text-xs font-semibold flex items-center gap-2.5 transition cursor-pointer group"
               >
-                <div className="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-extrabold text-sm group-hover:scale-105 transition-transform shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-[#ffdc45]/15 text-[#ffdc45] flex items-center justify-center font-extrabold text-sm group-hover:scale-105 transition-transform shrink-0">
                   +
                 </div>
                 <div>
-                  <div className="font-bold text-white group-hover:text-emerald-400">Nouvelle conversation</div>
-                  <div className="text-[10px] text-slate-400">Démarrer un nouveau chat comme ChatGPT</div>
+                  <div className="font-bold text-white group-hover:text-[#ffdc45]">Nouvelle conversation</div>
+                  <div className="text-[10px] text-[#9096a5]">Démarrer un nouveau chat comme ChatGPT</div>
                 </div>
               </button>
 
@@ -1177,14 +1177,14 @@ export default function AIAssistantModal({
                   setShowImportMenu(false);
                   fileInputRef.current?.click();
                 }}
-                className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2.5 transition cursor-pointer group mt-0.5"
+                className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-white/10 text-white text-xs font-semibold flex items-center gap-2.5 transition cursor-pointer group mt-0.5"
               >
-                <div className="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center text-sm group-hover:scale-105 transition-transform shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-[#c9d4ff]/15 text-[#c9d4ff] flex items-center justify-center text-sm group-hover:scale-105 transition-transform shrink-0">
                   📸
                 </div>
                 <div>
-                  <div className="font-bold text-white group-hover:text-blue-400">Importer de l&apos;extérieur</div>
-                  <div className="text-[10px] text-slate-400">Galerie photos, scan, image ou dossier</div>
+                  <div className="font-bold text-white group-hover:text-[#c9d4ff]">Importer de l&apos;extérieur</div>
+                  <div className="text-[10px] text-[#9096a5]">Galerie photos, scan, image ou dossier</div>
                 </div>
               </button>
 
@@ -1195,14 +1195,14 @@ export default function AIAssistantModal({
                   setShowImportMenu(false);
                   setShowSimilarPicker(true);
                 }}
-                className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-slate-800 text-white text-xs font-semibold flex items-center gap-2.5 transition cursor-pointer group mt-0.5"
+                className="w-full text-left px-3 py-2.5 rounded-xl hover:bg-white/10 text-white text-xs font-semibold flex items-center gap-2.5 transition cursor-pointer group mt-0.5"
               >
-                <div className="w-7 h-7 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center text-sm group-hover:scale-105 transition-transform shrink-0">
+                <div className="w-7 h-7 rounded-lg bg-[#b9dfc8]/15 text-[#b9dfc8] flex items-center justify-center text-sm group-hover:scale-105 transition-transform shrink-0">
                   📋
                 </div>
                 <div>
-                  <div className="font-bold text-white group-hover:text-purple-400">Importer de l&apos;intérieur</div>
-                  <div className="text-[10px] text-slate-400">Dupliquer une facture de votre base</div>
+                  <div className="font-bold text-white group-hover:text-[#b9dfc8]">Importer de l&apos;intérieur</div>
+                  <div className="text-[10px] text-[#9096a5]">Dupliquer une facture de votre base</div>
                 </div>
               </button>
             </div>
@@ -1228,7 +1228,7 @@ export default function AIAssistantModal({
                 <span className="font-bold text-rose-300">
                   🎙️ Dictée vocale active {recordingSeconds > 0 ? `(${recordingSeconds}s)` : ""}
                 </span>
-                <span className="text-[11px] text-slate-300 hidden sm:inline">
+                <span className="text-[11px] text-[#c4c7d1] hidden sm:inline">
                   — Parlez naturellement, la transcription s&apos;écrit ci-dessous
                 </span>
               </div>
@@ -1249,13 +1249,13 @@ export default function AIAssistantModal({
               e.preventDefault();
               handleSendPrompt();
             }}
-            className="relative flex items-center bg-slate-900 border border-slate-700/80 rounded-full px-2.5 py-2 shadow-lg gap-2"
+            className="relative flex items-center bg-[#111522] border border-white/15 rounded-full px-2.5 py-2 shadow-lg gap-2"
           >
             {/* Bouton + rond style ChatGPT */}
             <button
               type="button"
               onClick={() => setShowImportMenu((prev) => !prev)}
-              className="w-9 h-9 rounded-full bg-slate-800 hover:bg-slate-750 text-slate-200 hover:text-white flex items-center justify-center font-bold text-lg cursor-pointer transition active:scale-95 shrink-0"
+              className="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-[#e5e6ea] hover:text-white flex items-center justify-center font-bold text-lg cursor-pointer transition active:scale-95 shrink-0"
               title="Nouvelle conversation ou importer une facture"
             >
               <span className="leading-none">{showImportMenu ? "✕" : "+"}</span>
@@ -1272,9 +1272,9 @@ export default function AIAssistantModal({
                   ? "🎙️ Écoute active... parlez, vos paroles s'inscrivent ici"
                   : isTranscribing
                   ? "Transcription audio en cours..."
-                  : "Ask iziBot ou dictez : « Facture Salifou 1 500 000 FCFA »..."
+                  : "Ask AMOMD IA ou dictez : « Facture Salifou 1 500 000 FCFA »..."
               }
-              className="flex-1 bg-transparent text-white placeholder-slate-400 text-xs sm:text-sm px-2 focus:outline-none min-w-0"
+              className="flex-1 bg-transparent text-white placeholder-[#808392] text-xs sm:text-sm px-2 focus:outline-none min-w-0"
               disabled={isGenerating || isTranscribing}
             />
 
@@ -1292,8 +1292,8 @@ export default function AIAssistantModal({
                 isListening || isLocalAudioRecording
                   ? "bg-rose-500 text-white animate-pulse shadow-md shadow-rose-500/40"
                   : isTranscribing
-                  ? "bg-amber-500/20 text-amber-300"
-                  : "bg-slate-800 hover:bg-slate-750 text-slate-200 hover:text-white"
+                  ? "bg-[#ffdc45]/20 text-[#ffdc45]"
+                  : "bg-white/10 hover:bg-white/20 text-[#e5e6ea] hover:text-white"
               }`}
               title={
                 isListening || isLocalAudioRecording
@@ -1311,8 +1311,8 @@ export default function AIAssistantModal({
               disabled={!inputText.trim() || isGenerating || isTranscribing}
               className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm transition active:scale-95 cursor-pointer shrink-0 ${
                 inputText.trim() && !isGenerating && !isTranscribing
-                  ? "bg-emerald-500 hover:bg-emerald-400 text-slate-950 shadow-md shadow-emerald-500/30"
-                  : "bg-slate-800 text-slate-500 cursor-not-allowed"
+                  ? "bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] shadow-md shadow-[#ffdc45]/30"
+                  : "bg-white/5 text-[#697080] cursor-not-allowed"
               }`}
               title="Générer la facture"
             >
@@ -1328,10 +1328,10 @@ export default function AIAssistantModal({
                 setInputText("Facture de Doit pour ");
                 setTimeout(() => textInputRef.current?.focus(), 100);
               }}
-              className="py-2.5 px-3 rounded-2xl bg-slate-900 hover:bg-slate-850 text-emerald-400 border border-emerald-500/30 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              className="py-2.5 px-3 rounded-2xl bg-[#111522] hover:bg-[#191f30] text-[#b9dfc8] border border-[#b9dfc8]/30 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               title="Créer une Facture de Doit"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#b9dfc8] shrink-0" />
               <span className="truncate">Facture de Doit</span>
             </button>
             <button
@@ -1340,10 +1340,10 @@ export default function AIAssistantModal({
                 setInputText("Facture d'Avoir pour ");
                 setTimeout(() => textInputRef.current?.focus(), 100);
               }}
-              className="py-2.5 px-3 rounded-2xl bg-slate-900 hover:bg-slate-850 text-sky-400 border border-sky-500/30 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              className="py-2.5 px-3 rounded-2xl bg-[#111522] hover:bg-[#191f30] text-[#c9d4ff] border border-[#c9d4ff]/30 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               title="Créer une Facture d'Avoir"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-sky-400 shrink-0" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#c9d4ff] shrink-0" />
               <span className="truncate">Facture d&apos;Avoir</span>
             </button>
             <button
@@ -1352,10 +1352,10 @@ export default function AIAssistantModal({
                 setInputText("Facture Proforma pour ");
                 setTimeout(() => textInputRef.current?.focus(), 100);
               }}
-              className="py-2.5 px-3 rounded-2xl bg-slate-900 hover:bg-slate-850 text-purple-400 border border-purple-500/30 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
+              className="py-2.5 px-3 rounded-2xl bg-[#111522] hover:bg-[#191f30] text-[#ffdc45] border border-[#ffdc45]/30 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               title="Créer une Facture Proforma"
             >
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-400 shrink-0" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#ffdc45] shrink-0" />
               <span className="truncate">Facture Proforma</span>
             </button>
           </div>

@@ -41,7 +41,7 @@ const INVOICE_TEMPLATES = [
     tag: "Classique",
     description: "Format sobre, officiel et conforme OHADA.",
     preview: "📄",
-    color: "from-slate-800 to-slate-900",
+    color: "from-[#111522] to-[#191f30]",
   },
   {
     id: "tpl-2",
@@ -49,15 +49,15 @@ const INVOICE_TEMPLATES = [
     tag: "Élégant",
     description: "En-tête stylisée et mise en valeur du logo.",
     preview: "💎",
-    color: "from-emerald-700 to-emerald-900",
+    color: "from-[#111522] to-[#1d253d]",
   },
   {
     id: "tpl-3",
     name: "Modèle Entreprise",
     tag: "Corporate",
-    description: "Bandeau sombre obsidienne et colonnes nettes.",
+    description: "Bandeau sombre Bleu Nuit et colonnes nettes.",
     preview: "🏢",
-    color: "from-slate-900 to-blue-950",
+    color: "from-[#0c111d] to-[#111522]",
   },
   {
     id: "tpl-4",
@@ -65,7 +65,7 @@ const INVOICE_TEMPLATES = [
     tag: "Épuré",
     description: "Présentation aérée et typographie fluide.",
     preview: "📑",
-    color: "from-zinc-800 to-slate-900",
+    color: "from-[#111522] to-[#232b42]",
   },
 ];
 
@@ -73,7 +73,7 @@ const INVOICE_PALETTES = [
   { name: "Vert Émeraude (Signature)", hex: "#059669" },
   { name: "Vert Forêt", hex: "#15803D" },
   { name: "Teal Sahélien", hex: "#0D9488" },
-  { name: "Noir Obsidienne", hex: "#0F172A" },
+  { name: "Bleu Nuit (Signature)", hex: "#111522" },
   { name: "Bleu Sahel", hex: "#1D4ED8" },
   { name: "Bleu Indigo", hex: "#4338CA" },
   { name: "Violet Impérial", hex: "#7C3AED" },
@@ -81,11 +81,11 @@ const INVOICE_PALETTES = [
   { name: "Rouge Brique", hex: "#DC2626" },
   { name: "Bordeaux Sombre", hex: "#991B1B" },
   { name: "Or Safran", hex: "#D97706" },
-  { name: "Bronze Cuivré", hex: "#B45309" },
+  { name: "Jaune Or", hex: "#ffdc45" },
 ];
 
-export function generateAccessCode(prefix: string = "IZI"): string {
-  const clean = (prefix || "IZI").replace(/[^a-zA-Z0-9]/g, "").substring(0, 4).toUpperCase() || "IZI";
+export function generateAccessCode(prefix: string = "AMF"): string {
+  const clean = (prefix || "AMF").replace(/[^a-zA-Z0-9]/g, "").substring(0, 4).toUpperCase() || "AMF";
   const num1 = Math.floor(1000 + Math.random() * 9000);
   const num2 = Math.floor(100 + Math.random() * 900);
   return `${clean}-${num1}-${num2}`;
@@ -100,10 +100,10 @@ function buildDefaultTeam(company: CompanyProfile): TeamMember[] {
     {
       id: "owner-tenant",
       name: ownerName,
-      email: company.email || "contact@izifacture.com",
+      email: company.email || "contact@amomd-facture.com",
       role: "Chef d'entreprise",
       status: "Actif",
-      avatarBg: "bg-slate-900",
+      avatarBg: "bg-[#111522]",
       avatarText: initials,
       lastActive: "En ligne maintenant",
       isOwner: true,
@@ -799,14 +799,14 @@ export default function SettingsPage({
 
   // Input styles
   const inputCls =
-    "w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500/30 transition duration-150";
-  const labelCls = "block text-xs font-bold text-slate-700 mb-1.5";
+    "w-full px-3.5 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm text-[#111522] placeholder:text-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/40 transition duration-150";
+  const labelCls = "block text-xs font-bold text-[#111522] mb-1.5";
 
   // Section Header inside Cards
   const SectionHeader = ({ title, subtitle }: { title: string; subtitle: string }) => (
-    <div className="pb-3 mb-4 border-b border-slate-100">
-      <h2 className="text-sm sm:text-base font-extrabold text-slate-900 tracking-tight">{title}</h2>
-      <p className="text-xs text-slate-500 mt-0.5">{subtitle}</p>
+    <div className="pb-3 mb-4 border-b border-[#edece6]">
+      <h2 className="text-base sm:text-lg font-serif font-medium text-[#111522] tracking-tight">{title}</h2>
+      <p className="text-xs text-[#697080] mt-0.5">{subtitle}</p>
     </div>
   );
 
@@ -837,18 +837,18 @@ export default function SettingsPage({
   };
 
   const renderCustomInvoiceEditor = () => (
-    <div className="bg-slate-50 border border-slate-200/90 rounded-2xl p-4 sm:p-5 space-y-4 animate-fade-in shadow-xs text-left">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-200">
+    <div className="bg-[#f8f7f3] border border-[#e8e7e2] rounded-2xl p-4 sm:p-5 space-y-4 animate-fade-in shadow-xs text-left">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-[#e8e7e2]">
         <div>
-          <h4 className="text-xs sm:text-sm font-extrabold text-slate-900 flex items-center gap-2">
+          <h4 className="text-xs sm:text-sm font-extrabold text-[#111522] flex items-center gap-2">
             <span>✏️</span>
             <span>Modification des éléments du modèle de facture importé</span>
           </h4>
-          <p className="text-[11px] text-slate-500 mt-0.5">
+          <p className="text-[11px] text-[#697080] mt-0.5">
             Tous les éléments ci-dessous sont modifiables et se mettent à jour instantanément sur l&apos;aperçu.
           </p>
         </div>
-        <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-200 w-fit">
+        <span className="text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-[#fff0a6] text-[#453700] border border-[#ffe36a] w-fit">
           Norme PAM / Excel
         </span>
       </div>
@@ -856,121 +856,121 @@ export default function SettingsPage({
       {/* Section 1 : Métadonnées En-tête */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">FACT NO (N° Facture) *</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">FACT NO (N° Facture) *</label>
           <input
             type="text"
             value={customInvoiceData.number || ""}
             onChange={(e) => updateCustomInvoiceField("number", e.target.value)}
             placeholder="DA/0014/2026/MO"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">DATE D&apos;ÉMISSION *</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">DATE D&apos;ÉMISSION *</label>
           <input
             type="date"
             value={customInvoiceData.issueDate || ""}
             onChange={(e) => updateCustomInvoiceField("issueDate", e.target.value)}
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-800 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">DATE D&apos;ÉCHÉANCE</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">DATE D&apos;ÉCHÉANCE</label>
           <input
             type="date"
             value={customInvoiceData.dueDate || ""}
             onChange={(e) => updateCustomInvoiceField("dueDate", e.target.value)}
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-800 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">PO NO. (Bon de Commande)</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">PO NO. (Bon de Commande)</label>
           <input
             type="text"
             value={customInvoiceData.poNumber || ""}
             onChange={(e) => updateCustomInvoiceField("poNumber", e.target.value)}
             placeholder="4700795005"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">WFP VENDOR NO.</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">WFP VENDOR NO.</label>
           <input
             type="text"
             value={customInvoiceData.vendorNumber || ""}
             onChange={(e) => updateCustomInvoiceField("vendorNumber", e.target.value)}
             placeholder="50045826"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">CONTRAT NR</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">CONTRAT NR</label>
           <input
             type="text"
             value={customInvoiceData.contractNumber || ""}
             onChange={(e) => updateCustomInvoiceField("contractNumber", e.target.value)}
             placeholder="DA/LOG/149-15A...MO"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div className="sm:col-span-2 lg:col-span-3">
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">LTI N° (Expédition / Connaissement)</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">LTI N° (Expédition / Connaissement)</label>
           <input
             type="text"
             value={customInvoiceData.ltiNumber || ""}
             onChange={(e) => updateCustomInvoiceField("ltiNumber", e.target.value)}
             placeholder="7700776450/7700784099/7700780024"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
       </div>
 
       {/* Section 2 : Destinataire (Doit) & Objet */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-2 border-t border-slate-200">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs pt-2 border-t border-[#e8e7e2]">
         <div className="sm:col-span-2">
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">DOIT (Nom de l&apos;organisation / Client) *</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">DOIT (Nom de l&apos;organisation / Client) *</label>
           <input
             type="text"
             value={customInvoiceData.clientName || ""}
             onChange={(e) => updateCustomInvoiceField("clientName", e.target.value)}
             placeholder="Programme Alimentaire Mondiale"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-bold text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">VILLE / LOCALITÉ</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">VILLE / LOCALITÉ</label>
           <input
             type="text"
             value={customInvoiceData.clientCity || ""}
             onChange={(e) => updateCustomInvoiceField("clientCity", e.target.value)}
             placeholder="Maine Soroa"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
 
         <div className="sm:col-span-3">
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">OBJET DE LA FACTURE *</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">OBJET DE LA FACTURE *</label>
           <input
             type="text"
             value={customInvoiceData.object || ""}
             onChange={(e) => updateCustomInvoiceField("object", e.target.value)}
             placeholder="Transport des vivres de Diffa to Maine Soroa"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl italic text-slate-800 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl italic text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
       </div>
 
       {/* Section 3 : Mode de paiement (Mobile Money, Carte Bancaire, Carte de Crédit) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-2 border-t border-slate-200">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-2 border-t border-[#e8e7e2]">
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">MODE DE PAIEMENT</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">MODE DE PAIEMENT</label>
           <select
             value={customInvoiceData.paymentMethod || "Mobile Money"}
             onChange={(e) => {
@@ -984,7 +984,7 @@ export default function SettingsPage({
                 updateCustomInvoiceField("bankAccountRef", "SONIBANK Niamey — Compte N° 041029481001/45");
               }
             }}
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-bold text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           >
             <option value="Mobile Money">📱 Mobile Money (Airtel, Moov, MyNita, Amanata)</option>
             <option value="Carte Bancaire">💳 Carte Bancaire (Visa, Mastercard, GIM-UEMOA)</option>
@@ -993,7 +993,7 @@ export default function SettingsPage({
         </div>
 
         <div>
-          <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">DÉTAIL / RÉFÉRENCE DE RÈGLEMENT</label>
+          <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">DÉTAIL / RÉFÉRENCE DE RÈGLEMENT</label>
           <input
             type="text"
             value={customInvoiceData.paymentDetail || customInvoiceData.bankAccountRef || ""}
@@ -1002,30 +1002,30 @@ export default function SettingsPage({
               updateCustomInvoiceField("bankAccountRef", e.target.value);
             }}
             placeholder="Ex: Airtel Money (+227 90 24 55 12) ou SONIBANK Niamey — Compte N° 041029481001/45"
-            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35"
           />
         </div>
       </div>
 
       {/* Section 4 : Tableau des Lignes de Facturation */}
-      <div className="pt-2 border-t border-slate-200 space-y-2">
+      <div className="pt-2 border-t border-[#e8e7e2] space-y-2">
         <div className="flex items-center justify-between">
-          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-700">
+          <span className="text-[11px] font-bold uppercase tracking-wider text-[#111522]">
             Articles & Prestations (Grille Officielle PAM)
           </span>
           <button
             type="button"
             onClick={addCustomItem}
-            className="px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-800 hover:bg-emerald-100 border border-emerald-200 font-bold text-[11px] transition active:scale-95 flex items-center gap-1 cursor-pointer"
+            className="px-2.5 py-1 rounded-lg bg-[#fff0a6] text-[#111522] hover:bg-[#ffdc45] border border-[#ffe36a] font-bold text-[11px] transition active:scale-95 flex items-center gap-1 cursor-pointer"
           >
             <span>+ Ajouter une ligne</span>
           </button>
         </div>
 
-        <div className="overflow-x-auto border border-slate-200 rounded-xl bg-white shadow-xs">
+        <div className="overflow-x-auto border border-[#e8e7e2] rounded-xl bg-white shadow-xs">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="bg-slate-100 text-slate-800 font-extrabold border-b border-slate-200 text-[10px] uppercase">
+              <tr className="bg-[#f2f0e8] text-[#111522] font-extrabold border-b border-[#e8e7e2] text-[10px] uppercase">
                 <th className="p-2 text-center w-10">#</th>
                 <th className="p-2 min-w-[200px]">Description</th>
                 <th className="p-2 text-center w-24">Unité</th>
@@ -1035,16 +1035,16 @@ export default function SettingsPage({
                 <th className="p-2 text-center w-12">Suppr.</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-[#edece6]">
               {(customInvoiceData.items || []).map((it, idx) => (
-                <tr key={it.id || idx} className="hover:bg-slate-50/70">
-                  <td className="p-2 text-center font-mono font-bold text-slate-500">{idx + 1}</td>
+                <tr key={it.id || idx} className="hover:bg-[#fff9db]/45">
+                  <td className="p-2 text-center font-mono font-bold text-[#697080]">{idx + 1}</td>
                   <td className="p-1.5">
                     <input
                       type="text"
                       value={it.description}
                       onChange={(e) => updateCustomItem(idx, "description", e.target.value)}
-                      className="w-full px-2 py-1 bg-slate-50 border border-slate-200 rounded text-xs text-slate-900 focus:bg-white focus:outline-none"
+                      className="w-full px-2 py-1 bg-[#f8f7f3] border border-[#e4e2d9] rounded text-xs text-[#111522] focus:bg-white focus:border-[#111522] focus:outline-none"
                     />
                   </td>
                   <td className="p-1.5">
@@ -1052,7 +1052,7 @@ export default function SettingsPage({
                       type="text"
                       value={it.unit || "MT"}
                       onChange={(e) => updateCustomItem(idx, "unit", e.target.value)}
-                      className="w-full px-1.5 py-1 bg-slate-50 border border-slate-200 rounded text-center font-mono uppercase text-xs text-slate-800 focus:bg-white focus:outline-none"
+                      className="w-full px-1.5 py-1 bg-[#f8f7f3] border border-[#e4e2d9] rounded text-center font-mono uppercase text-xs text-[#111522] focus:bg-white focus:border-[#111522] focus:outline-none"
                     />
                   </td>
                   <td className="p-1.5">
@@ -1060,7 +1060,7 @@ export default function SettingsPage({
                       type="number"
                       value={it.quantity}
                       onChange={(e) => updateCustomItem(idx, "quantity", Number(e.target.value))}
-                      className="w-full px-1.5 py-1 bg-slate-50 border border-slate-200 rounded text-center font-mono font-bold text-xs text-slate-900 focus:bg-white focus:outline-none"
+                      className="w-full px-1.5 py-1 bg-[#f8f7f3] border border-[#e4e2d9] rounded text-center font-mono font-bold text-xs text-[#111522] focus:bg-white focus:border-[#111522] focus:outline-none"
                     />
                   </td>
                   <td className="p-1.5">
@@ -1068,10 +1068,10 @@ export default function SettingsPage({
                       type="number"
                       value={it.unitPrice}
                       onChange={(e) => updateCustomItem(idx, "unitPrice", Number(e.target.value))}
-                      className="w-full px-1.5 py-1 bg-slate-50 border border-slate-200 rounded text-right font-mono text-xs text-slate-900 focus:bg-white focus:outline-none"
+                      className="w-full px-1.5 py-1 bg-[#f8f7f3] border border-[#e4e2d9] rounded text-right font-mono text-xs text-[#111522] focus:bg-white focus:border-[#111522] focus:outline-none"
                     />
                   </td>
-                  <td className="p-2 text-right font-mono font-bold text-slate-900 whitespace-nowrap">
+                  <td className="p-2 text-right font-mono font-bold text-[#111522] whitespace-nowrap">
                     {formatFCFA(it.totalHT)}
                   </td>
                   <td className="p-1.5 text-center">
@@ -1092,10 +1092,10 @@ export default function SettingsPage({
       </div>
 
       {/* Section 5 : Totaux et Actions */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2 border-t border-slate-200">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-[#e8e7e2]">
         <div className="flex items-center gap-2 text-xs font-mono">
-          <span className="text-slate-500 font-bold">Total Général :</span>
-          <span className="text-sm font-extrabold text-emerald-800 bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200">
+          <span className="text-[#5f6571] font-bold">Total Général :</span>
+          <span className="text-sm font-extrabold text-[#111522] bg-[#fff0a6] px-3 py-1 rounded-xl border border-[#ffe36a]">
             {formatFCFA(customInvoiceData.netToPay || 0)}
           </span>
         </div>
@@ -1107,7 +1107,7 @@ export default function SettingsPage({
               setPreviewTemplateId("custom");
               setPreviewModalOpen(true);
             }}
-            className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition active:scale-95 shadow-sm inline-flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-[#111522] hover:bg-[#191f30] text-white font-bold text-xs transition active:scale-95 shadow-sm inline-flex items-center gap-1.5 cursor-pointer"
           >
             <span>👁️ Voir l&apos;aperçu mis à jour</span>
           </button>
@@ -1126,7 +1126,7 @@ export default function SettingsPage({
                 onCreateInvoiceWithTemplate("custom");
               }
             }}
-            className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition active:scale-95 shadow-sm inline-flex items-center gap-1.5 cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] font-bold text-xs transition active:scale-95 shadow-sm inline-flex items-center gap-1.5 cursor-pointer"
             title="Ouvrir la page de création avec ce modèle et ces articles"
           >
             <span>📝 Créer une facture avec ce modèle</span>
@@ -1168,17 +1168,17 @@ export default function SettingsPage({
       {/* TOP PAGE HEADER */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-serif font-medium text-[#111522] tracking-tight">
             {t.settingsTitle}
           </h1>
-          <p className="text-xs sm:text-sm text-slate-500 mt-1">
+          <p className="text-xs sm:text-sm text-[#697080] mt-1">
             {t.settingsSubtitle}
           </p>
         </div>
       </div>
 
       {/* BARRE D'ONGLETS DIRECTE — ACCÈS EN 1 CLIC, SANS FLÈCHES NI CADRES INTERMÉDIAIRES */}
-      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1 border-b border-slate-200/80">
+      <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1.5 border-b border-[#e8e7e2]">
         {tabs.map((tab) => {
           const isCurrent = activeTab === tab.id;
           return (
@@ -1187,8 +1187,8 @@ export default function SettingsPage({
               type="button"
               onClick={() => setActiveTab(tab.id)}
               className={`px-4 py-2.5 rounded-2xl text-xs sm:text-sm font-extrabold flex items-center gap-2 transition-all duration-150 active:scale-95 shrink-0 cursor-pointer ${isCurrent
-                ? "bg-slate-900 text-white shadow-md shadow-slate-900/15 ring-2 ring-emerald-500/20"
-                : "bg-white text-slate-700 hover:text-slate-900 hover:bg-slate-50 border border-slate-200/70"
+                ? "bg-[#111522] text-white shadow-md shadow-[#111522]/15 ring-2 ring-[#ffdc45]/45"
+                : "bg-white text-[#5f6571] hover:text-[#111522] hover:bg-[#f2f0e8] border border-[#e8e7e2]"
                 }`}
             >
               <span className="text-base">{tab.icon}</span>
@@ -1207,7 +1207,7 @@ export default function SettingsPage({
           <form onSubmit={handleSave} className="space-y-5 animate-fade-in">
 
             {/* CARD 1: Identité */}
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)]">
+            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#e8e7e2] shadow-[0_4px_20px_-4px_rgba(17,21,34,0.04)]">
               <SectionHeader
                 title={t.companyIdentityTitle}
                 subtitle={t.companyIdentityDesc}
@@ -1220,7 +1220,7 @@ export default function SettingsPage({
                     required
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
-                    placeholder="Ex: iziFacture SARL"
+                    placeholder="Ex: AMOMD FACTURE SARL"
                     className={inputCls}
                   />
                 </div>
@@ -1264,7 +1264,7 @@ export default function SettingsPage({
                     type="text"
                     value={formData.shortName || ""}
                     onChange={(e) => handleInputChange("shortName", e.target.value)}
-                    placeholder="IZI, STS..."
+                    placeholder="AMF, STS..."
                     className={`${inputCls} font-bold`}
                   />
                 </div>
@@ -1272,7 +1272,7 @@ export default function SettingsPage({
             </div>
 
             {/* CARD 2: Coordonnées */}
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)]">
+            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#e8e7e2] shadow-[0_4px_20px_-4px_rgba(17,21,34,0.04)]">
               <SectionHeader
                 title={t.contactDetailsTitle}
                 subtitle={t.contactDetailsDesc}
@@ -1284,7 +1284,7 @@ export default function SettingsPage({
                     type="email"
                     value={formData.email || ""}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    placeholder="billing@izifacture.com"
+                    placeholder="billing@amomd-facture.com"
                     className={inputCls}
                   />
                 </div>
@@ -1295,7 +1295,7 @@ export default function SettingsPage({
                     type="text"
                     value={formData.phone || ""}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    placeholder="+221 77 123 45 67"
+                    placeholder="+227 77 06 38 37"
                     className={`${inputCls} font-mono`}
                   />
                 </div>
@@ -1316,33 +1316,33 @@ export default function SettingsPage({
             </div>
 
             {/* CARD 3: Visuels Logo & Cachet */}
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)]">
+            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#e8e7e2] shadow-[0_4px_20px_-4px_rgba(17,21,34,0.04)]">
               <SectionHeader
                 title={t.visualsTitle}
                 subtitle={t.visualsDesc}
               />
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Logo Upload */}
-                <div className="p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 rounded-xl flex items-center gap-3">
+                <div className="p-4 bg-[#f8f7f3] border border-[#e8e7e2] rounded-xl flex items-center gap-3">
                   <div className="w-14 h-14 rounded-xl border-2 border-white bg-white flex items-center justify-center overflow-hidden shrink-0 shadow-sm">
                     {formData.logoUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
                       <img src={formData.logoUrl} alt="Logo" className="max-h-full max-w-full object-contain" />
                     ) : (
-                      <span className="text-xs font-mono font-bold text-slate-400">{formData.shortName || "LOGO"}</span>
+                      <span className="text-xs font-mono font-bold text-[#808392]">{formData.shortName || "LOGO"}</span>
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="font-extrabold text-slate-900 block text-xs">
+                    <span className="font-extrabold text-[#111522] block text-xs">
                       {t.companyLogoLabel}
                     </span>
-                    <span className="text-[10px] text-slate-400 block mb-2">PNG / JPG (max 2 Mo)</span>
+                    <span className="text-[10px] text-[#697080] block mb-2">PNG / JPG (max 2 Mo)</span>
                     <input type="file" ref={logoInputRef} onChange={handleLogoUpload} accept="image/*" className="hidden" />
                     <div className="flex items-center gap-2">
                       <button
                         type="button"
                         onClick={() => logoInputRef.current?.click()}
-                        className="px-2.5 py-1 bg-white border border-slate-200 hover:bg-slate-50 text-slate-800 text-[11px] font-bold rounded-lg transition active:scale-95 shadow-xs"
+                        className="px-2.5 py-1 bg-white border border-[#e4e2d9] hover:bg-[#f2f0e8] text-[#111522] text-[11px] font-bold rounded-lg transition active:scale-95 shadow-xs cursor-pointer"
                       >
                         {formData.logoUrl ? (lang === "en" ? "Change" : "Changer") : t.uploadLogoBtn}
                       </button>
@@ -1360,7 +1360,7 @@ export default function SettingsPage({
                 </div>
 
                 {/* Stamp Upload */}
-                <div className="p-4 bg-gradient-to-br from-slate-50 to-slate-100/50 border border-slate-200 rounded-xl flex items-center gap-3">
+                <div className="p-4 bg-[#f8f7f3] border border-[#e8e7e2] rounded-xl flex items-center gap-3">
                   <div className="w-14 h-14 rounded-xl border-2 border-white bg-white flex items-center justify-center overflow-hidden shrink-0 shadow-sm">
                     {formData.stampUrl ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -1370,10 +1370,10 @@ export default function SettingsPage({
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <span className="font-extrabold text-slate-900 block text-xs">
+                    <span className="font-extrabold text-[#111522] block text-xs">
                       {t.officialStampLabel}
                     </span>
-                    <span className="text-[10px] text-slate-400 block mb-2">
+                    <span className="text-[10px] text-[#697080] block mb-2">
                       {lang === "en" ? "Scanned or transparent PNG" : "Scanné ou image PNG transparente"}
                     </span>
                     <input type="file" ref={stampInputRef} onChange={handleStampUpload} accept="image/*" className="hidden" />
@@ -1381,7 +1381,7 @@ export default function SettingsPage({
                       <button
                         type="button"
                         onClick={() => stampInputRef.current?.click()}
-                        className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-bold rounded-lg transition active:scale-95 shadow-xs"
+                        className="px-2.5 py-1 bg-[#111522] hover:bg-[#191f30] text-[#ffdc45] text-[11px] font-bold rounded-lg transition active:scale-95 shadow-xs cursor-pointer"
                       >
                         {formData.stampUrl ? (lang === "en" ? "Change" : "Changer") : t.uploadStampActionBtn}
                       </button>
@@ -1404,9 +1404,9 @@ export default function SettingsPage({
             <div className="flex justify-end pt-2">
               <button
                 type="submit"
-                className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-md transition active:scale-95 inline-flex items-center gap-2"
+                className="px-6 py-2.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] font-extrabold text-xs sm:text-sm shadow-md shadow-[#ffdc45]/20 transition active:scale-95 inline-flex items-center gap-2 cursor-pointer"
               >
-                <IconCheck className="w-4 h-4 text-emerald-400" />
+                <IconCheck className="w-4 h-4 text-[#111522]" />
                 <span>{t.saveSettings}</span>
               </button>
             </div>
@@ -1419,24 +1419,24 @@ export default function SettingsPage({
         {activeTab === "templates" && (
           <div className="space-y-6 animate-fade-in w-full">
             {/* Carte principale pleine largeur */}
-            <div className="bg-white p-5 sm:p-7 rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] space-y-6">
+            <div className="bg-white p-5 sm:p-7 rounded-2xl border border-[#e8e7e2] shadow-[0_4px_20px_-4px_rgba(17,21,34,0.04)] space-y-6">
               
               {/* Header de la page */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-slate-100">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-[#edece6]">
                 <div>
-                  <h2 className="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                  <h2 className="text-lg sm:text-xl font-serif font-medium text-[#111522] tracking-tight flex items-center gap-2">
                     <span>📄</span>
                     <span>{t.tabInvoiceTemplates || "Modèles de facturation"}</span>
                   </h2>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+                  <p className="text-xs sm:text-sm text-[#697080] mt-0.5">
                     {lang === "en"
                       ? "Choose your invoice layout or upload your own corporate template."
                       : "Choisissez la mise en page de vos factures ou importez votre propre modèle."}
                   </p>
                 </div>
                 <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
-                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[11px] font-bold bg-[#fff0a6] text-[#453700] border border-[#ffe36a]">
+                    <span className="w-2 h-2 rounded-full bg-[#111522] animate-pulse" />
                     <span>
                       {selectedTemplate === "custom"
                         ? (customTemplateFile?.name || "Modèle personnalisé actif")
@@ -1449,11 +1449,11 @@ export default function SettingsPage({
               {/* 1. Grille des 4 modèles professionnels intégrés */}
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                  <span className="text-xs font-extrabold uppercase tracking-wider text-[#111522] flex items-center gap-1.5">
                     <span>✨</span>
                     <span>1. Modèles professionnels intégrés</span>
                   </span>
-                  <span className="text-[11px] text-slate-400 font-medium">Norme OHADA & UEMOA</span>
+                  <span className="text-[11px] text-[#697080] font-medium">Norme OHADA & UEMOA</span>
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
                   {INVOICE_TEMPLATES.map((tpl) => {
@@ -1471,8 +1471,8 @@ export default function SettingsPage({
                           showToast(`✅ ${tpl.name} activé !`);
                         }}
                         className={`p-4 rounded-2xl border-2 transition-all duration-150 active:scale-95 cursor-pointer text-left flex flex-col justify-between group ${isSelected
-                          ? "bg-slate-900 text-white border-emerald-500 shadow-xl ring-2 ring-emerald-500/40"
-                          : "bg-white text-slate-800 border-slate-200 hover:border-emerald-400 hover:bg-slate-50/60 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)]"
+                          ? "bg-[#111522] text-white border-[#ffdc45] shadow-xl ring-2 ring-[#ffdc45]/35"
+                          : "bg-white text-[#111522] border-[#e8e7e2] hover:border-[#111522] hover:bg-[#f8f7f3] shadow-[0_4px_20px_-4px_rgba(17,21,34,0.04)]"
                           }`}
                       >
                         <div>
@@ -1480,21 +1480,21 @@ export default function SettingsPage({
                             <span className="text-2xl">{tpl.preview}</span>
                             <span
                               className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${isSelected
-                                ? "bg-emerald-500/20 text-emerald-300 border-emerald-500/40"
-                                : "bg-slate-100 text-slate-600 border-slate-200"
+                                ? "bg-[#ffdc45]/20 text-[#ffdc45] border-[#ffdc45]/35"
+                                : "bg-[#f2f0e8] text-[#5f6571] border-[#e4e2d9]"
                                 }`}
                             >
                               {tpl.tag}
                             </span>
                           </div>
                           <h3
-                            className={`font-extrabold text-sm sm:text-base tracking-tight ${isSelected ? "text-white" : "text-slate-900"
+                            className={`font-extrabold text-sm sm:text-base tracking-tight ${isSelected ? "text-white" : "text-[#111522]"
                               }`}
                           >
                             {tpl.name}
                           </h3>
                           <p
-                            className={`text-xs mt-1.5 line-clamp-2 leading-relaxed ${isSelected ? "text-slate-300" : "text-slate-500"
+                            className={`text-xs mt-1.5 line-clamp-2 leading-relaxed ${isSelected ? "text-[#c4c7d1]" : "text-[#697080]"
                               }`}
                           >
                             {tpl.description}
@@ -1503,14 +1503,14 @@ export default function SettingsPage({
 
                         <div
                           className={`pt-3 mt-3 border-t text-[11px] font-bold flex items-center justify-between ${isSelected
-                            ? "border-slate-800 text-emerald-400"
-                            : "border-slate-100 text-slate-500 group-hover:text-emerald-600"
+                            ? "border-white/10 text-[#ffdc45]"
+                            : "border-[#edece6] text-[#697080] group-hover:text-[#111522]"
                             }`}
                         >
                           <span className="flex items-center gap-1.5">
                             {isSelected ? (
                               <>
-                                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#ffdc45] animate-pulse" />
                                 <span>Modèle actif</span>
                               </>
                             ) : (
@@ -1526,7 +1526,7 @@ export default function SettingsPage({
               </div>
 
               {/* 1.B SECTION DÉDIÉE : IMPORTER VOTRE PROPRE MODÈLE (GALERIE, PHOTOS OU FICHIERS) */}
-              <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-850 to-slate-900 text-white border border-slate-800 shadow-xl space-y-4">
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#111522] text-white border border-white/10 shadow-xl space-y-4">
                 {/* Inputs invisibles déclenchés par les boutons */}
                 <input
                   type="file"
@@ -1545,21 +1545,21 @@ export default function SettingsPage({
 
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex items-start gap-3.5">
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-2xl shrink-0 border border-emerald-500/30 shadow-inner">
+                    <div className="w-12 h-12 rounded-2xl bg-[#ffdc45]/15 text-[#ffdc45] flex items-center justify-center text-2xl shrink-0 border border-[#ffdc45]/30 shadow-inner">
                       📥
                     </div>
                     <div>
                       <div className="flex items-center gap-2 flex-wrap">
-                        <h4 className="font-extrabold text-base sm:text-lg text-white">
+                        <h4 className="font-serif font-medium text-lg sm:text-xl text-white">
                           Importer votre propre modèle de facture
                         </h4>
-                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold bg-[#ffdc45]/15 text-[#ffdc45] border border-[#ffdc45]/30">
                           Galerie • Photos • Scan • PDF
                         </span>
                       </div>
-                      <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+                      <p className="text-xs sm:text-sm text-[#b9bdc9] mt-1 max-w-2xl leading-relaxed">
                         Votre entreprise dispose d&apos;un modèle officiel, d&apos;un gabarit scanné ou d&apos;une photo de facture ?
-                        Importez-le directement depuis votre galerie photo ou vos fichiers pour l&apos;appliquer à vos factures iziFACTURE.
+                        Importez-le directement depuis votre galerie photo ou vos fichiers pour l&apos;appliquer à vos factures AMOMD FACTURE.
                       </p>
                     </div>
                   </div>
@@ -1569,7 +1569,7 @@ export default function SettingsPage({
                     <button
                       type="button"
                       onClick={() => galleryTemplateInputRef.current?.click()}
-                      className="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs sm:text-sm transition active:scale-95 flex items-center gap-2 cursor-pointer shadow-md shadow-emerald-950/30"
+                      className="px-4 py-2.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] font-extrabold text-xs sm:text-sm transition active:scale-95 flex items-center gap-2 cursor-pointer shadow-md shadow-black/25"
                       title="Ouvrir la galerie ou vos photos"
                     >
                       <span className="text-base">📷</span>
@@ -1578,7 +1578,7 @@ export default function SettingsPage({
                     <button
                       type="button"
                       onClick={() => invoiceTemplateInputRef.current?.click()}
-                      className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-100 hover:text-white font-extrabold text-xs sm:text-sm transition active:scale-95 flex items-center gap-2 cursor-pointer border border-slate-700 shadow-sm"
+                      className="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-extrabold text-xs sm:text-sm transition active:scale-95 flex items-center gap-2 cursor-pointer border border-white/15 shadow-sm"
                       title="Parcourir un document PDF, scan ou fichier"
                     >
                       <span className="text-base">📁</span>
@@ -1589,22 +1589,22 @@ export default function SettingsPage({
 
                 {/* État du fichier importé */}
                 {customTemplateFile ? (
-                  <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+                  <div className="p-3.5 rounded-xl bg-[#191f30] border border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
                     <div className="flex items-center gap-3 min-w-0">
-                      <span className="w-8 h-8 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm shrink-0">
+                      <span className="w-8 h-8 rounded-lg bg-[#ffdc45]/15 text-[#ffdc45] flex items-center justify-center font-bold text-sm shrink-0">
                         📄
                       </span>
                       <div className="min-w-0">
                         <div className="flex items-center gap-2 flex-wrap">
                           <strong className="text-white truncate max-w-xs">{customTemplateFile.name}</strong>
-                          <span className="text-slate-400 font-mono text-[11px]">({customTemplateFile.size})</span>
+                          <span className="text-[#9096a5] font-mono text-[11px]">({customTemplateFile.size})</span>
                           {selectedTemplate === "custom" && (
-                            <span className="px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 text-[10px] font-bold">
+                            <span className="px-2 py-0.5 rounded-full bg-[#ffdc45] text-[#111522] text-[10px] font-bold">
                               ✓ Modèle actif
                             </span>
                           )}
                         </div>
-                        <span className="text-slate-400 text-[11px] block mt-0.5">
+                        <span className="text-[#9096a5] text-[11px] block mt-0.5">
                           Importé le {customTemplateFile.uploadedAt}
                         </span>
                       </div>
@@ -1617,7 +1617,7 @@ export default function SettingsPage({
                           setPreviewTemplateId("custom");
                           setPreviewModalOpen(true);
                         }}
-                        className="px-3 py-1.5 rounded-lg bg-slate-700 hover:bg-slate-650 text-white font-bold text-xs transition active:scale-95 flex items-center gap-1 cursor-pointer"
+                        className="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold text-xs transition active:scale-95 flex items-center gap-1 cursor-pointer"
                       >
                         <span>👁️ Aperçu</span>
                       </button>
@@ -1632,7 +1632,7 @@ export default function SettingsPage({
                             onSaveCompany(updatedComp);
                             showToast(`✅ ${customTemplateFile.name} réactivé !`);
                           }}
-                          className="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs transition active:scale-95 cursor-pointer"
+                          className="px-3 py-1.5 rounded-lg bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] font-bold text-xs transition active:scale-95 cursor-pointer"
                         >
                           Activer ce modèle
                         </button>
@@ -1642,12 +1642,12 @@ export default function SettingsPage({
                 ) : (
                   <div
                     onClick={() => invoiceTemplateInputRef.current?.click()}
-                    className="p-4 rounded-xl border-2 border-dashed border-slate-700 hover:border-emerald-500/50 bg-slate-800/40 hover:bg-slate-800/60 transition cursor-pointer text-center"
+                    className="p-4 rounded-xl border-2 border-dashed border-white/20 hover:border-[#ffdc45]/60 bg-white/5 hover:bg-white/10 transition cursor-pointer text-center"
                   >
-                    <p className="text-xs text-slate-300 font-semibold">
+                    <p className="text-xs text-[#e5e6ea] font-semibold">
                       Glissez-déposez votre modèle de facture ici ou cliquez sur l&apos;un des boutons ci-dessus
                     </p>
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-[11px] text-[#9096a5] mt-1">
                       Formats supportés : Photos JPG/PNG, scans, gabarits et documents PDF (jusqu&apos;à 10 Mo)
                     </p>
                   </div>
@@ -1655,14 +1655,14 @@ export default function SettingsPage({
               </div>
 
               {/* 2. Personnalisation Couleurs & Nuancier */}
-              <div className="pt-2 border-t border-slate-100">
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-slate-50/80 border border-slate-200/80">
+              <div className="pt-2 border-t border-[#edece6]">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-[#f8f7f3] border border-[#e8e7e2]">
                   <div className="space-y-1">
-                    <span className="text-xs font-extrabold uppercase tracking-wider text-slate-800 flex items-center gap-1.5">
+                    <span className="text-xs font-extrabold uppercase tracking-wider text-[#111522] flex items-center gap-1.5">
                       <span>🎨</span>
                       <span>2. Personnaliser votre facture (Couleur & Nuancier)</span>
                     </span>
-                    <p className="text-xs text-slate-500 max-w-md">
+                    <p className="text-xs text-[#697080] max-w-md">
                       Cliquez pour ouvrir le sélecteur complet façon Office : Couleurs du thème, Couleurs standard ou mélangeur de teinte personnalisé.
                     </p>
                   </div>
@@ -1670,7 +1670,7 @@ export default function SettingsPage({
                   {/* Composant Sélecteur de Couleur Office / Word */}
                   <div className="shrink-0">
                     <OfficeColorPicker
-                      value={accentColor.startsWith("#") ? accentColor : "#059669"}
+                      value={accentColor.startsWith("#") ? accentColor : "#111522"}
                       onChange={(newColor) => {
                         setAccentColor(newColor);
                         const updated = { ...formData, invoiceAccentColor: newColor };
@@ -1685,16 +1685,16 @@ export default function SettingsPage({
               </div>
 
               {/* 3. Options d'affichage sur la facture */}
-              <div className="pt-2 border-t border-slate-100 space-y-3">
-                <span className="text-xs font-extrabold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+              <div className="pt-2 border-t border-[#edece6] space-y-3">
+                <span className="text-xs font-extrabold uppercase tracking-wider text-[#111522] flex items-center gap-1.5">
                   <span>⚙️</span>
                   <span>3. Options d&apos;affichage sur la facture</span>
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                  <label className="p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition">
+                  <label className="p-3.5 rounded-xl border border-[#e8e7e2] bg-[#f8f7f3] hover:bg-[#f2f0e8] flex items-center justify-between cursor-pointer transition">
                     <div className="min-w-0 pr-2">
-                      <span className="text-xs font-bold text-slate-800 block">Cachet officiel</span>
-                      <span className="text-[10px] text-slate-500">Apposer le tampon/signature</span>
+                      <span className="text-xs font-bold text-[#111522] block">Cachet officiel</span>
+                      <span className="text-[10px] text-[#697080]">Apposer le tampon/signature</span>
                     </div>
                     <input
                       type="checkbox"
@@ -1705,14 +1705,14 @@ export default function SettingsPage({
                         setFormData(updated);
                         onSaveCompany(updated);
                       }}
-                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                      className="w-4 h-4 rounded accent-[#111522] cursor-pointer"
                     />
                   </label>
 
-                  <label className="p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition">
+                  <label className="p-3.5 rounded-xl border border-[#e8e7e2] bg-[#f8f7f3] hover:bg-[#f2f0e8] flex items-center justify-between cursor-pointer transition">
                     <div className="min-w-0 pr-2">
-                      <span className="text-xs font-bold text-slate-800 block">Coordonnées RIB / Mobile</span>
-                      <span className="text-[10px] text-slate-500">Afficher en pied de page</span>
+                      <span className="text-xs font-bold text-[#111522] block">Coordonnées RIB / Mobile</span>
+                      <span className="text-[10px] text-[#697080]">Afficher en pied de page</span>
                     </div>
                     <input
                       type="checkbox"
@@ -1723,14 +1723,14 @@ export default function SettingsPage({
                         setFormData(updated);
                         onSaveCompany(updated);
                       }}
-                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                      className="w-4 h-4 rounded accent-[#111522] cursor-pointer"
                     />
                   </label>
 
-                  <label className="p-3.5 rounded-xl border border-slate-200 bg-slate-50/60 hover:bg-slate-50 flex items-center justify-between cursor-pointer transition">
+                  <label className="p-3.5 rounded-xl border border-[#e8e7e2] bg-[#f8f7f3] hover:bg-[#f2f0e8] flex items-center justify-between cursor-pointer transition">
                     <div className="min-w-0 pr-2">
-                      <span className="text-xs font-bold text-slate-800 block">Mentions Légales & Arrêté</span>
-                      <span className="text-[10px] text-slate-500">Montant en toutes lettres</span>
+                      <span className="text-xs font-bold text-[#111522] block">Mentions Légales & Arrêté</span>
+                      <span className="text-[10px] text-[#697080]">Montant en toutes lettres</span>
                     </div>
                     <input
                       type="checkbox"
@@ -1741,21 +1741,21 @@ export default function SettingsPage({
                         setFormData(updated);
                         onSaveCompany(updated);
                       }}
-                      className="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 cursor-pointer"
+                      className="w-4 h-4 rounded accent-[#111522] cursor-pointer"
                     />
                   </label>
                 </div>
               </div>
 
               {/* 4. Actions & Sauvegarde */}
-              <div className="pt-4 border-t border-slate-100 flex flex-wrap items-center justify-between gap-3">
+              <div className="pt-4 border-t border-[#edece6] flex flex-wrap items-center justify-between gap-3">
                 <button
                   type="button"
                   onClick={() => {
                     setPreviewTemplateId(selectedTemplate);
                     setPreviewModalOpen(true);
                   }}
-                  className="px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-800 text-xs font-bold transition active:scale-95 inline-flex items-center gap-2 cursor-pointer shadow-sm"
+                  className="px-4 py-2.5 rounded-xl border border-[#e4e2d9] bg-white hover:bg-[#f2f0e8] text-[#111522] text-xs font-bold transition active:scale-95 inline-flex items-center gap-2 cursor-pointer shadow-sm"
                 >
                   <span>👁️</span>
                   <span>Aperçu de la facture</span>
@@ -1764,9 +1764,9 @@ export default function SettingsPage({
                 <button
                   type="button"
                   onClick={handleSaveTemplateSettings}
-                  className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-bold shadow-md transition active:scale-95 inline-flex items-center gap-2 cursor-pointer"
+                  className="px-5 py-2.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs sm:text-sm font-extrabold shadow-md shadow-[#ffdc45]/20 transition active:scale-95 inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <IconCheck className="w-4 h-4 text-emerald-400" />
+                  <IconCheck className="w-4 h-4 text-[#111522]" />
                   <span>Enregistrer la personnalisation</span>
                 </button>
               </div>
@@ -1779,7 +1779,7 @@ export default function SettingsPage({
         {/* TAB 3: RÉGIONAL & DEVISES + LANGUE         */}
         {/* =========================================== */}
         {activeTab === "region" && (
-          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-slate-200/80 shadow-[0_8px_30px_-8px_rgba(15,23,42,0.05)] space-y-6 animate-fade-in">
+          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#e8e7e2] shadow-[0_8px_30px_-8px_rgba(17,21,34,0.05)] space-y-6 animate-fade-in">
             <SectionHeader
               title={t.regionalSettingsTitle}
               subtitle={t.regionalSettingsDesc}
@@ -1795,33 +1795,33 @@ export default function SettingsPage({
                     setLangDropdownOpen(!langDropdownOpen);
                     setCountryDropdownOpen(false);
                   }}
-                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 hover:border-slate-300 rounded-xl text-left flex items-center justify-between transition shadow-2xs cursor-pointer"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e2d9] hover:border-[#111522] rounded-xl text-left flex items-center justify-between transition shadow-2xs cursor-pointer"
                 >
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <span className="px-2 py-0.5 rounded-md bg-slate-900 text-emerald-400 font-mono text-[10px] font-extrabold uppercase">
+                    <span className="px-2 py-0.5 rounded-md bg-[#111522] text-[#ffdc45] font-mono text-[10px] font-extrabold uppercase">
                       {lang}
                     </span>
-                    <span className="font-bold text-slate-900 truncate">
+                    <span className="font-bold text-[#111522] truncate">
                       {AVAILABLE_LANGUAGES.find((l) => l.code === lang)?.nativeName || "Français"}
                     </span>
                   </div>
-                  <svg className={`w-4 h-4 text-slate-400 transition-transform ${langDropdownOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <svg className={`w-4 h-4 text-[#697080] transition-transform ${langDropdownOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M6 9l6 6 6-6" />
                   </svg>
                 </button>
 
                 {langDropdownOpen && (
-                  <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl border border-slate-200 shadow-2xl z-40 overflow-hidden animate-scale-up">
-                    <div className="p-2.5 border-b border-slate-100">
+                  <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl border border-[#e8e7e2] shadow-2xl z-40 overflow-hidden animate-scale-up">
+                    <div className="p-2.5 border-b border-[#edece6]">
                       <div className="relative">
-                        <IconSearch className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <IconSearch className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#808392]" />
                         <input
                           type="text"
                           autoFocus
                           value={langSearch}
                           onChange={(e) => setLangSearch(e.target.value)}
                           placeholder="Rechercher une langue..."
-                          className="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500"
+                          className="w-full pl-8 pr-3 py-2 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-xs text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522]"
                         />
                       </div>
                     </div>
@@ -1846,20 +1846,20 @@ export default function SettingsPage({
                               setLangDropdownOpen(false);
                             }}
                             className={`w-full px-3 py-2 rounded-xl text-xs font-semibold flex items-center justify-between transition ${isSelected
-                              ? "bg-slate-900 text-white"
-                              : "text-slate-700 hover:bg-slate-50"
+                              ? "bg-[#111522] text-white"
+                              : "text-[#5f6571] hover:bg-[#f8f7f3] hover:text-[#111522]"
                               }`}
                           >
                             <div className="flex items-center gap-2.5">
                               <span
-                                className={`px-1.5 py-0.5 rounded font-mono text-[10px] font-extrabold uppercase ${isSelected ? "bg-emerald-500 text-slate-950" : "bg-slate-100 text-slate-600"
+                                className={`px-1.5 py-0.5 rounded font-mono text-[10px] font-extrabold uppercase ${isSelected ? "bg-[#ffdc45] text-[#111522]" : "bg-[#f2f0e8] text-[#5f6571]"
                                   }`}
                               >
                                 {l.code}
                               </span>
                               <span className="font-bold">{l.nativeName}</span>
                             </div>
-                            {isSelected && <IconCheck className="w-4 h-4 text-emerald-400" />}
+                            {isSelected && <IconCheck className="w-4 h-4 text-[#ffdc45]" />}
                           </button>
                         );
                       })}
@@ -1877,28 +1877,28 @@ export default function SettingsPage({
                     setCountryDropdownOpen(!countryDropdownOpen);
                     setLangDropdownOpen(false);
                   }}
-                  className="w-full px-3.5 py-2.5 bg-white border border-slate-200 hover:border-slate-300 rounded-xl text-left flex items-center justify-between transition shadow-2xs cursor-pointer"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e2d9] hover:border-[#111522] rounded-xl text-left flex items-center justify-between transition shadow-2xs cursor-pointer"
                 >
-                  <span className="font-bold text-slate-900 truncate">
+                  <span className="font-bold text-[#111522] truncate">
                     {formData.country || "Sélectionner un pays"}
                   </span>
-                  <svg className={`w-4 h-4 text-slate-400 transition-transform ${countryDropdownOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+                  <svg className={`w-4 h-4 text-[#697080] transition-transform ${countryDropdownOpen ? "rotate-180" : ""}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
                     <path d="M6 9l6 6 6-6" />
                   </svg>
                 </button>
 
                 {countryDropdownOpen && (
-                  <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl border border-slate-200 shadow-2xl z-40 overflow-hidden animate-scale-up">
-                    <div className="p-2.5 border-b border-slate-100">
+                  <div className="absolute left-0 right-0 mt-2 bg-white rounded-2xl border border-[#e8e7e2] shadow-2xl z-40 overflow-hidden animate-scale-up">
+                    <div className="p-2.5 border-b border-[#edece6]">
                       <div className="relative">
-                        <IconSearch className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+                        <IconSearch className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#808392]" />
                         <input
                           type="text"
                           autoFocus
                           value={countrySearch}
                           onChange={(e) => setCountrySearch(e.target.value)}
                           placeholder="Rechercher votre pays..."
-                          className="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500"
+                          className="w-full pl-8 pr-3 py-2 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-xs text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522]"
                         />
                       </div>
                     </div>
@@ -1923,12 +1923,12 @@ export default function SettingsPage({
                               setCountryDropdownOpen(false);
                             }}
                             className={`w-full px-3 py-2 rounded-xl text-xs font-semibold flex items-center justify-between transition ${isSelected
-                              ? "bg-slate-900 text-white"
-                              : "text-slate-700 hover:bg-slate-50"
+                              ? "bg-[#111522] text-white"
+                              : "text-[#5f6571] hover:bg-[#f8f7f3] hover:text-[#111522]"
                               }`}
                           >
                             <span className="font-bold">{ct.name}</span>
-                            {isSelected && <IconCheck className="w-4 h-4 text-emerald-400" />}
+                            {isSelected && <IconCheck className="w-4 h-4 text-[#ffdc45]" />}
                           </button>
                         );
                       })}
@@ -1943,7 +1943,7 @@ export default function SettingsPage({
                               setCountrySearch("");
                               setCountryDropdownOpen(false);
                             }}
-                            className="w-full px-3 py-2 rounded-xl text-xs font-bold text-emerald-700 bg-emerald-50 hover:bg-emerald-100 text-left"
+                            className="w-full px-3 py-2 rounded-xl text-xs font-bold text-[#111522] bg-[#fff0a6] hover:bg-[#ffdc45] text-left"
                           >
                             Utiliser « {countrySearch.trim()} »
                           </button>
@@ -1970,9 +1970,9 @@ export default function SettingsPage({
                         key={cityName}
                         type="button"
                         onClick={() => handleInputChange("city", cityName)}
-                        className={`px-2 py-0.5 rounded-lg text-[11px] font-semibold transition ${formData.city === cityName
-                          ? "bg-slate-900 text-white"
-                          : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        className={`px-2 py-0.5 rounded-lg text-[11px] font-semibold transition cursor-pointer ${formData.city === cityName
+                          ? "bg-[#111522] text-[#ffdc45]"
+                          : "bg-[#f2f0e8] text-[#5f6571] hover:bg-[#e8e7e2] hover:text-[#111522]"
                           }`}
                       >
                         {cityName}
@@ -2003,7 +2003,7 @@ export default function SettingsPage({
                     placeholder="Ex: 19, 18, 10, 5, 0..."
                     className={`${inputCls} font-mono pr-10`}
                   />
-                  <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400">
+                  <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-[#808392]">
                     %
                   </span>
                 </div>
@@ -2013,15 +2013,15 @@ export default function SettingsPage({
                       key={rate}
                       type="button"
                       onClick={() => handleInputChange("defaultTaxRate", rate)}
-                      className={`px-2.5 py-0.5 rounded-lg text-[11px] font-mono font-bold transition ${(formData.defaultTaxRate ?? 19) === rate
-                        ? "bg-slate-900 text-white"
-                        : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                      className={`px-2.5 py-0.5 rounded-lg text-[11px] font-mono font-bold transition cursor-pointer ${(formData.defaultTaxRate ?? 19) === rate
+                        ? "bg-[#111522] text-[#ffdc45]"
+                        : "bg-[#f2f0e8] text-[#5f6571] hover:bg-[#e8e7e2] hover:text-[#111522]"
                         }`}
                     >
                       {rate}%
                     </button>
                   ))}
-                  <span className="text-[10px] text-slate-400 ml-1">
+                  <span className="text-[10px] text-[#808392] ml-1">
                     Modifiable sur chaque facture
                   </span>
                 </div>
@@ -2034,18 +2034,18 @@ export default function SettingsPage({
                   type="text"
                   disabled
                   value="FCFA (Franc CFA — XOF / XAF)"
-                  className={`${inputCls} font-mono bg-slate-50 text-slate-600`}
+                  className={`${inputCls} font-mono bg-[#f2f0e8] text-[#5f6571]`}
                 />
               </div>
             </div>
 
-            <div className="flex justify-end pt-3 border-t border-slate-100">
+            <div className="flex justify-end pt-3 border-t border-[#edece6]">
               <button
                 type="button"
                 onClick={() => handleSave()}
-                className="px-6 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm shadow-md transition active:scale-95 inline-flex items-center gap-2 cursor-pointer"
+                className="px-6 py-2.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] font-extrabold text-xs sm:text-sm shadow-md shadow-[#ffdc45]/20 transition active:scale-95 inline-flex items-center gap-2 cursor-pointer"
               >
-                <IconCheck className="w-4 h-4 text-emerald-400" />
+                <IconCheck className="w-4 h-4 text-[#111522]" />
                 <span>{t.saveSettings}</span>
               </button>
             </div>
@@ -2058,11 +2058,11 @@ export default function SettingsPage({
         {activeTab === "team" && (
           <div className="space-y-4 animate-fade-in">
             {/* Header + Invite button */}
-            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)]">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-slate-100">
+            <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#e8e7e2] shadow-[0_4px_20px_-4px_rgba(17,21,34,0.04)]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 mb-4 border-b border-[#edece6]">
                 <div>
-                  <h2 className="text-sm sm:text-base font-extrabold text-slate-900">{t.teamAccessTitle || "Équipe & Accès"}</h2>
-                  <p className="text-xs text-slate-500 mt-0.5">
+                  <h2 className="text-base sm:text-lg font-serif font-medium text-[#111522]">{t.teamAccessTitle || "Équipe & Accès"}</h2>
+                  <p className="text-xs text-[#697080] mt-0.5">
                     {lang === "en"
                       ? `Team members authorized for ${formData.name}`
                       : `Collaborateurs de l'espace de ${formData.name}`}
@@ -2073,7 +2073,7 @@ export default function SettingsPage({
                     <button
                       type="button"
                       onClick={handleClearDemoMembers}
-                      className="px-3 py-2 rounded-xl border border-slate-250 hover:bg-rose-50 text-rose-700 border-rose-200 text-xs font-bold transition active:scale-95 cursor-pointer shadow-2xs"
+                      className="px-3 py-2 rounded-xl border border-rose-200 hover:bg-rose-50 text-rose-700 text-xs font-bold transition active:scale-95 cursor-pointer shadow-2xs"
                       title="Effacer les collaborateurs fictifs / de test pour n'avoir que des données réelles"
                     >
                       🧹 Effacer données fictives
@@ -2086,7 +2086,7 @@ export default function SettingsPage({
                       setCodeLoginInput("");
                       setIsCodeLoginModalOpen(true);
                     }}
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition active:scale-95 shadow-sm shrink-0 cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#111522] hover:bg-[#191f30] text-[#ffdc45] text-xs font-bold transition active:scale-95 shadow-sm shrink-0 cursor-pointer"
                     title="Tester la connexion d'un collaborateur à la base avec son code unique"
                   >
                     <span>🔑</span>
@@ -2095,7 +2095,7 @@ export default function SettingsPage({
                   <button
                     type="button"
                     onClick={handleOpenInviteModal}
-                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition active:scale-95 shadow-sm shrink-0 cursor-pointer"
+                    className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs font-extrabold transition active:scale-95 shadow-sm shrink-0 cursor-pointer"
                   >
                     + {t.inviteMemberBtn || "Inviter un collaborateur"}
                   </button>
@@ -2104,14 +2104,14 @@ export default function SettingsPage({
 
               {/* Bannière de session active de test collaborateur */}
               {activeCollaboratorSession && (
-                <div className="mb-4 p-3.5 rounded-2xl bg-slate-900 text-white border border-emerald-500/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg animate-fade-in">
+                <div className="mb-4 p-3.5 rounded-2xl bg-[#111522] text-white border border-[#ffdc45]/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-lg animate-fade-in">
                   <div className="flex items-center gap-3">
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping shrink-0" />
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#ffdc45] animate-ping shrink-0" />
                     <div className="text-xs">
-                      <span className="text-slate-400">Session collaborateur active : </span>
-                      <strong className="text-emerald-300 font-bold">{activeCollaboratorSession.name}</strong>
-                      <span className="text-slate-300"> — {activeCollaboratorSession.role}</span>
-                      <span className="ml-2 font-mono text-[10px] px-2 py-0.5 rounded bg-slate-800 text-emerald-400 border border-slate-700">
+                      <span className="text-[#9096a5]">Session collaborateur active : </span>
+                      <strong className="text-[#ffdc45] font-bold">{activeCollaboratorSession.name}</strong>
+                      <span className="text-[#e5e6ea]"> — {activeCollaboratorSession.role}</span>
+                      <span className="ml-2 font-mono text-[10px] px-2 py-0.5 rounded bg-[#191f30] text-[#ffdc45] border border-white/10">
                         {activeCollaboratorSession.accessCode}
                       </span>
                     </div>
@@ -2122,7 +2122,7 @@ export default function SettingsPage({
                       setActiveCollaboratorSession(null);
                       showToast("Session collaborateur terminée. Retour au profil Propriétaire.");
                     }}
-                    className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition active:scale-95 cursor-pointer self-start sm:self-auto shrink-0 border border-slate-700"
+                    className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-white text-xs font-bold transition active:scale-95 cursor-pointer self-start sm:self-auto shrink-0 border border-white/15"
                   >
                     Quitter la session
                   </button>
@@ -2132,7 +2132,7 @@ export default function SettingsPage({
                 {teamMembers.map((member) => (
                   <div
                     key={member.id}
-                    className="p-4 sm:p-5 bg-slate-50/80 border border-slate-200 rounded-2xl space-y-3 hover:bg-slate-50/90 transition shadow-2xs"
+                    className="p-4 sm:p-5 bg-[#f8f7f3] border border-[#e8e7e2] rounded-2xl space-y-3 hover:bg-[#f2f0e8]/70 transition shadow-2xs"
                   >
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                       <div className="flex items-center gap-3 min-w-0">
@@ -2141,19 +2141,19 @@ export default function SettingsPage({
                         </div>
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center gap-2 flex-wrap">
-                            <span className="font-extrabold text-slate-900 text-sm">
+                            <span className="font-extrabold text-[#111522] text-sm">
                               {member.name}
                             </span>
                             {member.isOwner ? (
-                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+                              <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#111522] text-[#ffdc45] border border-[#111522]">
                                 🛡️ Tenant / Propriétaire
                               </span>
                             ) : (
                               <span
                                 className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${member.status === "Actif"
-                                  ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                                  ? "bg-[#d9f0df] text-[#285b35] border-[#b9dfc8]"
                                   : member.status === "Invité"
-                                    ? "bg-amber-50 text-amber-800 border-amber-200"
+                                    ? "bg-[#fff0a6] text-[#453700] border-[#ffe36a]"
                                     : "bg-rose-50 text-rose-800 border-rose-200"
                                   }`}
                               >
@@ -2161,7 +2161,7 @@ export default function SettingsPage({
                               </span>
                             )}
                           </div>
-                          <span className="text-xs text-slate-500 font-mono break-all sm:truncate block mt-0.5">
+                          <span className="text-xs text-[#697080] font-mono break-all sm:truncate block mt-0.5">
                             {member.email}
                           </span>
                         </div>
@@ -2170,7 +2170,7 @@ export default function SettingsPage({
                       {/* Actions statut & suppression */}
                       <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
                         {member.isOwner ? (
-                          <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-xl border border-emerald-200">
+                          <span className="text-xs font-semibold text-[#453700] bg-[#fff0a6] px-3 py-1 rounded-xl border border-[#ffe36a]">
                             Accès complet irrévocable
                           </span>
                         ) : (
@@ -2179,7 +2179,7 @@ export default function SettingsPage({
                               type="button"
                               onClick={() => handleToggleMemberStatus(member.id)}
                               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition active:scale-95 cursor-pointer ${member.status === "Actif"
-                                ? "bg-emerald-100 hover:bg-emerald-200 text-emerald-900 border border-emerald-300"
+                                ? "bg-[#d9f0df] hover:bg-[#b9dfc8] text-[#285b35] border border-[#b9dfc8]"
                                 : "bg-rose-100 hover:bg-rose-200 text-rose-900 border border-rose-300"
                                 }`}
                             >
@@ -2200,13 +2200,13 @@ export default function SettingsPage({
                     </div>
 
                     {/* Bannière du Code d'Accès Unique */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 sm:p-3 bg-slate-900 text-white rounded-xl text-xs font-mono border border-slate-800 shadow-inner">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-2.5 sm:p-3 bg-[#111522] text-white rounded-xl text-xs font-mono border border-white/10 shadow-inner">
                       <div className="flex items-center gap-2 min-w-0">
-                        <span className="text-[10px] font-extrabold text-emerald-400 uppercase tracking-wider shrink-0 flex items-center gap-1">
+                        <span className="text-[10px] font-extrabold text-[#ffdc45] uppercase tracking-wider shrink-0 flex items-center gap-1">
                           <span>🔑</span>
                           <span>Code d&apos;accès :</span>
                         </span>
-                        <span className="font-extrabold text-emerald-300 tracking-wider text-xs sm:text-sm bg-slate-800 px-2 py-0.5 rounded-lg border border-slate-700 select-all truncate">
+                        <span className="font-extrabold text-[#ffdc45] tracking-wider text-xs sm:text-sm bg-[#191f30] px-2 py-0.5 rounded-lg border border-white/10 select-all truncate">
                           {member.accessCode || generateAccessCode(activeCompany.shortName || activeCompany.name || "COLLAB")}
                         </span>
                       </div>
@@ -2214,16 +2214,16 @@ export default function SettingsPage({
                         <button
                           type="button"
                           onClick={() => handleCopyAccessCode(member.accessCode || "", member.name)}
-                          className="px-2.5 py-1 bg-slate-800 hover:bg-slate-750 text-slate-200 hover:text-white rounded-lg text-[10.5px] font-bold transition active:scale-95 cursor-pointer border border-slate-700 flex items-center gap-1 shadow-sm"
+                          className="px-2.5 py-1 bg-white/10 hover:bg-white/20 text-white rounded-lg text-[10.5px] font-bold transition active:scale-95 cursor-pointer border border-white/15 flex items-center gap-1 shadow-sm"
                           title="Copier le code d'accès à donner au collaborateur"
                         >
                           <span>{copiedCode === member.accessCode ? "✓ Copié !" : "📋 Copier"}</span>
                         </button>
                         <a
-                          href={`https://wa.me/?text=${encodeURIComponent(`Bonjour ${member.name}, voici votre code d'accès unique pour vous connecter à la plateforme iziFACTURE de ${activeCompany.name} :\n🔑 Code d'accès : ${member.accessCode || ""}\nAccédez à la plateforme ici : http://localhost:3000`)}`}
+                          href={`https://wa.me/?text=${encodeURIComponent(`Bonjour ${member.name}, voici votre code d'accès unique pour vous connecter à la plateforme AMOMD FACTURE de ${activeCompany.name} :\n🔑 Code d'accès : ${member.accessCode || ""}\nAccédez à la plateforme ici : http://localhost:3000`)}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded-lg text-[10.5px] font-bold transition active:scale-95 flex items-center gap-1 shadow-sm"
+                          className="px-2.5 py-1 bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] rounded-lg text-[10.5px] font-bold transition active:scale-95 flex items-center gap-1 shadow-sm"
                           title="Partager le code d'accès par WhatsApp au collaborateur"
                         >
                           <span>💬 WhatsApp</span>
@@ -2232,13 +2232,13 @@ export default function SettingsPage({
                     </div>
 
                     {/* Matrice des droits accordés par le Tenant (cliquables pour modifier) */}
-                    <div className="pt-3 border-t border-slate-200/80">
+                    <div className="pt-3 border-t border-[#e8e7e2]">
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 sm:gap-2 mb-2">
-                        <span className="text-[11px] font-bold uppercase tracking-wider text-slate-500">
+                        <span className="text-[11px] font-bold uppercase tracking-wider text-[#5f6571]">
                           Autorisations de gestion accordées par le Tenant :
                         </span>
                         {!member.isOwner && (
-                          <span className="text-[10px] text-slate-400">
+                          <span className="text-[10px] text-[#697080]">
                             Cliquez pour activer/désactiver une permission
                           </span>
                         )}
@@ -2259,10 +2259,10 @@ export default function SettingsPage({
                               disabled={member.isOwner}
                               onClick={() => handleTogglePermission(member.id, perm.key)}
                               className={`px-2.5 py-1.5 rounded-xl text-[10.5px] sm:text-[11px] font-bold border transition active:scale-95 flex items-center justify-between sm:justify-start gap-1.5 ${member.isOwner
-                                ? "bg-emerald-50 text-emerald-800 border-emerald-200 cursor-default"
+                                ? "bg-[#111522] text-[#ffdc45] border-[#111522] cursor-default"
                                 : isAllowed
-                                  ? "bg-emerald-50 text-emerald-800 border-emerald-300 hover:bg-emerald-100 cursor-pointer"
-                                  : "bg-slate-100 text-slate-400 border-slate-200 hover:bg-slate-200 line-through opacity-70 cursor-pointer"
+                                  ? "bg-[#fff0a6] text-[#111522] border-[#ffe36a] hover:bg-[#ffdc45] cursor-pointer"
+                                  : "bg-[#edece6] text-[#808392] border-[#e4e2d9] hover:bg-[#e4e2d9] line-through opacity-75 cursor-pointer"
                                 }`}
                             >
                               <div className="flex items-center gap-1.5 truncate">
@@ -2281,10 +2281,10 @@ export default function SettingsPage({
                 ))}
 
                 {teamMembers.filter((m) => !m.isOwner).length === 0 && (
-                  <div className="p-4 rounded-2xl border border-dashed border-slate-200 bg-slate-50/50 text-center">
-                    <p className="text-xs font-semibold text-slate-600">Aucun collaborateur invité pour le moment</p>
-                    <p className="text-[11px] text-slate-400 mt-0.5">
-                      Cliquez sur « + Inviter un membre » pour créer des accès personnalisés à votre comptable ou commercial.
+                  <div className="p-4 rounded-2xl border border-dashed border-[#e4e2d9] bg-[#f8f7f3] text-center">
+                    <p className="text-xs font-semibold text-[#5f6571]">Aucun collaborateur invité pour le moment</p>
+                    <p className="text-[11px] text-[#808392] mt-0.5">
+                      Cliquez sur « + Inviter un collaborateur » pour créer des accès personnalisés à votre comptable ou commercial.
                     </p>
                   </div>
                 )}
@@ -2297,48 +2297,48 @@ export default function SettingsPage({
 
       {/* Modal Invite Member */}
       {mounted && isInviteModalOpen && createPortal(
-        <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center bg-slate-950/60 backdrop-blur-sm animate-fade-in p-3 sm:p-4">
-          <div className="bg-white rounded-t-3xl sm:rounded-3xl border border-slate-200 shadow-2xl w-full max-w-md animate-scale-up">
-            <div className="flex items-center justify-between p-5 border-b border-slate-100">
-              <h3 className="text-base font-extrabold text-slate-900">
+        <div className="fixed inset-0 z-[99999] flex items-end sm:items-center justify-center bg-[#0c111d]/70 backdrop-blur-sm animate-fade-in p-3 sm:p-4">
+          <div className="bg-white rounded-t-3xl sm:rounded-3xl border border-[#e8e7e2] shadow-2xl w-full max-w-md animate-scale-up">
+            <div className="flex items-center justify-between p-5 border-b border-[#edece6]">
+              <h3 className="text-lg font-serif font-medium text-[#111522]">
                 👥 {t.inviteMemberBtn || "Inviter un collaborateur"}
               </h3>
               <button
                 onClick={() => setIsInviteModalOpen(false)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 active:scale-95 transition"
+                className="p-1.5 rounded-xl text-[#808392] hover:text-[#111522] hover:bg-[#f2f0e8] active:scale-95 transition"
               >
                 <IconClose className="w-5 h-5" />
               </button>
             </div>
             <form onSubmit={handleInviteMember} className="p-5 space-y-3.5 text-xs">
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">Nom complet *</label>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">Nom complet *</label>
                 <input
                   type="text"
                   required
                   placeholder="Prénom Nom"
                   value={inviteName}
                   onChange={(e) => setInviteName(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 font-bold focus:outline-none focus:border-emerald-500 transition"
+                  className="w-full px-3 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-[#111522] font-bold focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35 transition"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">Email *</label>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">Email *</label>
                 <input
                   type="email"
                   required
                   placeholder="collaborateur@entreprise.ne"
                   value={inviteEmail}
                   onChange={(e) => setInviteEmail(e.target.value)}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:border-emerald-500 transition"
+                  className="w-full px-3 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35 transition"
                 />
               </div>
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1">Rôle</label>
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1">Rôle</label>
                 <select
                   value={inviteRole}
                   onChange={(e) => setInviteRole(e.target.value as TeamMember["role"])}
-                  className="w-full px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:border-emerald-500 transition"
+                  className="w-full px-3 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35 transition"
                 >
                   <option value="Administrateur">Administrateur</option>
                   <option value="Comptable">Comptable</option>
@@ -2348,9 +2348,9 @@ export default function SettingsPage({
               </div>
 
               {/* Code d'accès unique généré */}
-              <div className="p-3.5 bg-slate-900 border border-slate-800 rounded-xl space-y-1.5 text-white shadow-inner">
+              <div className="p-3.5 bg-[#111522] border border-white/10 rounded-xl space-y-1.5 text-white shadow-inner">
                 <div className="flex items-center justify-between">
-                  <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5">
+                  <span className="text-[10.5px] font-extrabold uppercase tracking-wider text-[#ffdc45] flex items-center gap-1.5">
                     <span>🔑</span>
                     <span>Code d&apos;accès unique attribué</span>
                   </span>
@@ -2360,30 +2360,30 @@ export default function SettingsPage({
                       navigator.clipboard.writeText(inviteAccessCode);
                       showToast(`📋 Code d'accès (${inviteAccessCode}) copié !`);
                     }}
-                    className="px-2 py-0.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-emerald-400 text-[10.5px] font-bold transition active:scale-95 cursor-pointer border border-slate-700"
+                    className="px-2 py-0.5 rounded-lg bg-white/10 hover:bg-white/20 text-[#ffdc45] text-[10.5px] font-bold transition active:scale-95 cursor-pointer border border-white/15"
                   >
                     📋 Copier
                   </button>
                 </div>
-                <div className="font-mono font-black text-white text-base tracking-widest bg-slate-800/90 px-3 py-1.5 rounded-lg border border-slate-700 select-all">
+                <div className="font-mono font-black text-white text-base tracking-widest bg-[#191f30] px-3 py-1.5 rounded-lg border border-white/10 select-all">
                   {inviteAccessCode}
                 </div>
-                <p className="text-[10px] text-slate-400 leading-tight">
+                <p className="text-[10px] text-[#9096a5] leading-tight">
                   Donnez ce code d&apos;accès unique à votre collaborateur pour qu&apos;il puisse se connecter à votre espace de facturation.
                 </p>
               </div>
 
-              <div className="flex gap-2 pt-2 border-t border-slate-100">
+              <div className="flex gap-2 pt-2 border-t border-[#edece6]">
                 <button
                   type="button"
                   onClick={() => setIsInviteModalOpen(false)}
-                  className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold active:scale-95 transition"
+                  className="flex-1 py-2.5 rounded-xl border border-[#e4e2d9] text-[#5f6571] hover:bg-[#f2f0e8] font-bold active:scale-95 transition"
                 >
                   Annuler
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold active:scale-95 transition shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                  className="flex-1 py-2.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] font-extrabold active:scale-95 transition shadow-sm flex items-center justify-center gap-1.5 cursor-pointer"
                 >
                   <span>✓ Valider & Activer le code</span>
                 </button>
@@ -2396,19 +2396,19 @@ export default function SettingsPage({
 
       {/* Modal Tester la Connexion par Code Collaborateur */}
       {mounted && isCodeLoginModalOpen && createPortal(
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-2xl max-w-lg w-full overflow-hidden animate-scale-up text-slate-800">
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-[#0c111d]/70 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-3xl border border-[#e8e7e2] shadow-2xl max-w-lg w-full overflow-hidden animate-scale-up text-[#111522]">
             {/* Header Modal */}
-            <div className="flex items-center justify-between p-5 border-b border-slate-100 bg-slate-50/80">
+            <div className="flex items-center justify-between p-5 border-b border-[#edece6] bg-[#f8f7f3]">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-700 flex items-center justify-center text-lg border border-emerald-500/20 font-bold">
+                <div className="w-10 h-10 rounded-2xl bg-[#111522] text-[#ffdc45] flex items-center justify-center text-lg border border-[#111522] font-bold">
                   🔑
                 </div>
                 <div>
-                  <h3 className="text-base font-extrabold text-slate-900">
+                  <h3 className="text-lg font-serif font-medium text-[#111522]">
                     Connexion Espace Collaborateur
                   </h3>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-[#697080]">
                     Accès sécurisé pour l&apos;espace de {formData.name}
                   </p>
                 </div>
@@ -2416,20 +2416,20 @@ export default function SettingsPage({
               <button
                 type="button"
                 onClick={() => setIsCodeLoginModalOpen(false)}
-                className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 active:scale-95 transition cursor-pointer"
+                className="p-1.5 rounded-xl text-[#808392] hover:text-[#111522] hover:bg-[#f2f0e8] active:scale-95 transition cursor-pointer"
               >
                 <IconClose className="w-5 h-5" />
               </button>
             </div>
 
             <div className="p-5 sm:p-6 space-y-4">
-              <p className="text-xs text-slate-600 leading-relaxed">
+              <p className="text-xs text-[#5f6571] leading-relaxed">
                 Chaque collaborateur invité dispose d&apos;un code d&apos;accès unique. Saisissez ou sélectionnez un code ci-dessous pour vérifier ses droits et simuler sa connexion :
               </p>
 
               {/* Saisie du Code */}
               <div>
-                <label className="block text-[11px] font-bold uppercase tracking-wider text-slate-600 mb-1.5">
+                <label className="block text-[11px] font-bold uppercase tracking-wider text-[#5f6571] mb-1.5">
                   Code d&apos;accès collaborateur
                 </label>
                 <div className="flex gap-2">
@@ -2438,12 +2438,12 @@ export default function SettingsPage({
                     value={codeLoginInput}
                     onChange={(e) => setCodeLoginInput(e.target.value)}
                     placeholder="Ex: ESE-7130-825 ou MASTER-SARL-..."
-                    className="flex-1 px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl font-mono text-sm font-bold text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-emerald-500 transition uppercase"
+                    className="flex-1 px-3.5 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl font-mono text-sm font-bold text-[#111522] placeholder:text-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/35 transition uppercase"
                   />
                   <button
                     type="button"
                     onClick={() => handleVerifyCodeLogin()}
-                    className="px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs transition active:scale-95 cursor-pointer shadow-sm"
+                    className="px-4 py-2.5 rounded-xl bg-[#111522] hover:bg-[#191f30] text-[#ffdc45] font-bold text-xs transition active:scale-95 cursor-pointer shadow-sm"
                   >
                     Vérifier
                   </button>
@@ -2452,8 +2452,8 @@ export default function SettingsPage({
 
               {/* Suggestions rapides des codes existants */}
               {teamMembers.length > 0 && (
-                <div className="p-3 bg-slate-50 rounded-2xl border border-slate-200/80 space-y-2">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 block">
+                <div className="p-3 bg-[#f8f7f3] rounded-2xl border border-[#e8e7e2] space-y-2">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#5f6571] block">
                     Codes existants dans votre entreprise :
                   </span>
                   <div className="flex gap-1.5 flex-wrap">
@@ -2467,12 +2467,12 @@ export default function SettingsPage({
                         }}
                         className={`text-[11px] px-2.5 py-1 rounded-xl font-bold font-mono transition active:scale-95 flex items-center gap-1.5 cursor-pointer ${
                           m.isOwner
-                            ? "bg-slate-900 text-white"
-                            : "bg-white text-slate-700 hover:bg-slate-200 border border-slate-200"
+                            ? "bg-[#111522] text-white"
+                            : "bg-white text-[#111522] hover:bg-[#f2f0e8] border border-[#e4e2d9]"
                         }`}
                       >
                         <span className="font-sans font-semibold">{m.name}</span>
-                        <span className="text-emerald-400 text-[10px]">({m.accessCode})</span>
+                        <span className={`text-[10px] ${m.isOwner ? "text-[#ffdc45]" : "text-[#697080]"}`}>({m.accessCode})</span>
                       </button>
                     ))}
                   </div>
@@ -2484,7 +2484,7 @@ export default function SettingsPage({
                 <div
                   className={`p-4 rounded-2xl border text-xs space-y-2 animate-fade-in ${
                     codeLoginFeedback.success
-                      ? "bg-emerald-50/80 border-emerald-200 text-emerald-950"
+                      ? "bg-[#d9f0df]/70 border-[#b9dfc8] text-[#111522]"
                       : "bg-rose-50/80 border-rose-200 text-rose-950"
                   }`}
                 >
@@ -2493,8 +2493,8 @@ export default function SettingsPage({
                   </p>
 
                   {codeLoginFeedback.member && (
-                    <div className="mt-2 pt-2 border-t border-emerald-200/60 space-y-1.5 text-[11px]">
-                      <div className="font-semibold text-emerald-900">
+                    <div className="mt-2 pt-2 border-t border-[#b9dfc8] space-y-1.5 text-[11px]">
+                      <div className="font-semibold text-[#285b35]">
                         Autorisations accordées par le titulaire du compte :
                       </div>
                       <div className="grid grid-cols-2 gap-1 text-[10.5px]">
@@ -2516,11 +2516,11 @@ export default function SettingsPage({
                 </div>
               )}
 
-              <div className="flex justify-end gap-2 pt-2 border-t border-slate-100">
+              <div className="flex justify-end gap-2 pt-2 border-t border-[#edece6]">
                 <button
                   type="button"
                   onClick={() => setIsCodeLoginModalOpen(false)}
-                  className="px-4 py-2 rounded-xl border border-slate-200 text-slate-700 text-xs font-bold hover:bg-slate-50 transition active:scale-95 cursor-pointer"
+                  className="px-4 py-2 rounded-xl border border-[#e4e2d9] text-[#5f6571] text-xs font-bold hover:bg-[#f2f0e8] transition active:scale-95 cursor-pointer"
                 >
                   Fermer
                 </button>
@@ -2531,7 +2531,7 @@ export default function SettingsPage({
                       setIsCodeLoginModalOpen(false);
                       showToast(`Connecté avec succès en tant que ${codeLoginFeedback.member?.name} !`);
                     }}
-                    className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition active:scale-95 cursor-pointer shadow-sm"
+                    className="px-4 py-2 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs font-extrabold transition active:scale-95 cursor-pointer shadow-sm"
                   >
                     Activer cette session
                   </button>
@@ -2545,22 +2545,22 @@ export default function SettingsPage({
 
       {/* Confirmation suppression membre */}
       {mounted && memberToDelete && createPortal(
-        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 max-w-sm w-full p-6 space-y-4 animate-scale-up">
-            <h3 className="font-extrabold text-slate-900 text-base">Retirer ce membre ?</h3>
-            <p className="text-sm text-slate-600">
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-[#0c111d]/70 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white rounded-3xl shadow-2xl border border-[#e8e7e2] max-w-sm w-full p-6 space-y-4 animate-scale-up">
+            <h3 className="font-serif font-medium text-[#111522] text-lg">Retirer ce membre ?</h3>
+            <p className="text-sm text-[#5f6571]">
               Confirmez-vous le retrait de <strong>{memberToDelete.name}</strong> de l&apos;espace de facturation ?
             </p>
             <div className="flex gap-2 pt-2">
               <button
                 onClick={() => setMemberToDelete(null)}
-                className="flex-1 py-2.5 rounded-xl border border-slate-200 text-slate-600 font-bold active:scale-95 transition"
+                className="flex-1 py-2.5 rounded-xl border border-[#e4e2d9] text-[#5f6571] hover:bg-[#f2f0e8] font-bold active:scale-95 transition"
               >
                 Annuler
               </button>
               <button
                 onClick={() => handleRemoveMember(memberToDelete.id)}
-                className="flex-1 py-2.5 rounded-xl bg-rose-600 text-white font-bold active:scale-95 transition shadow-sm"
+                className="flex-1 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold active:scale-95 transition shadow-sm"
               >
                 Retirer
               </button>
@@ -2575,22 +2575,22 @@ export default function SettingsPage({
       {/* Modal Aperçu de la facture : Rendu haute fidélité direct, épuré et intégralement visible */}
       {mounted && previewModalOpen && createPortal(
         <div
-          className="fixed inset-0 z-[99999] bg-slate-950/90 backdrop-blur-md flex flex-col animate-fade-in select-none overflow-hidden"
+          className="fixed inset-0 z-[99999] bg-[#0c111d]/92 backdrop-blur-md flex flex-col animate-fade-in select-none overflow-hidden"
           onClick={() => setPreviewModalOpen(false)}
         >
           {/* BARRE SUPÉRIEURE DE NAVIGATION ET CONTRÔLE : FIXE, DÉDIÉE, NE COUVRE JAMAIS LA FACTURE */}
           <header
-            className="w-full bg-slate-900/95 border-b border-slate-800 text-white px-3 sm:px-6 py-2.5 sm:py-3 shrink-0 flex items-center justify-between gap-3 shadow-xl z-20"
+            className="w-full bg-[#111522] border-b border-white/10 text-white px-3 sm:px-6 py-2.5 sm:py-3 shrink-0 flex items-center justify-between gap-3 shadow-xl z-20"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Gauche : Onglets sélecteurs de modèles */}
             <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar py-0.5 max-w-[70vw]">
-              <div className="hidden md:flex items-center gap-2 pr-2 border-r border-slate-800 shrink-0">
+              <div className="hidden md:flex items-center gap-2 pr-2 border-r border-white/10 shrink-0">
                 <span className="text-base">📄</span>
-                <span className="text-xs font-bold text-slate-300">Modèles :</span>
+                <span className="text-xs font-bold text-[#c4c7d1]">Modèles :</span>
               </div>
 
-              {/* Onglets des Modèles (Inversion noir/blanc & accent émeraude) */}
+              {/* Onglets des Modèles (Inversion Bleu Nuit / Jaune Or) */}
               <div className="flex items-center gap-1.5 shrink-0">
                 {INVOICE_TEMPLATES.map((tpl) => {
                   const isCurrent = previewTemplateId === tpl.id;
@@ -2608,14 +2608,14 @@ export default function SettingsPage({
                         showToast(`✅ ${tpl.name} activé !`);
                       }}
                       className={`px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer flex items-center gap-1.5 ${isCurrent
-                        ? "bg-white text-slate-950 shadow-md ring-2 ring-emerald-500 font-extrabold"
-                        : "bg-slate-800/90 text-slate-300 hover:text-white hover:bg-slate-700/80"
+                        ? "bg-[#ffdc45] text-[#111522] shadow-md ring-2 ring-[#ffdc45]/40 font-extrabold"
+                        : "bg-white/10 text-[#e5e6ea] hover:text-white hover:bg-white/15"
                         }`}
                     >
                       <span className="text-sm">{tpl.preview}</span>
                       <span className="whitespace-nowrap">{tpl.name}</span>
                       {isSaved && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" title="Modèle actif" />
+                        <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${isCurrent ? "bg-[#111522]" : "bg-[#ffdc45]"}`} title="Modèle actif" />
                       )}
                     </button>
                   );
@@ -2634,14 +2634,14 @@ export default function SettingsPage({
                       showToast(`✅ ${customTemplateFile.name} activé !`);
                     }}
                     className={`px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 active:scale-95 cursor-pointer flex items-center gap-1.5 ${previewTemplateId === "custom"
-                      ? "bg-white text-slate-950 shadow-md ring-2 ring-emerald-500 font-extrabold"
-                      : "bg-slate-800/90 text-slate-300 hover:text-white hover:bg-slate-700/80"
+                      ? "bg-[#ffdc45] text-[#111522] shadow-md ring-2 ring-[#ffdc45]/40 font-extrabold"
+                      : "bg-white/10 text-[#e5e6ea] hover:text-white hover:bg-white/15"
                       }`}
                   >
                     <span className="text-sm">📥</span>
                     <span className="whitespace-nowrap max-w-[120px] truncate">{customTemplateFile.name}</span>
                     {selectedTemplate === "custom" && (
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className={`w-1.5 h-1.5 rounded-full animate-pulse ${previewTemplateId === "custom" ? "bg-[#111522]" : "bg-[#ffdc45]"}`} />
                     )}
                   </button>
                 )}
@@ -2655,8 +2655,8 @@ export default function SettingsPage({
                   type="button"
                   onClick={() => setModalEditMode(!modalEditMode)}
                   className={`px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-bold transition-all duration-150 active:scale-95 flex items-center gap-1.5 border cursor-pointer ${modalEditMode
-                    ? "bg-emerald-500 text-slate-950 border-emerald-400 font-extrabold"
-                    : "bg-slate-800 text-slate-300 hover:text-white border-slate-700"
+                    ? "bg-[#ffdc45] text-[#111522] border-[#ffdc45] font-extrabold"
+                    : "bg-white/10 text-[#e5e6ea] hover:text-white border-white/15"
                     }`}
                 >
                   <span>✏️</span>
@@ -2667,7 +2667,7 @@ export default function SettingsPage({
               <button
                 type="button"
                 onClick={() => setPreviewViewMode(previewViewMode === "fit" ? "full" : "fit")}
-                className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-all duration-150 active:scale-95 flex items-center gap-1.5 border border-slate-700 cursor-pointer"
+                className="px-2.5 sm:px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[#e5e6ea] text-xs font-bold transition-all duration-150 active:scale-95 flex items-center gap-1.5 border border-white/15 cursor-pointer"
                 title={previewViewMode === "fit" ? "Passer en taille réelle (100%)" : "Ajuster pour voir la facture entière"}
               >
                 <span>{previewViewMode === "fit" ? "🔍" : "👁️"}</span>
@@ -2679,7 +2679,7 @@ export default function SettingsPage({
               <button
                 type="button"
                 onClick={() => setPreviewModalOpen(false)}
-                className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-rose-600 text-slate-200 hover:text-white text-xs font-bold transition-all duration-150 active:scale-95 flex items-center gap-1 border border-slate-700 shadow-sm cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-white/10 hover:bg-rose-600 text-[#e5e6ea] hover:text-white text-xs font-bold transition-all duration-150 active:scale-95 flex items-center gap-1 border border-white/15 shadow-sm cursor-pointer"
                 aria-label="Fermer"
               >
                 <span>✕</span>
@@ -2700,7 +2700,7 @@ export default function SettingsPage({
             {/* Panneau d'édition inline si modèle personnalisé et mode édition actif */}
             {previewTemplateId === "custom" && modalEditMode && (
               <div
-                className="w-full max-w-2xl mb-3 bg-white rounded-2xl p-4 shadow-xl border border-slate-200 cursor-default shrink-0"
+                className="w-full max-w-2xl mb-3 bg-white rounded-2xl p-4 shadow-xl border border-[#e8e7e2] cursor-default shrink-0"
                 onClick={(e) => e.stopPropagation()}
               >
                 {renderCustomInvoiceEditor()}
@@ -2718,7 +2718,7 @@ export default function SettingsPage({
                   }
                   : undefined
               }
-              className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-slate-200/90 cursor-default shrink-0 transition-transform duration-200"
+              className="w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden border border-[#e8e7e2] cursor-default shrink-0 transition-transform duration-200"
               onClick={(e) => e.stopPropagation()}
             >
               <InvoiceLivePreview

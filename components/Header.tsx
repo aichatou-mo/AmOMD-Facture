@@ -117,47 +117,47 @@ export default function Header({
 
   const matchingInvoices = queryClean
     ? invoices
-        .filter((inv) => {
-          const amounts = [
-            inv.netToPay,
-            inv.paidAmount,
-            inv.totalTTC,
-            inv.taxableHT,
-            inv.subtotalHT,
-          ].filter((x) => x !== undefined && x !== null && !isNaN(Number(x)) && Number(x) > 0) as number[];
+      .filter((inv) => {
+        const amounts = [
+          inv.netToPay,
+          inv.paidAmount,
+          inv.totalTTC,
+          inv.taxableHT,
+          inv.subtotalHT,
+        ].filter((x) => x !== undefined && x !== null && !isNaN(Number(x)) && Number(x) > 0) as number[];
 
-          const matchesAmount = amounts.some((amt) => {
-            const amtRound = Math.round(Number(amt));
-            if (parsedTargetAmount && Math.abs(amtRound - parsedTargetAmount) <= 2) {
-              return true;
-            }
-            const amtStr = String(amtRound);
-            const amtFormatted = amtRound.toLocaleString("fr-FR").replace(/\s+/g, "");
-            return (
-              amtStr.includes(queryNoSpace) ||
-              amtFormatted.includes(queryNoSpace) ||
-              queryNoSpace.includes(amtStr)
-            );
-          });
+        const matchesAmount = amounts.some((amt) => {
+          const amtRound = Math.round(Number(amt));
+          if (parsedTargetAmount && Math.abs(amtRound - parsedTargetAmount) <= 2) {
+            return true;
+          }
+          const amtStr = String(amtRound);
+          const amtFormatted = amtRound.toLocaleString("fr-FR").replace(/\s+/g, "");
+          return (
+            amtStr.includes(queryNoSpace) ||
+            amtFormatted.includes(queryNoSpace) ||
+            queryNoSpace.includes(amtStr)
+          );
+        });
 
-          const matchesClient = inv.clientName.toLowerCase().includes(queryClean);
-          const matchesNumber = inv.number.toLowerCase().includes(queryClean);
-          const matchesCity = (inv.clientCity || "").toLowerCase().includes(queryClean);
-          const matchesObject = Boolean(inv.object && inv.object.toLowerCase().includes(queryClean));
-          return matchesClient || matchesAmount || matchesNumber || matchesCity || matchesObject;
-        })
-        .slice(0, 5)
+        const matchesClient = inv.clientName.toLowerCase().includes(queryClean);
+        const matchesNumber = inv.number.toLowerCase().includes(queryClean);
+        const matchesCity = (inv.clientCity || "").toLowerCase().includes(queryClean);
+        const matchesObject = Boolean(inv.object && inv.object.toLowerCase().includes(queryClean));
+        return matchesClient || matchesAmount || matchesNumber || matchesCity || matchesObject;
+      })
+      .slice(0, 5)
     : [];
 
   const matchingClients = queryClean
     ? clients
-        .filter(
-          (c) =>
-            c.name.toLowerCase().includes(queryClean) ||
-            (c.city || "").toLowerCase().includes(queryClean) ||
-            (c.contactPerson || "").toLowerCase().includes(queryClean)
-        )
-        .slice(0, 3)
+      .filter(
+        (c) =>
+          c.name.toLowerCase().includes(queryClean) ||
+          (c.city || "").toLowerCase().includes(queryClean) ||
+          (c.contactPerson || "").toLowerCase().includes(queryClean)
+      )
+      .slice(0, 3)
     : [];
 
   const handleSearchSubmit = (e?: React.FormEvent) => {
@@ -167,23 +167,23 @@ export default function Header({
   };
 
   return (
-    <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-slate-200/70 px-3 sm:px-6 lg:px-8 py-3 select-none w-full max-w-full">
+    <header className="sticky top-0 z-20 bg-[#f8f7f3]/95 backdrop-blur-md border-b border-[#e8e7e2] px-3 sm:px-6 lg:px-8 py-3 select-none w-full max-w-full">
       <div className="flex items-center justify-between gap-2 sm:gap-4 max-w-7xl mx-auto w-full">
         {/* Left: Mobile hamburger + Page Title */}
         <div className="flex items-center gap-2 sm:gap-3 min-w-0">
           <button
             onClick={onToggleMobile}
-            className="lg:hidden p-1.5 sm:p-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors shrink-0"
+            className="lg:hidden p-1.5 sm:p-2 rounded-xl text-[#111522] hover:bg-[#edece6] transition-colors shrink-0"
             aria-label="Ouvrir le menu"
           >
             <IconMenu className="w-5 h-5" />
           </button>
           <div className="min-w-0">
-            <h1 className="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight truncate">
+            <h1 className="font-serif text-lg sm:text-xl font-medium text-[#111522] tracking-tight truncate">
               {title}
             </h1>
             {subtitle && (
-              <p className="text-xs text-slate-400 hidden sm:block truncate">
+              <p className="text-xs text-[#374151] font-medium hidden sm:block truncate">
                 {subtitle}
               </p>
             )}
@@ -193,7 +193,7 @@ export default function Header({
         {/* Center: Search bar */}
         <div ref={searchRef} className="flex-1 max-w-md hidden md:block relative">
           <form onSubmit={handleSearchSubmit} className="relative flex items-center">
-            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+            <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#374151]">
               <IconSearch className="w-4 h-4" />
             </div>
             <input
@@ -205,7 +205,7 @@ export default function Header({
                 setIsSearchFocused(true);
               }}
               placeholder={t.searchPlaceholder || "Rechercher une facture ou un client..."}
-              className="w-full pl-9 pr-10 py-2 text-xs bg-slate-50/90 hover:bg-slate-100/70 focus:bg-white text-slate-800 placeholder-slate-400 rounded-xl border border-slate-200/80 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/15 transition-all"
+              className="w-full pl-9 pr-10 py-2 text-xs bg-white hover:bg-[#f2f0e8]/70 focus:bg-white text-[#111522] placeholder-[#4b5563] font-medium rounded-full border border-[#dcdbd4] focus:border-[#111522] focus:outline-none focus:ring-2 focus:ring-[#ffdc45]/45 transition-all"
             />
             {searchQuery && (
               <button
@@ -214,7 +214,7 @@ export default function Header({
                   setSearchQuery("");
                   if (onSearchSubmit) onSearchSubmit("");
                 }}
-                className="absolute right-2.5 p-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition"
+                className="absolute right-2.5 p-1 rounded-full text-[#374151] hover:text-[#111522] hover:bg-[#edece6] transition"
                 title="Effacer"
               >
                 <IconClose className="w-3.5 h-3.5" />
@@ -223,21 +223,21 @@ export default function Header({
           </form>
 
           {isSearchFocused && queryClean && (
-            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-fade-in max-h-96 overflow-y-auto">
-              <div className="p-3 bg-slate-50/80 border-b border-slate-100 flex items-center justify-between text-xs">
-                <span className="font-bold text-slate-700">
-                  {t.resultsFor || "Résultats pour"} &ldquo;<strong className="text-emerald-700">{searchQuery}</strong>&rdquo;
+            <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-[#e8e7e2] overflow-hidden z-50 animate-fade-in max-h-96 overflow-y-auto">
+              <div className="p-3 bg-[#f8f7f3] border-b border-[#edece6] flex items-center justify-between text-xs">
+                <span className="font-bold text-[#111522]">
+                  {t.resultsFor || "Résultats pour"} &ldquo;<strong className="text-[#a18400]">{searchQuery}</strong>&rdquo;
                 </span>
-                <span className="text-[11px] text-slate-400 font-mono">
+                <span className="text-[11px] text-[#697080] font-mono">
                   {matchingInvoices.length + matchingClients.length + (matchingCombinations.length > 0 ? 1 : 0)}
                 </span>
               </div>
 
               {matchingInvoices.length === 0 && matchingClients.length === 0 && matchingCombinations.length === 0 ? (
-                <div className="p-6 text-center text-xs text-slate-400 space-y-1">
+                <div className="p-6 text-center text-xs text-[#697080] space-y-1">
                   <p>{t.noResultsFound || "Aucun résultat trouvé."}</p>
                   {parsedTargetAmount && (
-                    <p className="text-[11px] text-slate-400">
+                    <p className="text-[11px] text-[#697080]">
                       Montant recherché : {formatFCFA(parsedTargetAmount)}
                     </p>
                   )}
@@ -246,20 +246,20 @@ export default function Header({
                 <div className="p-2 space-y-3">
                   {/* Combinaisons regroupées de factures (Rapprochement intelligent) */}
                   {matchingCombinations.length > 0 && parsedTargetAmount && (
-                    <div className="p-3 rounded-2xl bg-slate-900 text-white shadow-xl space-y-2.5 border border-slate-800">
+                    <div className="p-3 rounded-2xl bg-[#111522] text-white shadow-xl space-y-2.5 border border-white/10">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-1.5">
-                          <span className="text-emerald-400 text-sm">⚡</span>
+                          <span className="text-[#ffdc45] text-sm">⚡</span>
                           <span className="text-xs font-black text-white">
                             Regroupement de factures trouvé
                           </span>
                         </div>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-extrabold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-mono font-extrabold bg-[#ffdc45]/20 text-[#ffdc45] border border-[#ffdc45]/30">
                           = {formatFCFA(parsedTargetAmount)}
                         </span>
                       </div>
 
-                      <p className="text-[11px] text-slate-300 leading-snug">
+                      <p className="text-[11px] text-[#c4c7d1] leading-snug">
                         {matchingInvoices.length === 0
                           ? `Aucune facture unique ne fait ce montant, mais ces ${matchingCombinations[0].invoices.length} factures cumulées totalisent exactement ${formatFCFA(parsedTargetAmount)} :`
                           : `Ces factures combinées totalisent également la somme de ${formatFCFA(parsedTargetAmount)} :`}
@@ -267,9 +267,9 @@ export default function Header({
 
                       <div className="space-y-2">
                         {matchingCombinations.map((combo, idx) => (
-                          <div key={idx} className="p-2 rounded-xl bg-slate-800/90 border border-slate-700/80 space-y-1.5">
-                            <div className="flex items-center justify-between text-[10px] text-slate-400 font-bold px-1">
-                              <span className="text-emerald-400">Combinaison {idx + 1} ({combo.invoices.length} factures)</span>
+                          <div key={idx} className="p-2 rounded-xl bg-[#191f30] border border-white/10 space-y-1.5">
+                            <div className="flex items-center justify-between text-[10px] text-[#c4c7d1] font-bold px-1">
+                              <span className="text-[#ffdc45]">Combinaison {idx + 1} ({combo.invoices.length} factures)</span>
                               <span className="font-mono text-white font-extrabold">{formatFCFA(combo.total)}</span>
                             </div>
                             <div className="space-y-1">
@@ -281,13 +281,13 @@ export default function Header({
                                     onSelectInvoice?.(inv);
                                     setIsSearchFocused(false);
                                   }}
-                                  className="w-full flex items-center justify-between p-2 rounded-lg bg-slate-900/90 hover:bg-slate-750 border border-slate-700/70 hover:border-emerald-500/40 text-left transition cursor-pointer group"
+                                  className="w-full flex items-center justify-between p-2 rounded-lg bg-[#0c111d] hover:bg-[#1b253d] border border-white/10 hover:border-[#ffdc45]/50 text-left transition cursor-pointer group"
                                 >
                                   <div className="flex items-center gap-2 truncate min-w-0 pr-2">
-                                    <span className="font-mono font-bold text-emerald-400 text-xs shrink-0 group-hover:underline">
+                                    <span className="font-mono font-bold text-[#ffdc45] text-xs shrink-0 group-hover:underline">
                                       {inv.number}
                                     </span>
-                                    <span className="text-slate-300 truncate text-[11px]">
+                                    <span className="text-[#d0d3dc] truncate text-[11px]">
                                       {inv.clientName}
                                     </span>
                                   </div>
@@ -305,7 +305,7 @@ export default function Header({
 
                   {matchingInvoices.length > 0 && (
                     <div>
-                      <p className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      <p className="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-[#1f2937]">
                         {t.invoicesFoundGroup || "Factures"}
                       </p>
                       <div className="space-y-1">
@@ -317,19 +317,19 @@ export default function Header({
                               onSelectInvoice?.(inv);
                               setIsSearchFocused(false);
                             }}
-                            className="w-full p-2.5 rounded-xl hover:bg-slate-50 flex items-center justify-between text-left transition group"
+                            className="w-full p-2.5 rounded-xl hover:bg-[#f8f7f3] flex items-center justify-between text-left transition group cursor-pointer"
                           >
                             <div>
                               <div className="flex items-center gap-2">
-                                <span className="font-mono font-bold text-xs text-slate-900 group-hover:text-emerald-700">
+                                <span className="font-mono font-bold text-xs text-[#111522] group-hover:underline decoration-[#ffdc45] decoration-2">
                                   {inv.number}
                                 </span>
-                                <span className="text-[10px] font-semibold px-2 py-0.2 rounded-full bg-slate-100 text-slate-600">
+                                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#eceae3] text-[#1f2937]">
                                   {inv.clientName}
                                 </span>
                               </div>
                             </div>
-                            <span className="font-mono font-bold text-xs text-emerald-700">
+                            <span className="font-mono font-bold text-xs text-[#111522]">
                               {formatFCFA(inv.netToPay || inv.totalTTC)}
                             </span>
                           </button>
@@ -340,7 +340,7 @@ export default function Header({
 
                   {matchingClients.length > 0 && (
                     <div>
-                      <p className="px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-slate-400">
+                      <p className="px-2.5 py-1 text-[10px] font-black uppercase tracking-wider text-[#1f2937]">
                         {t.clientsFoundGroup || "Clients"}
                       </p>
                       <div className="space-y-1">
@@ -352,18 +352,18 @@ export default function Header({
                               onSelectClient?.(c);
                               setIsSearchFocused(false);
                             }}
-                            className="w-full p-2.5 rounded-xl hover:bg-slate-50 flex items-center justify-between text-left transition"
+                            className="w-full p-2.5 rounded-xl hover:bg-[#f8f7f3] flex items-center justify-between text-left transition cursor-pointer"
                           >
                             <div className="flex items-center gap-2.5">
-                              <div className="w-7 h-7 rounded-lg bg-emerald-50 text-emerald-700 font-bold text-xs flex items-center justify-center border border-emerald-100">
+                              <div className="w-7 h-7 rounded-lg bg-[#fff0a6] text-[#332900] font-bold text-xs flex items-center justify-center border border-[#ffe36a]">
                                 {c.name.substring(0, 2).toUpperCase()}
                               </div>
                               <div>
-                                <p className="font-bold text-xs text-slate-900">{c.name}</p>
-                                {c.city && <p className="text-[10px] text-slate-400">{c.city}</p>}
+                                <p className="font-bold text-xs text-[#111522]">{c.name}</p>
+                                {c.city && <p className="text-[10px] text-[#374151] font-semibold">{c.city}</p>}
                               </div>
                             </div>
-                            <span className="text-xs font-mono font-bold text-slate-700">
+                            <span className="text-xs font-mono font-bold text-[#111522]">
                               {formatFCFA(c.totalBilled)}
                             </span>
                           </button>
@@ -387,37 +387,37 @@ export default function Header({
               onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
               className={`relative p-2 rounded-xl transition-all duration-150 active:scale-95 ${
                 isNotificationsOpen
-                  ? "bg-slate-900 text-white shadow-sm"
-                  : "text-slate-500 hover:text-slate-800 hover:bg-slate-100"
+                  ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+                  : "text-[#1f2937] hover:text-[#111522] hover:bg-[#edece6]"
               }`}
               title={t.notifications || "Notifications"}
             >
               <IconBell className="w-4 h-4 sm:w-5 sm:h-5" />
               {alertCount > 0 && (
-                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-rose-500 rounded-full ring-2 ring-white" />
+                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-[#ffdc45] rounded-full ring-2 ring-[#111522]" />
               )}
             </button>
 
             {isNotificationsOpen && (
-              <div className="absolute right-0 mt-2.5 w-80 bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-50 animate-scale-up">
-                <div className="p-3.5 bg-white border-b border-slate-100 flex items-center justify-between">
-                  <h3 className="font-extrabold text-xs text-slate-900">
+              <div className="absolute right-0 mt-2.5 w-80 bg-white rounded-3xl shadow-2xl border border-[#e8e7e2] overflow-hidden z-50 animate-scale-up">
+                <div className="p-3.5 bg-[#f8f7f3] border-b border-[#edece6] flex items-center justify-between">
+                  <h3 className="font-extrabold text-xs text-[#111522]">
                     {t.notifications || "Notifications"}
                   </h3>
                   {notifications.length > 0 && (
                     <button
                       type="button"
                       onClick={() => setDismissedIds(invoices.map((i) => i.id))}
-                      className="text-[11px] text-slate-400 hover:text-slate-700 font-semibold"
+                      className="text-[11px] text-[#374151] hover:text-[#111522] font-bold cursor-pointer"
                     >
                       {t.clearAll || "Effacer"}
                     </button>
                   )}
                 </div>
 
-                <div className="max-h-72 overflow-y-auto divide-y divide-slate-100 p-2">
+                <div className="max-h-72 overflow-y-auto divide-y divide-[#edece6] p-2">
                   {notifications.length === 0 ? (
-                    <div className="py-8 text-center text-xs text-slate-400">
+                    <div className="py-8 text-center text-xs text-[#374151] font-medium">
                       {t.noNotifications || "Aucune notification."}
                     </div>
                   ) : (
@@ -430,23 +430,22 @@ export default function Header({
                           if (target && onSelectInvoice) onSelectInvoice(target);
                           setIsNotificationsOpen(false);
                         }}
-                        className="w-full text-left p-2.5 rounded-2xl hover:bg-slate-50 transition flex items-start gap-2.5"
+                        className="w-full text-left p-2.5 rounded-2xl hover:bg-[#f8f7f3] transition flex items-start gap-2.5 cursor-pointer"
                       >
                         <span
-                          className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${
-                            notif.type === "alert"
-                              ? "bg-rose-500"
-                              : notif.type === "warning"
-                              ? "bg-amber-500"
-                              : "bg-emerald-500"
-                          }`}
+                          className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${notif.type === "alert"
+                            ? "bg-rose-500"
+                            : notif.type === "warning"
+                              ? "bg-[#ffdc45]"
+                              : "bg-[#285b35]"
+                            }`}
                         />
                         <div className="min-w-0 flex-1">
                           <div className="flex items-center justify-between gap-2">
-                            <p className="text-xs font-bold text-slate-900 truncate">{notif.title}</p>
-                            <span className="text-[10px] font-mono text-slate-400 shrink-0">{notif.time}</span>
+                            <p className="text-xs font-bold text-[#111522] truncate">{notif.title}</p>
+                            <span className="text-[10px] font-mono text-[#374151] font-bold shrink-0">{notif.time}</span>
                           </div>
-                          <p className="text-[11px] text-slate-500 truncate mt-0.5">{notif.desc}</p>
+                          <p className="text-[11px] text-[#374151] font-medium truncate mt-0.5">{notif.desc}</p>
                         </div>
                       </button>
                     ))

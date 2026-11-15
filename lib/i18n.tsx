@@ -453,7 +453,7 @@ const baseTranslations = {
     invoiceTemplateImportDesc: "Importez un PDF de facture existant pour l'utiliser comme modèle automatique.",
 
     // Help & Support
-    supportTitle: "Aide & Support iziFACTURE",
+    supportTitle: "Aide & Support AMOMD FACTURE",
     supportSubtitle: "Assistance rapide par des experts de la facturation au Sahel",
     supportWhatsApp: "Assistance WhatsApp Directe",
     supportCall: "Assistance Téléphonique",
@@ -676,7 +676,7 @@ const baseTranslations = {
     invoiceTemplateImportDesc: "Import an existing invoice PDF to use as an automatic template.",
 
     // Help & Support
-    supportTitle: "iziFACTURE Help & Support",
+    supportTitle: "AMOMD FACTURE Help & Support",
     supportSubtitle: "Fast assistance from Sahel billing & tax specialists",
     supportWhatsApp: "Direct WhatsApp Support",
     supportCall: "Phone Support",
@@ -899,7 +899,7 @@ const baseTranslations = {
     invoiceTemplateImportDesc: "استورد ملف PDF فاتورة موجود لاستخدامه كقالب تلقائي.",
 
     // Help & Support
-    supportTitle: "مساعدة ودعم iziFACTURE",
+    supportTitle: "مساعدة ودعم AMOMD FACTURE",
     supportSubtitle: "مساعدة سريعة من متخصصي الفوترة في الساحل",
     supportWhatsApp: "دعم واتساب المباشر",
     supportCall: "دعم هاتفي",

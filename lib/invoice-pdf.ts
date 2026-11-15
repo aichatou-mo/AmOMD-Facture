@@ -160,7 +160,7 @@ class PdfDocumentBuilder {
       // 8 0 obj: Stream
       `<<\n  /Length ${streamLength}\n>>\nstream\n${streamData}\nendstream`,
       // 9 0 obj: Info
-      `<<\n  /Title (Facture iziFACTURE)\n  /Creator (iziFACTURE Pro)\n  /Producer (iziFACTURE Engine)\n  /CreationDate (D:20261026000000Z)\n>>`,
+      `<<\n  /Title (Facture AMOMD FACTURE)\n  /Creator (AMOMD FACTURE Pro)\n  /Producer (AMOMD FACTURE Engine)\n  /CreationDate (D:20261026000000Z)\n>>`,
     ];
 
     const encoder = new TextEncoder();
@@ -502,7 +502,7 @@ export function generateInvoicePdfBytes(
   // Mention certifiée officielle sans redondance d'ID ou SEC à droite
   pdf.setFillColor(0.45, 0.50, 0.58);
   pdf.text(
-    "Document certifié iziFACTURE · Système de facturation électronique conforme aux normes OHADA / DGI",
+    "Document certifié AMOMD FACTURE · Système de facturation électronique conforme aux normes OHADA / DGI",
     36,
     footerY + 4,
     { font: "F1", size: 7.5 }

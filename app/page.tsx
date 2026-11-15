@@ -17,6 +17,7 @@ import InvoiceDetailPage from "@/components/InvoiceDetailPage";
 import ClientsPage from "@/components/ClientsPage";
 import SettingsPage from "@/components/SettingsPage";
 import AuthPage from "@/components/AuthPage";
+import LandingPage from "@/components/LandingPage";
 import AIAssistantModal from "@/components/AIAssistantModal";
 import AIAssistantTrigger from "@/components/AIAssistantTrigger";
 import DateRangePicker from "@/components/DateRangePicker";
@@ -66,6 +67,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
   // Authentification réelle Supabase
   const [authUser, setAuthUser] = useState<User | null>(null);
   const [isAuthChecking, setIsAuthChecking] = useState<boolean>(true);
+  const [publicView, setPublicView] = useState<"landing" | "login" | "signup">("landing");
 
   const [currentTab, setCurrentTab] = useState<string>(initialTab);
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
@@ -233,21 +235,33 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
   useEffect(() => {
     let mounted = true;
 
+    // Timeout de sécurité pour éviter de rester bloqué sur l'écran de chargement
+    const safetyTimer = setTimeout(() => {
+      if (mounted) {
+        setIsAuthChecking(false);
+      }
+    }, 900);
+
     supabase.auth
       .getSession()
       .then(({ data }) => {
         if (!mounted) return;
+        clearTimeout(safetyTimer);
         setAuthUser(data.session?.user ?? null);
         setIsAuthChecking(false);
       })
       .catch(() => {
-        if (mounted) setIsAuthChecking(false);
+        if (mounted) {
+          clearTimeout(safetyTimer);
+          setIsAuthChecking(false);
+        }
       });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!mounted) return;
+      clearTimeout(safetyTimer);
       const nextUser = session?.user ?? null;
       setAuthUser(nextUser);
       setIsAuthChecking(false);
@@ -264,6 +278,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
 
     return () => {
       mounted = false;
+      clearTimeout(safetyTimer);
       subscription.unsubscribe();
     };
   }, []);
@@ -336,6 +351,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
     setShowLogoutConfirm(false);
     await supabase.auth.signOut();
     setAuthUser(null);
+    setPublicView("landing");
     setInvoices([]);
     setClients([]);
     setCompanies([]);
@@ -653,37 +669,75 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
     setIsSyncing(false);
   };
 
-  // Écran de vérification initiale de session
+  // Écran de vérification initiale de session (sécurisé avec styles inline + classes Tailwind)
   if (isAuthChecking) {
     return (
-      <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center p-6">
-        <div className="flex flex-col items-center gap-3">
-          <div className="w-11 h-11 rounded-2xl bg-slate-900 flex items-center justify-center text-emerald-400 shadow-lg animate-pulse">
-            <svg
-              className="w-6 h-6"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <path d="M9 15l2 2 4-4" />
-            </svg>
+      <div
+        style={{
+          minHeight: "100vh",
+          backgroundColor: "#111522",
+          color: "#ffffff",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "24px",
+          fontFamily: "'DM Sans', 'Plus Jakarta Sans', system-ui, sans-serif",
+        }}
+        className="min-h-screen bg-[#111522] flex items-center justify-center p-6"
+      >
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+          <div
+            style={{
+              width: "52px",
+              height: "52px",
+              borderRadius: "16px",
+              backgroundColor: "#ffdc45",
+              color: "#111522",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              fontWeight: 800,
+              fontSize: "20px",
+              transform: "rotate(-6deg)",
+              boxShadow: "0 8px 24px rgba(255,220,69,0.35)",
+            }}
+            className="w-12 h-12 rounded-2xl bg-[#ffdc45] flex items-center justify-center text-[#111522] font-extrabold text-lg -rotate-6 shadow-[0_8px_24px_rgba(255,220,69,0.35)] animate-pulse"
+          >
+            A
           </div>
-          <p className="text-xs font-bold text-slate-500">
-            Chargement d&apos;iziFACTURE...
+          <p
+            style={{
+              fontSize: "12px",
+              fontWeight: 700,
+              color: "#c4c7d1",
+              letterSpacing: "0.05em",
+              margin: 0,
+            }}
+            className="text-xs font-bold text-[#c4c7d1] tracking-wide"
+          >
+            Chargement d&apos;AMOMD FACTURE...
           </p>
         </div>
       </div>
     );
   }
 
-  // Utilisateur non connecté -> Écran réel Se connecter / Créer un compte
+  // Utilisateur non connecté -> Page d'accueil publique puis Se connecter / Créer un compte
   if (!authUser) {
-    return <AuthPage />;
+    if (publicView === "landing") {
+      return (
+        <LandingPage
+          onLogin={() => setPublicView("login")}
+          onGetStarted={() => setPublicView("signup")}
+        />
+      );
+    }
+    return (
+      <AuthPage
+        initialMode={publicView === "signup" ? "signup" : "login"}
+        onBack={() => setPublicView("landing")}
+      />
+    );
   }
 
   const userFullName =
@@ -779,11 +833,11 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC] flex flex-col lg:flex-row font-sans print:min-h-0 print:bg-white print:block w-full max-w-full overflow-x-hidden">
+    <div className="min-h-screen bg-[#f8f7f3] text-[#111522] flex flex-col lg:flex-row font-sans print:min-h-0 print:bg-white print:block w-full max-w-full overflow-x-hidden">
       {/* Notification Toast */}
       {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-slate-700 animate-fade-in no-print">
-          <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping" />
+        <div className="fixed bottom-6 right-6 z-50 bg-[#111522] text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-[#ffdc45]/30 animate-fade-in no-print">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#ffdc45] animate-ping" />
           <span className="text-xs font-bold font-sans">{toastMessage}</span>
         </div>
       )}
@@ -835,19 +889,19 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
           {/* ========================================================= */}
           {currentTab === "dashboard" && (
             <div className="space-y-6 animate-fade-in">
-              {/* Message d'accueil lumineux + Sélecteur de date responsive (Inspiré fidèlement de la capture utilisateur) */}
+              {/* Message d'accueil lumineux + Sélecteur de date responsive */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div>
-                  <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+                  <h1 className="font-serif text-2xl sm:text-3xl font-medium text-[#111522] tracking-tight">
                     Bonjour, {firstName}
                   </h1>
-                  <p className="text-xs sm:text-sm text-slate-500 mt-1 flex items-center gap-2">
+                  <p className="text-xs sm:text-sm text-[#5f6571] mt-1 flex items-center gap-2">
                     <span>
                       Suivez vos factures, encaissements et clients en temps réel.
                     </span>
                     {(isDbLoading || isSyncing) && (
-                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                      <span className="inline-flex items-center gap-1.5 text-[11px] font-semibold text-[#332900] bg-[#fff0a6] px-2.5 py-0.5 rounded-full border border-[#ffe36a]">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#111522] animate-ping" />
                         Synchronisation...
                       </span>
                     )}
@@ -880,17 +934,17 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
 
               {/* ── BANNIÈRE DE RECHERCHE & RAPPROCHEMENT INTELLIGENT DU DASHBOARD ── */}
               {searchQuery.trim() && (
-                <div className="p-4 sm:p-5 rounded-3xl bg-slate-900 text-white shadow-xl shadow-slate-900/20 border border-slate-750 space-y-4 animate-in fade-in duration-200">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+                <div className="p-4 sm:p-5 rounded-3xl bg-[#111522] text-white shadow-xl shadow-[#111522]/25 border border-white/10 space-y-4 animate-in fade-in duration-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-white/10">
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                      <span className="px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-[#ffdc45]/15 text-[#ffdc45] border border-[#ffdc45]/30">
                         🔍 Recherche Dashboard
                       </span>
                       <span className="text-xs sm:text-sm font-bold text-white">
-                        Résultats pour &laquo; <strong className="text-emerald-400 font-mono">{searchQuery}</strong> &raquo;
+                        Résultats pour &laquo; <strong className="text-[#ffdc45] font-mono">{searchQuery}</strong> &raquo;
                       </span>
                       {dashboardSearchAmount && (
-                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-extrabold bg-slate-800 text-emerald-300 border border-slate-700">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-mono font-extrabold bg-[#191f30] text-[#ffdc45] border border-white/10">
                           Montant cible : {formatFCFA(dashboardSearchAmount)}
                         </span>
                       )}
@@ -898,7 +952,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                     <button
                       type="button"
                       onClick={() => setSearchQuery("")}
-                      className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-750 text-slate-300 hover:text-white text-xs font-bold transition active:scale-95 border border-slate-700 self-start sm:self-auto cursor-pointer"
+                      className="px-3 py-1.5 rounded-xl bg-[#191f30] hover:bg-[#1b253d] text-[#c4c7d1] hover:text-white text-xs font-bold transition active:scale-95 border border-white/10 self-start sm:self-auto cursor-pointer"
                     >
                       ✕ Effacer la recherche
                     </button>
@@ -907,9 +961,9 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                   {/* CAS 1 : Regroupement de 2 ou 3 factures trouvé (Demande expresse de l'utilisateur) */}
                   {dashboardCombinations.length > 0 && dashboardSearchAmount ? (
                     <div className="space-y-3">
-                      <div className="p-3.5 bg-emerald-950/40 rounded-2xl border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                        <div className="text-xs text-emerald-200 leading-relaxed">
-                          <strong className="text-emerald-400 text-sm block font-extrabold">
+                      <div className="p-3.5 bg-[#191f30] rounded-2xl border border-[#ffdc45]/35 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                        <div className="text-xs text-[#e5e6ea] leading-relaxed">
+                          <strong className="text-[#ffdc45] text-sm block font-extrabold">
                             ⚡ Regroupement intelligent de factures trouvé :
                           </strong>
                           <span>
@@ -918,7 +972,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                               : `Ces factures combinées totalisent également la somme exacte de :`}
                           </span>
                         </div>
-                        <span className="font-mono text-sm sm:text-base font-black text-emerald-400 shrink-0">
+                        <span className="font-mono text-sm sm:text-base font-black text-[#ffdc45] shrink-0">
                           = {formatFCFA(dashboardSearchAmount)}
                         </span>
                       </div>
@@ -927,16 +981,16 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                         {dashboardCombinations.map((combo, idx) => (
                           <div
                             key={idx}
-                            className="p-3.5 rounded-2xl bg-slate-800/90 border border-slate-700 space-y-2.5"
+                            className="p-3.5 rounded-2xl bg-[#141a2b] border border-white/10 space-y-2.5"
                           >
                             <div className="flex items-center justify-between text-xs font-bold flex-wrap gap-2">
                               <div className="flex items-center gap-1.5 flex-wrap">
-                                <span className="text-emerald-400 font-extrabold">Proposition {idx + 1}</span>
-                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700 text-slate-300 font-bold">
+                                <span className="text-[#ffdc45] font-extrabold">Proposition {idx + 1}</span>
+                                <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-[#d0d3dc] font-bold">
                                   {combo.invoices.length} factures regroupées
                                 </span>
                                 {combo.label && (
-                                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 font-bold">
+                                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#ffdc45]/20 text-[#ffdc45] border border-[#ffdc45]/30 font-bold">
                                     {combo.label}
                                   </span>
                                 )}
@@ -946,7 +1000,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                                   {combo.isApproximate ? "≈ " : "Total = "} {formatFCFA(combo.total)}
                                 </span>
                                 {combo.isApproximate && combo.difference !== undefined && combo.difference > 0 && (
-                                  <span className="text-[10px] text-amber-300 block font-normal">
+                                  <span className="text-[10px] text-[#ffe879] block font-normal">
                                     (Écart : {formatFCFA(combo.difference)})
                                   </span>
                                 )}
@@ -958,25 +1012,25 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                                 <div key={inv.id} className="space-y-1">
                                   {invIdx > 0 && (
                                     <div className="flex items-center justify-center my-0.5">
-                                      <span className="w-5 h-5 rounded-full bg-slate-700 text-slate-300 text-xs font-bold flex items-center justify-center">
+                                      <span className="w-5 h-5 rounded-full bg-white/10 text-[#ffdc45] text-xs font-bold flex items-center justify-center">
                                         +
                                       </span>
                                     </div>
                                   )}
                                   <div
                                     onClick={() => handleSelectInvoice(inv)}
-                                    className="flex items-center justify-between p-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-750 border border-slate-750 hover:border-emerald-500/50 cursor-pointer transition text-xs group"
+                                    className="flex items-center justify-between p-2.5 rounded-xl bg-[#0c111d] hover:bg-[#191f30] border border-white/10 hover:border-[#ffdc45]/60 cursor-pointer transition text-xs group"
                                   >
                                     <div className="min-w-0 pr-2">
                                       <div className="flex items-center gap-1.5">
-                                        <span className="font-mono font-bold text-emerald-400 group-hover:underline">
+                                        <span className="font-mono font-bold text-[#ffdc45] group-hover:underline">
                                           {inv.number}
                                         </span>
-                                        <span className="text-[10px] px-1.5 py-0.2 rounded bg-slate-800 text-slate-400">
+                                        <span className="text-[10px] px-1.5 py-0.2 rounded bg-white/10 text-[#c4c7d1]">
                                           {inv.status === "payee" ? "Payée" : inv.status === "envoyee" ? "Envoyée" : "En retard"}
                                         </span>
                                       </div>
-                                      <span className="text-slate-300 text-[11px] truncate block mt-0.5">
+                                      <span className="text-[#d0d3dc] text-[11px] truncate block mt-0.5">
                                         {inv.clientName}
                                       </span>
                                     </div>
@@ -992,7 +1046,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                               <button
                                 type="button"
                                 onClick={() => handleTabChange("invoices")}
-                                className="w-full py-2 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-extrabold transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
+                                className="w-full py-2 px-3 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs font-extrabold transition active:scale-95 flex items-center justify-center gap-1 cursor-pointer"
                               >
                                 <span>📋 Voir ces factures dans la liste</span>
                               </button>
@@ -1004,7 +1058,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                   ) : dashboardMatchingInvoices.length > 0 ? (
                     /* CAS 2 : Factures uniques trouvées */
                     <div className="space-y-2">
-                      <p className="text-xs text-slate-300 font-bold">
+                      <p className="text-xs text-[#d0d3dc] font-bold">
                         {dashboardMatchingInvoices.length} facture(s) trouvée(s) :
                       </p>
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
@@ -1012,11 +1066,11 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                           <div
                             key={inv.id}
                             onClick={() => handleSelectInvoice(inv)}
-                            className="p-3 rounded-2xl bg-slate-800 hover:bg-slate-750 border border-slate-700 hover:border-emerald-500/50 cursor-pointer transition flex items-center justify-between text-xs"
+                            className="p-3 rounded-2xl bg-[#191f30] hover:bg-[#1b253d] border border-white/10 hover:border-[#ffdc45]/60 cursor-pointer transition flex items-center justify-between text-xs"
                           >
                             <div className="min-w-0 pr-2">
-                              <span className="font-mono font-bold text-emerald-400 block">{inv.number}</span>
-                              <span className="text-slate-300 text-[11px] truncate block">{inv.clientName}</span>
+                              <span className="font-mono font-bold text-[#ffdc45] block">{inv.number}</span>
+                              <span className="text-[#d0d3dc] text-[11px] truncate block">{inv.clientName}</span>
                             </div>
                             <span className="font-mono font-bold text-white shrink-0">
                               {formatFCFA(inv.paidAmount || inv.netToPay || inv.totalTTC)}
@@ -1027,7 +1081,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                     </div>
                   ) : (
                     /* CAS 3 : Aucun résultat */
-                    <div className="p-4 bg-slate-800/60 rounded-2xl border border-slate-700 text-center text-xs text-slate-400 space-y-1">
+                    <div className="p-4 bg-[#141a2b] rounded-2xl border border-white/10 text-center text-xs text-[#a2a8b5] space-y-1">
                       <p>Aucune facture individuelle ni aucun regroupement de factures ne correspond au montant {dashboardSearchAmount ? formatFCFA(dashboardSearchAmount) : `« ${searchQuery} »`}.</p>
                     </div>
                   )}
@@ -1083,13 +1137,13 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
               </div>
 
               {/* Section Factures Récentes claire et lumineuse */}
-              <div className="bg-white rounded-3xl border border-slate-200/80 shadow-[0_6px_24px_-6px_rgba(15,23,42,0.04)] overflow-hidden">
-                <div className="px-5 sm:px-7 py-5 border-b border-slate-100 flex items-center justify-between gap-3">
+              <div className="bg-white rounded-3xl border border-[#e8e7e2] shadow-[0_12px_32px_rgba(17,21,34,0.05)] overflow-hidden">
+                <div className="px-5 sm:px-7 py-5 border-b border-[#edece6] flex items-center justify-between gap-3">
                   <div>
-                    <h2 className="text-base sm:text-lg font-extrabold text-slate-900 tracking-tight flex items-center gap-2">
+                    <h2 className="font-serif text-lg sm:text-xl font-medium text-[#111522] tracking-tight flex items-center gap-2">
                       <span>Factures Récentes</span>
                     </h2>
-                    <p className="text-xs text-slate-500 mt-0.5">
+                    <p className="text-xs text-[#697080] mt-0.5">
                       {dateFilterStart && dateFilterEnd
                         ? `Aperçu des ${displayInvoices.length} facture(s) du ${formatDisplayDateFR(dateFilterStart)} au ${formatDisplayDateFR(dateFilterEnd)}.`
                         : dateFilterStart
@@ -1102,7 +1156,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                   <button
                     type="button"
                     onClick={() => handleTabChange("invoices")}
-                    className="px-3.5 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-xs font-bold text-slate-700 transition active:scale-95 shrink-0 flex items-center gap-1.5 cursor-pointer"
+                    className="px-3.5 py-2 rounded-full border border-[#e4e2d9] bg-[#f8f7f3] hover:bg-[#111522] hover:text-[#ffdc45] hover:border-[#111522] text-xs font-bold text-[#111522] transition active:scale-95 shrink-0 flex items-center gap-1.5 cursor-pointer"
                   >
                     <span>Tout voir ↗</span>
                   </button>
@@ -1110,15 +1164,15 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
 
                 {displayInvoices.length === 0 ? (
                   <div className="p-10 sm:p-12 text-center space-y-2.5">
-                    <div className="w-12 h-12 mx-auto rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 text-lg">
+                    <div className="w-12 h-12 mx-auto rounded-2xl bg-[#fff0a6] flex items-center justify-center text-[#332900] text-lg">
                       📄
                     </div>
-                    <p className="text-sm font-bold text-slate-800">
+                    <p className="text-sm font-bold text-[#111522]">
                       {hasDateRangeFilter
                         ? "Aucune facture trouvée pour la période sélectionnée."
                         : "Aucune facture récente."}
                     </p>
-                    <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                    <p className="text-xs text-[#697080] max-w-sm mx-auto">
                       {hasDateRangeFilter
                         ? "Modifiez la plage de dates ci-dessus ou cliquez sur ✕ pour réinitialiser le filtre."
                         : "Vos 5 dernières factures générées apparaîtront automatiquement ici."}
@@ -1126,9 +1180,9 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                     <button
                       type="button"
                       onClick={handleOpenNewInvoice}
-                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition active:scale-95 cursor-pointer mt-1"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs font-bold shadow-[0_8px_20px_rgba(255,220,69,0.28)] transition active:scale-95 cursor-pointer mt-1"
                     >
-                      <IconPlus className="w-3.5 h-3.5 text-emerald-400" />
+                      <IconPlus className="w-3.5 h-3.5 text-[#111522]" />
                       <span>Créer une facture</span>
                     </button>
                   </div>
@@ -1136,7 +1190,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                   <div className="overflow-x-auto">
                     <table className="w-full text-left border-collapse text-xs sm:text-sm">
                       <thead>
-                        <tr className="text-slate-400 font-semibold border-b border-slate-100 text-[11px] uppercase tracking-wider bg-slate-50/40">
+                        <tr className="text-[#697080] font-semibold border-b border-[#edece6] text-[11px] uppercase tracking-wider bg-[#f8f7f3]">
                           <th className="py-3.5 pl-6 pr-3">Client</th>
                           <th className="py-3.5 px-3">Numéro</th>
                           <th className="py-3.5 px-3">Date</th>
@@ -1144,27 +1198,27 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                           <th className="py-3.5 pl-3 pr-6 text-right">Montant</th>
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-100">
+                      <tbody className="divide-y divide-[#edece6]">
                         {displayInvoices.map((inv) => (
                           <tr
                             key={inv.id}
                             onClick={() => handleSelectInvoice(inv)}
-                            className="hover:bg-slate-50/80 transition cursor-pointer"
+                            className="hover:bg-[#f8f7f3]/90 transition cursor-pointer"
                           >
                             <td className="py-4 pl-6 pr-3">
-                              <span className="font-bold text-slate-900 block">
+                              <span className="font-bold text-[#111522] block">
                                 {inv.clientName}
                               </span>
                               {inv.clientEmail && (
-                                <span className="text-xs text-slate-400 block">
+                                <span className="text-xs text-[#697080] block">
                                   {inv.clientEmail}
                                 </span>
                               )}
                             </td>
-                            <td className="py-4 px-3 font-mono font-semibold text-slate-600 whitespace-nowrap">
+                            <td className="py-4 px-3 font-mono font-semibold text-[#5f6571] whitespace-nowrap">
                               {inv.number}
                             </td>
-                            <td className="py-4 px-3 font-mono text-slate-500 whitespace-nowrap">
+                            <td className="py-4 px-3 font-mono text-[#697080] whitespace-nowrap">
                               {formatDateFR(inv.issueDate)}
                             </td>
                             <td
@@ -1179,7 +1233,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
                                 variant="badge"
                               />
                             </td>
-                            <td className="py-4 pl-3 pr-6 text-right font-mono font-extrabold text-slate-900 whitespace-nowrap">
+                            <td className="py-4 pl-3 pr-6 text-right font-mono font-extrabold text-[#111522] whitespace-nowrap">
                               {formatFCFA(inv.netToPay || inv.totalTTC)}
                             </td>
                           </tr>
@@ -1341,7 +1395,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
           <ConfirmDialog
             isOpen={showLogoutConfirm}
             title="Se déconnecter"
-            message="Êtes-vous sûr de vouloir vous déconnecter de votre compte iziFACTURE ?"
+            message="Êtes-vous sûr de vouloir vous déconnecter de votre compte AMOMD FACTURE ?"
             confirmLabel="Se déconnecter"
             cancelLabel="Annuler"
             isDestructive={true}

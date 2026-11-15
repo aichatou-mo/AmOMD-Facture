@@ -2005,11 +2005,11 @@ export const DEFAULT_TEAM_MEMBERS: TeamMember[] = [
   {
     id: "mem-1",
     name: "Administrateur Principal",
-    email: "contact@izifacture.com",
+    email: "contact@amomd-facture.com",
     phone: "",
     role: "Chef d'entreprise",
     status: "Actif",
-    avatarBg: "bg-slate-900",
+    avatarBg: "bg-[#111522]",
     avatarText: "AD",
     lastActive: "En ligne maintenant",
     isOwner: true,

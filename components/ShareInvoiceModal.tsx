@@ -103,26 +103,26 @@ export default function ShareInvoiceModal({
     <div className="fixed inset-0 z-[99999] overflow-y-auto no-print">
       {/* Arrière-plan flouté */}
       <div
-        className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#0c111d]/70 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       <div className="flex min-h-full items-center justify-center p-3 sm:p-4 text-center">
         <div
-          className="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all w-full max-w-lg border border-slate-200 animate-scale-up"
+          className="relative transform overflow-hidden rounded-3xl bg-[#f8f7f3] text-left shadow-2xl transition-all w-full max-w-lg border border-[#e8e7e2] animate-scale-up"
           onClick={(e) => e.stopPropagation()}
         >
           {/* En-tête */}
-          <div className="flex items-center justify-between px-5 py-4 bg-slate-50 border-b border-slate-100">
+          <div className="flex items-center justify-between px-5 py-4 bg-[#111522] text-white border-b border-white/10">
             <div className="flex items-center gap-2.5">
-              <div className="w-10 h-10 rounded-2xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center border border-emerald-500/20">
+              <div className="w-10 h-10 rounded-2xl bg-[#ffdc45]/15 text-[#ffdc45] flex items-center justify-center border border-[#ffdc45]/30">
                 <IconWhatsApp className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-extrabold text-slate-900 text-sm sm:text-base leading-tight">
+                <h3 className="font-serif font-medium text-white text-base sm:text-lg leading-tight">
                   Partager la Facture PDF
                 </h3>
-                <p className="text-[11px] font-mono text-slate-500 mt-0.5">
+                <p className="text-[11px] font-mono text-[#b9bdc9] mt-0.5">
                   {invoice.number} &middot; {invoice.clientName}
                 </p>
               </div>
@@ -130,7 +130,7 @@ export default function ShareInvoiceModal({
 
             <button
               onClick={onClose}
-              className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition active:scale-95"
+              className="p-1.5 rounded-xl text-[#b9bdc9] hover:text-white hover:bg-white/10 transition active:scale-95"
               title="Fermer"
               aria-label="Fermer"
             >
@@ -140,20 +140,20 @@ export default function ShareInvoiceModal({
 
           <div className="p-5 sm:p-6 space-y-4">
             {/* Carte Document PDF généré */}
-            <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-center justify-between gap-3">
+            <div className="p-3.5 rounded-2xl bg-white border border-[#e8e7e2] flex items-center justify-between gap-3">
               <div className="flex items-center gap-3 min-w-0">
                 <div className="w-12 h-12 rounded-xl bg-rose-50 border border-rose-200 text-rose-600 flex flex-col items-center justify-center shrink-0 shadow-sm">
                   <span className="text-[9px] font-black tracking-wider uppercase">PDF</span>
                   <span className="text-base">📄</span>
                 </div>
                 <div className="min-w-0">
-                  <p className="font-mono font-bold text-xs text-slate-900 truncate" title={fileName}>
+                  <p className="font-mono font-bold text-xs text-[#111522] truncate" title={fileName}>
                     {fileName}
                   </p>
-                  <div className="flex items-center gap-2 text-[11px] text-slate-500 mt-0.5">
+                  <div className="flex items-center gap-2 text-[11px] text-[#697080] mt-0.5">
                     <span>1 page &middot; A4 OHADA</span>
                     <span>&middot;</span>
-                    <span className="font-mono font-bold text-emerald-700">{amountStr}</span>
+                    <span className="font-mono font-bold text-[#111522]">{amountStr}</span>
                   </div>
                 </div>
               </div>
@@ -161,7 +161,7 @@ export default function ShareInvoiceModal({
               <button
                 type="button"
                 onClick={handleDownloadPdf}
-                className="px-2.5 py-1.5 rounded-xl bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-xs font-semibold shrink-0 shadow-sm transition active:scale-95 flex items-center gap-1.5"
+                className="px-2.5 py-1.5 rounded-xl bg-[#f8f7f3] hover:bg-[#edece6] text-[#111522] border border-[#e4e2d9] text-xs font-semibold shrink-0 shadow-sm transition active:scale-95 flex items-center gap-1.5"
                 title="Télécharger sur l'appareil"
               >
                 <IconDownload className="w-3.5 h-3.5" />
@@ -174,9 +174,9 @@ export default function ShareInvoiceModal({
               <div
                 className={`p-3 rounded-xl text-xs font-medium flex items-start gap-2.5 animate-fade-in ${
                   feedback.type === "success"
-                    ? "bg-emerald-50 text-emerald-900 border border-emerald-200"
+                    ? "bg-[#d9f0df] text-[#285b35] border border-[#c5e4cb]"
                     : feedback.type === "info"
-                    ? "bg-blue-50 text-blue-900 border border-blue-200"
+                    ? "bg-[#fff0a6] text-[#332900] border border-[#ffe36a]"
                     : "bg-rose-50 text-rose-900 border border-rose-200"
                 }`}
               >
@@ -193,17 +193,17 @@ export default function ShareInvoiceModal({
                 type="button"
                 onClick={handleShareWithPdf}
                 disabled={isSharing}
-                className="w-full py-3.5 px-4 rounded-2xl bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] text-white font-bold text-sm shadow-lg shadow-emerald-600/25 transition-all duration-150 flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-60"
+                className="cta-hero-btn w-full py-3.5 px-4 rounded-full bg-[#ffdc45] hover:bg-[#ffe879] active:scale-[0.98] text-[#111522] font-bold text-sm shadow-[0_8px_22px_rgba(255,220,69,0.28)] transition-all duration-150 flex items-center justify-center gap-2.5 cursor-pointer disabled:opacity-60"
               >
-                <IconWhatsApp className="w-5 h-5 text-white" />
+                <IconWhatsApp className="w-5 h-5 text-[#111522]" />
                 <span>
                   {isSharing ? "Génération & Partage en cours..." : "Envoyer directement sur WhatsApp"}
                 </span>
-                <span className="text-[10px] bg-emerald-500/80 px-2 py-0.5 rounded-full font-bold uppercase tracking-wider text-white">
+                <span className="text-[10px] bg-[#111522] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider text-[#ffdc45]">
                   PDF Joint
                 </span>
               </button>
-              <p className="text-[11px] text-slate-400 text-center">
+              <p className="text-[11px] text-[#697080] text-center">
                 Transfère la facture au format PDF directement au client sur WhatsApp.
               </p>
             </div>
@@ -211,29 +211,29 @@ export default function ShareInvoiceModal({
             {/* Aperçu du Message WhatsApp */}
             <div className="pt-2">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
+                <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#697080]">
                   Message d&apos;accompagnement
                 </span>
                 <button
                   type="button"
                   onClick={handleCopyMessage}
-                  className="text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 transition flex items-center gap-1 cursor-pointer"
+                  className="text-[11px] font-semibold text-[#111522] underline decoration-[#ffdc45] decoration-2 underline-offset-2 hover:text-[#a18400] transition flex items-center gap-1 cursor-pointer"
                 >
                   <span>{copied ? "✓ Copié !" : "Copier le texte"}</span>
                 </button>
               </div>
 
-              <div className="p-3 rounded-2xl bg-emerald-50/50 border border-emerald-100 text-xs text-slate-700 text-left relative space-y-2">
+              <div className="p-3 rounded-2xl bg-white border border-[#e8e7e2] text-xs text-[#5f6571] text-left relative space-y-2">
                 <div className="flex items-start gap-2">
-                  <div className="w-6 h-6 rounded-lg bg-emerald-600 text-white flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
+                  <div className="w-6 h-6 rounded-lg bg-[#111522] text-[#ffdc45] flex items-center justify-center shrink-0 text-xs font-bold mt-0.5">
                     💬
                   </div>
-                  <p className="leading-relaxed text-slate-800">
+                  <p className="leading-relaxed text-[#111522]">
                     {messageText}
                   </p>
                 </div>
 
-                <div className="flex items-center gap-2 pt-1 border-t border-emerald-100/80 text-[11px] text-emerald-800 font-mono">
+                <div className="flex items-center gap-2 pt-1 border-t border-[#edece6] text-[11px] text-[#111522] font-mono">
                   <span>📎 Fichier joint :</span>
                   <span className="font-bold underline">{fileName}</span>
                 </div>
@@ -245,30 +245,30 @@ export default function ShareInvoiceModal({
               <button
                 type="button"
                 onClick={handleDownloadPdf}
-                className="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 border border-slate-200/80"
+                className="py-2.5 px-3 rounded-xl bg-white hover:bg-[#f2f0e8] text-[#111522] text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 border border-[#e4e2d9]"
               >
-                <IconDownload className="w-4 h-4 text-slate-600" />
+                <IconDownload className="w-4 h-4 text-[#111522]" />
                 <span>Télécharger PDF</span>
               </button>
 
               <button
                 type="button"
                 onClick={handleOpenWhatsAppWeb}
-                className="py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 text-emerald-700 text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 border border-emerald-200"
+                className="py-2.5 px-3 rounded-xl bg-[#111522] hover:bg-[#191f30] text-[#ffdc45] text-xs font-bold transition active:scale-95 flex items-center justify-center gap-2 border border-[#111522]"
               >
-                <IconWhatsApp className="w-4 h-4 text-emerald-600" />
+                <IconWhatsApp className="w-4 h-4 text-[#ffdc45]" />
                 <span>WhatsApp Web</span>
               </button>
             </div>
           </div>
 
           {/* Pied de modale */}
-          <div className="px-5 py-3 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+          <div className="px-5 py-3 bg-[#f2f0e8] border-t border-[#e8e7e2] flex items-center justify-between text-xs text-[#697080]">
             <span className="text-[11px]">Format certifié A4 OHADA / UEMOA</span>
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1 rounded-lg hover:bg-slate-200 text-slate-600 font-bold transition active:scale-95"
+              className="px-3 py-1 rounded-lg hover:bg-[#e8e7e2] text-[#111522] font-bold transition active:scale-95"
             >
               Fermer
             </button>

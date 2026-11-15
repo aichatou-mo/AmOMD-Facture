@@ -37,14 +37,14 @@ const STATUS_OPTIONS: Array<{
   {
     value: "payee",
     label: "Payée",
-    badgeClass: "bg-emerald-50 text-emerald-800 border-emerald-200/80",
-    dotClass: "bg-emerald-500",
+    badgeClass: "bg-[#d9f0df] text-[#285b35] border-[#b9dfc8]",
+    dotClass: "bg-[#337749]",
   },
   {
     value: "envoyee",
     label: "Envoyée",
-    badgeClass: "bg-blue-50 text-blue-800 border-blue-200/80",
-    dotClass: "bg-blue-500",
+    badgeClass: "bg-[#fff0a6] text-[#453700] border-[#ffe36a]",
+    dotClass: "bg-[#a18400]",
   },
   {
     value: "en_retard",
@@ -55,8 +55,8 @@ const STATUS_OPTIONS: Array<{
   {
     value: "brouillon",
     label: "Brouillon",
-    badgeClass: "bg-slate-100 text-slate-700 border-slate-200/80",
-    dotClass: "bg-slate-400",
+    badgeClass: "bg-[#edece6] text-[#5f6571] border-[#e4e2d9]",
+    dotClass: "bg-[#808392]",
   },
 ];
 
@@ -141,28 +141,28 @@ export default function InvoiceDetailPage({
   return (
     <div className="space-y-3 sm:space-y-4 animate-fade-in pb-12">
       {/* Top Navigation & Action Header (Ultra-compact & responsive) */}
-      <div className="bg-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] flex items-center justify-between gap-2.5 no-print">
+      <div className="bg-white px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl border border-[#e8e7e2] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.06)] flex items-center justify-between gap-2.5 no-print">
         {/* Left: Bouton retour & Identifiant facture */}
         <div className="flex items-center gap-2.5 min-w-0">
           <button
             onClick={onBack}
-            className="w-9 h-9 rounded-xl bg-slate-100 hover:bg-slate-900 hover:text-white text-slate-700 flex items-center justify-center transition-all duration-150 active:scale-95 border border-slate-200/60 shrink-0 font-bold"
+            className="w-9 h-9 rounded-xl bg-[#f2f0e8] hover:bg-[#111522] hover:text-[#ffdc45] text-[#111522] flex items-center justify-center transition-all duration-150 active:scale-95 border border-[#e4e2d9] shrink-0 font-bold"
             title="Retour à la liste des factures"
             aria-label="Retour"
           >
             ←
           </button>
           <div className="flex items-center gap-2 min-w-0 flex-wrap">
-            <h1 className="text-sm sm:text-lg font-black font-mono text-slate-900 tracking-tight truncate">
+            <h1 className="text-sm sm:text-lg font-black font-mono text-[#111522] tracking-tight truncate">
               {invoice.number}
             </h1>
             {invoice.invoiceType === "avoir" && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-amber-50 text-amber-900 border border-amber-300 shrink-0">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-[#fff0a6] text-[#453700] border border-[#ffe36a] shrink-0">
                 <span>🔄</span> Facture d&apos;Avoir
               </span>
             )}
             {invoice.invoiceType === "proforma" && (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-blue-50 text-blue-900 border border-blue-300 shrink-0">
+              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-bold bg-[#dce6ff] text-[#111522] border border-[#c6d1ff] shrink-0">
                 <span>📋</span> Facture Proforma
               </span>
             )}
@@ -184,10 +184,10 @@ export default function InvoiceDetailPage({
               setDownloadSuccessToast(`📥 Facture ${invoice.number} téléchargée en PDF dans votre appareil !`);
               setTimeout(() => setDownloadSuccessToast(null), 3500);
             }}
-            className="h-9 sm:h-10 px-3.5 rounded-xl bg-slate-900 hover:bg-emerald-600 active:scale-95 text-white text-xs font-bold flex items-center gap-2 shadow-sm transition-all duration-150 cursor-pointer"
+            className="h-9 sm:h-10 px-3.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] active:scale-95 text-[#111522] text-xs font-bold flex items-center gap-2 shadow-sm transition-all duration-150 cursor-pointer"
             title="Télécharger la facture en version PDF"
           >
-            <IconDownload className="w-4 h-4 text-emerald-400" />
+            <IconDownload className="w-4 h-4 text-[#111522]" />
             <span className="hidden sm:inline">Télécharger PDF</span>
           </button>
 
@@ -197,17 +197,17 @@ export default function InvoiceDetailPage({
             onClick={handleToggleMenu}
             className={`w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center border transition-all duration-150 active:scale-95 cursor-pointer shadow-sm ${
               isMenuOpen
-                ? "bg-slate-900 text-white border-slate-900 ring-2 ring-emerald-500/30"
-                : "bg-white text-slate-700 border-slate-200/90 hover:bg-slate-50 hover:border-slate-300"
+                ? "bg-[#111522] text-white border-[#111522] ring-2 ring-[#ffdc45]/40"
+                : "bg-white text-[#111522] border-[#e4e2d9] hover:bg-[#f8f7f3] hover:border-[#d6d3c9]"
             }`}
             aria-label="Menu d'actions"
             title="Menu d'actions"
           >
             {/* 3 points tactiles */}
             <span className="flex items-center gap-1">
-              <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isMenuOpen ? "bg-emerald-400" : "bg-slate-700"}`} />
-              <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isMenuOpen ? "bg-emerald-400" : "bg-slate-700"}`} />
-              <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isMenuOpen ? "bg-emerald-400" : "bg-slate-700"}`} />
+              <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isMenuOpen ? "bg-[#ffdc45]" : "bg-[#111522]"}`} />
+              <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isMenuOpen ? "bg-[#ffdc45]" : "bg-[#111522]"}`} />
+              <span className={`w-1.5 h-1.5 rounded-full transition-colors ${isMenuOpen ? "bg-[#ffdc45]" : "bg-[#111522]"}`} />
             </span>
           </button>
         </div>
@@ -215,15 +215,15 @@ export default function InvoiceDetailPage({
 
       {/* Alerte / Toast de téléchargement ou d'enregistrement réussi */}
       {downloadSuccessToast && (
-        <div className="bg-emerald-950 text-emerald-200 px-4 py-3 rounded-2xl text-xs font-bold flex items-center justify-between border border-emerald-500/40 shadow-lg animate-fade-in no-print">
+        <div className="bg-[#111522] text-white px-4 py-3 rounded-2xl text-xs font-bold flex items-center justify-between border border-[#ffdc45]/40 shadow-lg animate-fade-in no-print">
           <div className="flex items-center gap-2.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
+            <span className="w-2 h-2 rounded-full bg-[#ffdc45] animate-ping" />
             <span>{downloadSuccessToast}</span>
           </div>
           <button
             type="button"
             onClick={() => setDownloadSuccessToast(null)}
-            className="text-emerald-400 hover:text-white font-black text-sm px-2 py-0.5 rounded cursor-pointer"
+            className="text-[#ffdc45] hover:text-white font-black text-sm px-2 py-0.5 rounded cursor-pointer"
           >
             ✕
           </button>
@@ -242,46 +242,46 @@ export default function InvoiceDetailPage({
             maxWidth: "calc(100vw - 24px)",
             width: "310px",
           }}
-          className="bg-white rounded-2xl border border-slate-200/90 shadow-2xl overflow-hidden animate-scale-up text-slate-800"
+          className="bg-white rounded-2xl border border-[#e8e7e2] shadow-2xl overflow-hidden animate-scale-up text-[#111522]"
         >
           {/* En-tête menu */}
-          <div className="px-3.5 py-2.5 bg-slate-50/80 border-b border-slate-100 flex items-center justify-between">
-            <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">
+          <div className="px-3.5 py-2.5 bg-[#111522] text-white border-b border-white/10 flex items-center justify-between">
+            <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#b9bdc9]">
               Actions sur la facture
             </span>
-            <span className="text-[11px] font-mono font-bold text-slate-700">
+            <span className="text-[11px] font-mono font-bold text-[#ffdc45]">
               {invoice.number}
             </span>
           </div>
 
           {/* 1. Statut de la facture (Classé avec flèche selon demande utilisateur) */}
-          <div className="p-1.5 border-b border-slate-100">
+          <div className="p-1.5 border-b border-[#edece6]">
             <button
               type="button"
               onClick={() => setIsStatusSubmenuOpen(!isStatusSubmenuOpen)}
               className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-xs font-semibold transition-all duration-150 active:scale-95 text-left cursor-pointer ${
-                isStatusSubmenuOpen ? "bg-slate-100 text-slate-900" : "text-slate-800 hover:bg-slate-50"
+                isStatusSubmenuOpen ? "bg-[#f2f0e8] text-[#111522]" : "text-[#111522] hover:bg-[#f8f7f3]"
               }`}
             >
               <div className="flex items-center gap-2.5 min-w-0">
-                <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm shrink-0 border border-emerald-200/70">
+                <div className="w-8 h-8 rounded-lg bg-[#fff0a6] text-[#111522] flex items-center justify-center text-sm shrink-0 border border-[#ffe36a]">
                   🏷️
                 </div>
                 <div className="min-w-0">
-                  <div className="font-bold text-slate-900 truncate">Statut de la facture</div>
+                  <div className="font-bold text-[#111522] truncate">Statut de la facture</div>
                   <div className="flex items-center gap-1.5 mt-0.5">
                     <span className={`w-2 h-2 rounded-full shrink-0 ${currentStatusConfig.dotClass}`} />
-                    <span className="text-[11px] font-semibold text-slate-600 truncate">
+                    <span className="text-[11px] font-semibold text-[#5f6571] truncate">
                       {currentStatusConfig.label}
                     </span>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-1 text-slate-400 shrink-0 ml-2">
-                <span className="text-[10px] font-medium text-slate-400 hidden sm:inline">Changer</span>
+              <div className="flex items-center gap-1 text-[#697080] shrink-0 ml-2">
+                <span className="text-[10px] font-medium text-[#697080] hidden sm:inline">Changer</span>
                 <span
                   className={`text-xs transition-transform duration-200 ${
-                    isStatusSubmenuOpen ? "rotate-90 text-emerald-600 font-bold" : ""
+                    isStatusSubmenuOpen ? "rotate-90 text-[#111522] font-bold" : ""
                   }`}
                 >
                   ▶
@@ -291,8 +291,8 @@ export default function InvoiceDetailPage({
 
             {/* Sous-menu dépliable des 4 statuts */}
             {isStatusSubmenuOpen && (
-              <div className="mt-1.5 p-2 bg-slate-50/90 rounded-xl border border-slate-200/80 space-y-1 animate-fade-in">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-1 pb-1">
+              <div className="mt-1.5 p-2 bg-[#f8f7f3] rounded-xl border border-[#e8e7e2] space-y-1 animate-fade-in">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-[#697080] px-1 pb-1">
                   Changer pour :
                 </div>
                 <div className="grid grid-cols-2 gap-1.5">
@@ -309,14 +309,14 @@ export default function InvoiceDetailPage({
                         }}
                         className={`flex items-center gap-2 px-2.5 py-2 rounded-xl text-xs font-bold transition-all duration-150 active:scale-95 text-left cursor-pointer ${
                           isActive
-                            ? "bg-slate-900 text-white shadow-sm ring-1 ring-emerald-400/60"
-                            : "bg-white text-slate-700 hover:bg-slate-100 border border-slate-200/80"
+                            ? "bg-[#111522] text-white shadow-sm ring-1 ring-[#ffdc45]/60"
+                            : "bg-white text-[#5f6571] hover:text-[#111522] hover:bg-[#f2f0e8] border border-[#e8e7e2]"
                         }`}
                       >
                         <span className={`w-2 h-2 rounded-full shrink-0 ${st.dotClass}`} />
                         <span className="truncate">{st.label}</span>
                         {isActive && (
-                          <span className="ml-auto text-[10px] text-emerald-400 font-mono">✓</span>
+                          <span className="ml-auto text-[10px] text-[#ffdc45] font-mono">✓</span>
                         )}
                       </button>
                     );
@@ -335,14 +335,14 @@ export default function InvoiceDetailPage({
                 setIsStatusSubmenuOpen(false);
                 onEdit(invoice);
               }}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-800 hover:bg-slate-50 transition-all duration-150 active:scale-95 text-left cursor-pointer"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-[#111522] hover:bg-[#f8f7f3] transition-all duration-150 active:scale-95 text-left cursor-pointer"
             >
-              <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center text-sm shrink-0 border border-amber-200/70">
+              <div className="w-8 h-8 rounded-lg bg-[#fff0a6] text-[#453700] flex items-center justify-center text-sm shrink-0 border border-[#ffe36a]">
                 ✏️
               </div>
               <div>
-                <div className="font-bold text-slate-900">{t.modify || "Modifier la facture"}</div>
-                <div className="text-[10px] text-slate-400 font-normal">Éditer les montants et lignes</div>
+                <div className="font-bold text-[#111522]">{t.modify || "Modifier la facture"}</div>
+                <div className="text-[10px] text-[#697080] font-normal">Éditer les montants et lignes</div>
               </div>
             </button>
 
@@ -356,34 +356,34 @@ export default function InvoiceDetailPage({
                 setDownloadSuccessToast(`📥 Facture ${invoice.number} téléchargée en PDF dans votre appareil / galerie !`);
                 setTimeout(() => setDownloadSuccessToast(null), 3500);
               }}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-800 hover:bg-slate-50 transition-all duration-150 active:scale-95 text-left cursor-pointer"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-[#111522] hover:bg-[#f8f7f3] transition-all duration-150 active:scale-95 text-left cursor-pointer"
             >
-              <div className="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm shrink-0 border border-emerald-200/70">
+              <div className="w-8 h-8 rounded-lg bg-[#d9f0df] text-[#285b35] flex items-center justify-center text-sm shrink-0 border border-[#b9dfc8]">
                 <IconDownload className="w-4 h-4" />
               </div>
               <div>
-                <div className="font-bold text-slate-900">Télécharger la facture en version PDF</div>
-                <div className="text-[10px] text-slate-400 font-normal">Format officiel A4 certifié OHADA</div>
+                <div className="font-bold text-[#111522]">Télécharger la facture en version PDF</div>
+                <div className="text-[10px] text-[#697080] font-normal">Format officiel A4 certifié OHADA</div>
               </div>
             </button>
 
-            {/* 4. Enregistrer sur la plateforme iziFACTURE */}
+            {/* 4. Enregistrer sur la plateforme AMOMD FACTURE */}
             <button
               type="button"
               onClick={() => {
                 setIsMenuOpen(false);
                 setIsStatusSubmenuOpen(false);
-                setDownloadSuccessToast(`💾 Facture ${invoice.number} bien enregistrée et sécurisée sur la plateforme !`);
+                setDownloadSuccessToast(`💾 Facture ${invoice.number} bien enregistrée et sécurisée sur la plateforme AMOMD FACTURE !`);
                 setTimeout(() => setDownloadSuccessToast(null), 3500);
               }}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-800 hover:bg-slate-50 transition-all duration-150 active:scale-95 text-left cursor-pointer"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-[#111522] hover:bg-[#f8f7f3] transition-all duration-150 active:scale-95 text-left cursor-pointer"
             >
-              <div className="w-8 h-8 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center text-sm shrink-0 border border-blue-200/70">
+              <div className="w-8 h-8 rounded-lg bg-[#dce6ff] text-[#111522] flex items-center justify-center text-sm shrink-0 border border-[#c6d1ff]">
                 💾
               </div>
               <div>
-                <div className="font-bold text-slate-900">Enregistrer sur la plateforme</div>
-                <div className="text-[10px] text-slate-400 font-normal">Données synchronisées dans votre espace</div>
+                <div className="font-bold text-[#111522]">Enregistrer sur la plateforme</div>
+                <div className="text-[10px] text-[#697080] font-normal">Données synchronisées dans votre espace</div>
               </div>
             </button>
 
@@ -395,20 +395,20 @@ export default function InvoiceDetailPage({
                 setIsStatusSubmenuOpen(false);
                 window.print();
               }}
-              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-slate-800 hover:bg-slate-50 transition-all duration-150 active:scale-95 text-left cursor-pointer"
+              className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-xs font-semibold text-[#111522] hover:bg-[#f8f7f3] transition-all duration-150 active:scale-95 text-left cursor-pointer"
             >
-              <div className="w-8 h-8 rounded-lg bg-purple-50 text-purple-700 flex items-center justify-center text-sm shrink-0 border border-purple-200/70">
+              <div className="w-8 h-8 rounded-lg bg-[#f2f0e8] text-[#111522] flex items-center justify-center text-sm shrink-0 border border-[#e4e2d9]">
                 🖨️
               </div>
               <div>
-                <div className="font-bold text-slate-900">Imprimer la facture</div>
-                <div className="text-[10px] text-slate-400 font-normal">Impression directe format A4</div>
+                <div className="font-bold text-[#111522]">Imprimer la facture</div>
+                <div className="text-[10px] text-[#697080] font-normal">Impression directe format A4</div>
               </div>
             </button>
           </div>
 
           {/* Séparateur */}
-          <div className="h-px bg-slate-100 mx-2" />
+          <div className="h-px bg-[#edece6] mx-2" />
 
           {/* 5. Supprimer la facture */}
           <div className="p-1.5">
@@ -446,7 +446,7 @@ export default function InvoiceDetailPage({
 
         {/* Deux flèches de navigation facture précédente / suivante */}
         <div className="flex items-center justify-between pt-2 pb-2 px-1 no-print">
-          <div className="text-xs font-mono font-bold text-slate-500">
+          <div className="text-xs font-mono font-bold text-[#697080]">
             {lang === "en" ? `Invoice ${currentIndex + 1} of ${allInvoices.length}` : `Facture ${currentIndex + 1} sur ${allInvoices.length}`}
           </div>
           <div className="flex items-center gap-2">
@@ -454,7 +454,7 @@ export default function InvoiceDetailPage({
               type="button"
               onClick={() => prevInvoice && onSelectInvoice(prevInvoice)}
               disabled={!prevInvoice}
-              className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-all duration-150 active:scale-90 flex items-center justify-center shadow-sm"
+              className="w-10 h-10 rounded-xl bg-white border border-[#e4e2d9] text-[#111522] hover:bg-[#111522] hover:text-[#ffdc45] hover:border-[#111522] disabled:opacity-30 disabled:pointer-events-none transition-all duration-150 active:scale-90 flex items-center justify-center shadow-sm"
               title={t.previous || "Facture précédente"}
             >
               <IconChevronLeft className="w-5 h-5" />
@@ -463,7 +463,7 @@ export default function InvoiceDetailPage({
               type="button"
               onClick={() => nextInvoice && onSelectInvoice(nextInvoice)}
               disabled={!nextInvoice}
-              className="w-10 h-10 rounded-xl bg-white border border-slate-200 text-slate-700 hover:bg-slate-900 hover:text-white hover:border-slate-900 disabled:opacity-30 disabled:pointer-events-none transition-all duration-150 active:scale-90 flex items-center justify-center shadow-sm"
+              className="w-10 h-10 rounded-xl bg-white border border-[#e4e2d9] text-[#111522] hover:bg-[#111522] hover:text-[#ffdc45] hover:border-[#111522] disabled:opacity-30 disabled:pointer-events-none transition-all duration-150 active:scale-90 flex items-center justify-center shadow-sm"
               title={t.next || "Facture suivante"}
             >
               <IconChevronRight className="w-5 h-5" />

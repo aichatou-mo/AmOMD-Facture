@@ -70,15 +70,15 @@ export default function InvoicesTable({
     switch (status) {
       case "payee":
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200/60">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#d9f0df] text-[#285b35] border border-[#b9dfc8]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#337749]" />
             Payée
           </span>
         );
       case "envoyee":
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200/60">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#fff0a6] text-[#453700] border border-[#ffe36a]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#a18400]" />
             Envoyée
           </span>
         );
@@ -91,8 +91,8 @@ export default function InvoicesTable({
         );
       case "brouillon":
         return (
-          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-slate-100 text-slate-600 border border-slate-200/60">
-            <span className="w-1.5 h-1.5 rounded-full bg-slate-400" />
+          <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#edece6] text-[#5f6571] border border-[#e4e2d9]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#808392]" />
             Brouillon
           </span>
         );
@@ -103,14 +103,14 @@ export default function InvoicesTable({
     const type = inv.invoiceType || (inv.number.startsWith("AVOIR") || inv.number.startsWith("AV-") ? "avoir" : inv.number.startsWith("PRO-") ? "proforma" : "doit");
     if (type === "avoir") {
       return (
-        <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-bold bg-amber-50 text-amber-900 border border-amber-300/70">
+        <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#fff0a6] text-[#453700] border border-[#ffe36a]">
           <span>🔄</span> Avoir
         </span>
       );
     }
     if (type === "proforma") {
       return (
-        <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-bold bg-blue-50 text-blue-900 border border-blue-300/70">
+        <span className="inline-flex items-center gap-1 px-1.5 py-0.2 rounded text-[10px] font-bold bg-[#dce6ff] text-[#111522] border border-[#c6d1ff]">
           <span>📋</span> Proforma
         </span>
       );
@@ -124,32 +124,32 @@ export default function InvoicesTable({
       case "Mobile Money":
         return (
           <div className="flex flex-col">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 w-fit">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-[#285b35] bg-[#d9f0df] border border-[#b9dfc8] w-fit">
               <span>📱</span> Mobile Money
             </span>
-            {detail && <span className="text-[10px] text-slate-400 mt-0.5 truncate max-w-[120px]">{detail}</span>}
+            {detail && <span className="text-[10px] text-[#697080] mt-0.5 truncate max-w-[120px]">{detail}</span>}
           </div>
         );
       case "Carte Bancaire":
         return (
           <div className="flex flex-col">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-blue-800 bg-blue-50 border border-blue-200 w-fit">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-[#111522] bg-[#dce6ff] border border-[#c6d1ff] w-fit">
               <span>💳</span> Carte Bancaire
             </span>
-            {detail && <span className="text-[10px] text-slate-400 mt-0.5 truncate max-w-[120px]">{detail}</span>}
+            {detail && <span className="text-[10px] text-[#697080] mt-0.5 truncate max-w-[120px]">{detail}</span>}
           </div>
         );
       case "Carte de Crédit":
         return (
           <div className="flex flex-col">
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-amber-800 bg-amber-50 border border-amber-200 w-fit">
+            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-bold text-[#453700] bg-[#ffedaa] border border-[#ffe36a] w-fit">
               <span>🏦</span> Carte de Crédit
             </span>
-            {detail && <span className="text-[10px] text-slate-400 mt-0.5 truncate max-w-[120px]">{detail}</span>}
+            {detail && <span className="text-[10px] text-[#697080] mt-0.5 truncate max-w-[120px]">{detail}</span>}
           </div>
         );
       default:
-        return <span className="text-xs text-slate-400">-</span>;
+        return <span className="text-xs text-[#808392]">-</span>;
     }
   };
 
@@ -162,42 +162,42 @@ export default function InvoicesTable({
   ];
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] overflow-hidden">
+    <div className="bg-white rounded-2xl border border-[#e8e7e2] shadow-[0_8px_28px_-8px_rgba(17,21,34,0.06)] overflow-hidden">
       {/* Table Header Controls */}
-      <div className="p-4 sm:p-5 border-b border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-3">
+      <div className="p-4 sm:p-5 border-b border-[#e8e7e2] flex flex-col md:flex-row md:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-sm sm:text-base font-bold text-slate-900">
+            <h3 className="font-serif text-base sm:text-lg font-medium text-[#111522] tracking-tight">
               Registre des Factures
             </h3>
-            <span className="text-[11px] font-medium text-slate-400 hidden sm:inline">
+            <span className="text-[11px] font-bold text-[#374151] hidden sm:inline">
               (Cliquez pour rouvrir une facture)
             </span>
           </div>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-[#374151] font-medium">
             Suivi des règlements Mobile Money, Carte Bancaire & Crédit
           </p>
         </div>
 
         <div className="flex flex-wrap items-center gap-2">
           {/* Quick Filter Tabs */}
-          <div className="flex items-center bg-slate-100 p-0.5 rounded-xl text-xs font-semibold overflow-x-auto">
+          <div className="flex items-center bg-[#f2f0e8] border border-[#e8e7e2] p-0.5 rounded-xl text-xs font-semibold overflow-x-auto">
             {filterTabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setSelectedFilter(tab.id)}
-                className={`px-2.5 py-1 rounded-lg whitespace-nowrap transition-all flex items-center gap-1.5 ${
+                className={`px-2.5 py-1 rounded-lg whitespace-nowrap transition-all flex items-center gap-1.5 active:scale-95 cursor-pointer ${
                   selectedFilter === tab.id
-                    ? "bg-white text-slate-900 shadow-sm"
-                    : "text-slate-500 hover:text-slate-800"
+                    ? "bg-[#111522] text-white shadow-sm"
+                    : "text-[#374151] font-bold hover:text-[#111522]"
                 }`}
               >
                 <span>{tab.label}</span>
                 <span
-                  className={`text-[10px] px-1.5 py-0.2 rounded-full ${
+                  className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono ${
                     selectedFilter === tab.id
-                      ? "bg-emerald-100 text-emerald-800 font-bold"
-                      : "bg-slate-200/70 text-slate-600"
+                      ? "bg-[#ffdc45] text-[#111522] font-black"
+                      : "bg-[#e8e7e2] text-[#374151] font-bold"
                   }`}
                 >
                   {tab.count}
@@ -213,9 +213,9 @@ export default function InvoicesTable({
               value={tableSearch}
               onChange={(e) => setTableSearch(e.target.value)}
               placeholder="Filtrer..."
-              className="w-full pl-7 pr-3 py-1 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:bg-white focus:outline-none focus:border-emerald-500"
+              className="w-full pl-7 pr-3 py-1 text-xs bg-[#f8f7f3] border border-[#e4e2d9] text-[#111522] placeholder:text-[#4b5563] font-medium rounded-xl focus:bg-white focus:outline-none focus:border-[#111522]"
             />
-            <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none text-slate-400">
+            <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none text-[#374151]">
               <IconSearch className="w-3 h-3" />
             </div>
           </div>
@@ -223,12 +223,12 @@ export default function InvoicesTable({
       </div>
 
       {effectiveSearch && (
-        <div className="px-4 sm:px-5 py-2.5 bg-emerald-50/80 border-b border-emerald-100 flex items-center justify-between text-xs">
+        <div className="px-4 sm:px-5 py-2.5 bg-[#111522] text-white border-b border-white/10 flex items-center justify-between text-xs">
           <div className="flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-slate-800">
-              Recherche : &ldquo;<strong className="text-emerald-800">{effectiveSearch}</strong>&rdquo;
-              {" "}&middot; <span className="font-semibold">{filteredInvoices.length}</span> facture(s) trouvée(s)
+            <span className="w-2 h-2 rounded-full bg-[#ffdc45] animate-pulse" />
+            <span className="text-[#c4c7d1]">
+              Recherche : &ldquo;<strong className="text-[#ffdc45]">{effectiveSearch}</strong>&rdquo;
+              {" "}&middot; <span className="font-semibold text-white">{filteredInvoices.length}</span> facture(s) trouvée(s)
             </span>
           </div>
           <button
@@ -237,7 +237,7 @@ export default function InvoicesTable({
               setTableSearch("");
               if (onClearSearch) onClearSearch();
             }}
-            className="text-[11px] font-bold text-emerald-800 hover:text-emerald-950 underline cursor-pointer"
+            className="text-[11px] font-bold text-[#ffdc45] hover:text-[#ffe879] underline cursor-pointer"
           >
             Effacer le filtre
           </button>
@@ -246,8 +246,8 @@ export default function InvoicesTable({
 
       {/* Horizontal Scrollable Table Body */}
       <div className="overflow-x-auto">
-        <table className={`w-full text-left text-slate-600 min-w-[760px] ${isCompact ? "text-xs" : "text-sm"}`}>
-          <thead className={`uppercase font-bold text-slate-400 bg-slate-50/75 border-b border-slate-100 select-none ${isCompact ? "text-[9px]" : "text-[10px]"}`}>
+        <table className={`w-full text-left text-[#1f2937] min-w-[760px] ${isCompact ? "text-xs" : "text-sm"}`}>
+          <thead className={`uppercase font-black text-[#111522] bg-[#f0eee6] border-b border-[#e8e7e2] select-none tracking-wider ${isCompact ? "text-[9px]" : "text-[10px]"}`}>
             <tr>
               <th scope="col" className={isCompact ? "px-3 py-2" : "px-4 py-3"}>N° Facture</th>
               <th scope="col" className={isCompact ? "px-3 py-2" : "px-4 py-3"}>Client</th>
@@ -259,10 +259,10 @@ export default function InvoicesTable({
               <th scope="col" className={`text-right ${isCompact ? "px-3 py-2" : "px-4 py-3"}`}>Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-100">
+          <tbody className="divide-y divide-[#edece6]">
             {filteredInvoices.length === 0 ? (
               <tr>
-                <td colSpan={8} className="py-12 text-center text-slate-400">
+                <td colSpan={8} className="py-12 text-center text-[#374151] font-medium">
                   <p className="text-sm">Aucune facture trouvée.</p>
                 </td>
               </tr>
@@ -271,12 +271,12 @@ export default function InvoicesTable({
                 <tr
                   key={inv.id}
                   onClick={() => onSelectInvoice(inv)}
-                  className="hover:bg-emerald-50/40 transition-colors cursor-pointer group"
+                  className="hover:bg-[#fff9db]/50 transition-colors cursor-pointer group"
                 >
                   {/* Number */}
                   <td className={`whitespace-nowrap ${isCompact ? "px-3 py-2" : "px-4 py-3.5"}`}>
                     <div className="flex items-center gap-1.5">
-                      <span className="font-mono font-bold text-slate-900 group-hover:text-emerald-700 transition-colors">
+                      <span className="font-mono font-bold text-[#111522] group-hover:text-[#0c111d] transition-colors">
                         {inv.number}
                       </span>
                       {getInvoiceTypeBadge(inv)}
@@ -285,16 +285,16 @@ export default function InvoicesTable({
 
                   {/* Client */}
                   <td className={isCompact ? "px-3 py-2" : "px-4 py-3.5"}>
-                    <div className="font-semibold text-slate-900 leading-snug truncate max-w-[180px]">
+                    <div className="font-bold text-[#111522] leading-snug truncate max-w-[180px]">
                       {inv.clientName}
                     </div>
-                    <div className="text-[11px] text-slate-400 truncate max-w-[180px]">
+                    <div className="text-[11px] text-[#374151] font-medium truncate max-w-[180px]">
                       {inv.clientCity} · {inv.clientPhone}
                     </div>
                   </td>
 
                   {/* Issue Date */}
-                  <td className={`whitespace-nowrap text-slate-500 font-mono ${isCompact ? "px-3 py-2 text-[11px]" : "px-4 py-3.5 text-xs"}`}>
+                  <td className={`whitespace-nowrap text-[#374151] font-bold font-mono ${isCompact ? "px-3 py-2 text-[11px]" : "px-4 py-3.5 text-xs"}`}>
                     {formatDateFR(inv.issueDate)}
                   </td>
 
@@ -303,8 +303,8 @@ export default function InvoicesTable({
                     <span
                       className={
                         inv.status === "en_retard"
-                          ? "text-rose-600 font-bold"
-                          : "text-slate-500"
+                          ? "text-rose-600 font-extrabold"
+                          : "text-[#374151] font-bold"
                       }
                     >
                       {formatDateFR(inv.dueDate)}
@@ -313,10 +313,10 @@ export default function InvoicesTable({
 
                   {/* Total TTC */}
                   <td className={`whitespace-nowrap text-right ${isCompact ? "px-3 py-2" : "px-4 py-3.5"}`}>
-                    <span className={`font-mono font-bold text-slate-900 ${isCompact ? "text-xs" : "text-sm"}`}>
+                    <span className={`font-mono font-black text-[#111522] ${isCompact ? "text-xs" : "text-sm"}`}>
                       {formatFCFA(inv.totalTTC)}
                     </span>
-                    <div className="text-[10px] text-slate-400 font-mono">
+                    <div className="text-[10px] text-[#374151] font-bold font-mono">
                       TVA 18%: {formatFCFA(inv.taxAmount)}
                     </div>
                   </td>
@@ -340,7 +340,7 @@ export default function InvoicesTable({
                       <button
                         onClick={() => onSelectInvoice(inv)}
                         title="Rouvrir la facture"
-                        className="p-1.5 rounded-lg text-slate-500 hover:text-emerald-700 hover:bg-emerald-50 transition-colors"
+                        className="p-1.5 rounded-lg text-[#1f2937] hover:text-[#111522] hover:bg-[#fff0a6] transition-colors active:scale-95 cursor-pointer"
                       >
                         <IconEye className="w-4 h-4" />
                       </button>
@@ -348,7 +348,7 @@ export default function InvoicesTable({
                       <button
                         onClick={() => downloadInvoicePdf(inv)}
                         title="Télécharger la Facture PDF"
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-slate-900 hover:bg-slate-100 transition-colors cursor-pointer"
+                        className="p-1.5 rounded-lg text-[#1f2937] hover:text-[#111522] hover:bg-[#edece6] transition-colors cursor-pointer active:scale-95"
                       >
                         <IconDownload className="w-4 h-4" />
                       </button>
@@ -356,7 +356,7 @@ export default function InvoicesTable({
                       <button
                         onClick={() => setShareModalInvoice(inv)}
                         title="Partager la Facture PDF par WhatsApp"
-                        className="p-1.5 rounded-lg text-slate-400 hover:text-emerald-600 hover:bg-emerald-50 transition-colors cursor-pointer"
+                        className="p-1.5 rounded-lg text-[#1f2937] hover:text-[#285b35] hover:bg-[#d9f0df] transition-colors cursor-pointer active:scale-95"
                       >
                         <IconWhatsApp className="w-4 h-4" />
                       </button>
@@ -370,13 +370,13 @@ export default function InvoicesTable({
       </div>
 
       {/* Table Footer */}
-      <div className="px-4 py-3 bg-slate-50/70 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+      <div className="px-4 py-3 bg-[#f8f7f3] border-t border-[#e8e7e2] flex items-center justify-between text-xs text-[#374151] font-medium">
         <div className="flex items-center gap-2">
           <span>
-            Affichage de <strong className="text-slate-800">{filteredInvoices.length}</strong> factures récentes
+            Affichage de <strong className="text-[#111522] font-bold">{filteredInvoices.length}</strong> factures récentes
           </span>
-          <span className="text-slate-300">|</span>
-          <span className="text-[11px] text-slate-400">
+          <span className="text-[#dcdbd4]">|</span>
+          <span className="text-[11px] text-[#374151]">
             Faites défiler horizontalement pour voir toutes les colonnes
           </span>
         </div>

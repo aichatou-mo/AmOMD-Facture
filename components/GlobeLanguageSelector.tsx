@@ -81,18 +81,18 @@ export default function GlobeLanguageSelector({
         onClick={() => setIsOpen(!isOpen)}
         className={`group relative flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 rounded-full border transition-all duration-200 active:scale-95 shadow-xs ${
           isOpen
-            ? "bg-slate-900 text-white border-slate-800 ring-2 ring-emerald-500/40 shadow-md"
-            : "bg-white text-slate-700 border-slate-200 hover:text-emerald-700 hover:border-emerald-300"
+            ? "bg-[#111522] text-[#ffdc45] border-[#111522] ring-2 ring-[#ffdc45]/50 shadow-md"
+            : "bg-white text-[#111522] border-[#e4e2d9] hover:border-[#111522] hover:bg-[#fff0a6]/40"
         }`}
         title={`Langue : ${currentLangObj.nativeName}`}
       >
         <div className="relative flex items-center justify-center">
           <IconGlobe className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:rotate-12 text-current" />
-          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 ring-2 ring-white" />
+          <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-[#ffdc45] ring-2 ring-[#111522]" />
         </div>
 
         {showCodeBadge && (
-          <span className="absolute -bottom-1 -right-1 px-1 py-0.2 bg-slate-900 text-white font-mono text-[9px] font-extrabold rounded-full border border-white shadow-xs leading-none">
+          <span className="absolute -bottom-1 -right-1 px-1 py-0.2 bg-[#111522] text-[#ffdc45] font-mono text-[9px] font-extrabold rounded-full border border-white shadow-xs leading-none">
             {lang.toUpperCase()}
           </span>
         )}
@@ -102,26 +102,26 @@ export default function GlobeLanguageSelector({
         <div
           className={`absolute ${
             dropdownAlign === "left" ? "left-0" : "right-0"
-          } mt-2.5 w-72 sm:w-80 bg-white rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden z-50 animate-scale-up`}
+          } mt-2.5 w-72 sm:w-80 bg-white rounded-3xl shadow-2xl border border-[#e8e7e2] overflow-hidden z-50 animate-scale-up`}
           style={{ transformOrigin: dropdownAlign === "left" ? "top left" : "top right" }}
         >
-          <div className="p-3.5 bg-white border-b border-slate-100 flex items-center justify-between">
+          <div className="p-3.5 bg-[#f8f7f3] border-b border-[#edece6] flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <span className="p-1.5 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-100">
+              <span className="p-1.5 rounded-xl bg-[#fff0a6] text-[#332900] border border-[#ffe36a]">
                 <IconGlobe className="w-4 h-4" />
               </span>
               <div>
-                <h4 className="text-xs font-extrabold text-slate-900 tracking-tight">
+                <h4 className="text-xs font-extrabold text-[#111522] tracking-tight">
                   Choisir une langue
                 </h4>
-                <p className="text-[10px] text-slate-500">Recherchez ou cliquez pour changer</p>
+                <p className="text-[10px] text-[#697080]">Recherchez ou cliquez pour changer</p>
               </div>
             </div>
 
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="p-1 rounded-lg text-slate-400 hover:text-slate-800 hover:bg-slate-100 transition active:scale-90"
+              className="p-1 rounded-lg text-[#697080] hover:text-[#111522] hover:bg-[#e9e7df] transition active:scale-90"
               title="Fermer"
             >
               <IconClose className="w-4 h-4" />
@@ -131,14 +131,14 @@ export default function GlobeLanguageSelector({
           {/* Search input */}
           <div className="px-3 pt-2.5 pb-1">
             <div className="relative">
-              <IconSearch className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <IconSearch className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#697080]" />
               <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Rechercher une langue..."
                 autoFocus
-                className="w-full pl-8 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-800 placeholder-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500 transition"
+                className="w-full pl-8 pr-3 py-2 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-xs text-[#111522] placeholder-[#697080] focus:bg-white focus:outline-none focus:border-[#111522] transition"
               />
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function GlobeLanguageSelector({
           {/* Languages List */}
           <div className="p-2 max-h-64 overflow-y-auto space-y-1">
             {filteredLanguages.length === 0 ? (
-              <div className="p-4 text-center text-xs text-slate-400">
+              <div className="p-4 text-center text-xs text-[#697080]">
                 Aucune langue trouvée
               </div>
             ) : (
@@ -159,32 +159,32 @@ export default function GlobeLanguageSelector({
                     onClick={() => handleSelectLanguage(item.code)}
                     className={`w-full flex items-center justify-between p-2.5 rounded-2xl text-xs font-semibold transition-all duration-150 active:scale-95 ${
                       isSelected
-                        ? "bg-slate-900 text-white shadow-sm"
-                        : "text-slate-700 hover:bg-slate-50 hover:text-slate-900"
+                        ? "bg-[#111522] text-white shadow-sm"
+                        : "text-[#111522] hover:bg-[#f8f7f3]"
                     }`}
                   >
                     <div className="flex items-center gap-2.5 min-w-0">
                       <span
                         className={`w-7 h-7 rounded-lg font-mono text-[10px] font-extrabold uppercase flex items-center justify-center shrink-0 ${
                           isSelected
-                            ? "bg-emerald-500 text-slate-950"
-                            : "bg-slate-100 text-slate-600"
+                            ? "bg-[#ffdc45] text-[#111522]"
+                            : "bg-[#f2f0e8] text-[#5f6571]"
                         }`}
                       >
                         {item.code}
                       </span>
                       <div className="text-left min-w-0">
-                        <p className={`font-bold truncate ${isSelected ? "text-white" : "text-slate-900"}`}>
+                        <p className={`font-bold truncate ${isSelected ? "text-white" : "text-[#111522]"}`}>
                           {item.nativeName}
                         </p>
-                        <p className={`text-[10px] truncate ${isSelected ? "text-slate-300" : "text-slate-400"}`}>
+                        <p className={`text-[10px] truncate ${isSelected ? "text-[#b9bdc9]" : "text-[#697080]"}`}>
                           {item.region}
                         </p>
                       </div>
                     </div>
 
                     {isSelected && (
-                      <span className="flex items-center justify-center w-5 h-5 rounded-full bg-emerald-500 text-slate-900 shrink-0">
+                      <span className="flex items-center justify-center w-5 h-5 rounded-full bg-[#ffdc45] text-[#111522] shrink-0">
                         <IconCheck className="w-3.5 h-3.5 stroke-[3]" />
                       </span>
                     )}

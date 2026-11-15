@@ -34,8 +34,8 @@ export default function StatCard({
   const { t } = useTranslation();
   const typeConfigs = {
     billed: {
-      lightBg: "bg-blue-50 text-blue-600 border-blue-100/80",
-      darkBg: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+      lightBg: "bg-[#dce6ff] text-[#273c75] border-[#c6d1ff]",
+      darkBg: "bg-[#ffdc45]/20 text-[#ffdc45] border-[#ffdc45]/30",
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
           <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
@@ -43,8 +43,8 @@ export default function StatCard({
       ),
     },
     paid: {
-      lightBg: "bg-emerald-50 text-emerald-600 border-emerald-100/80",
-      darkBg: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+      lightBg: "bg-[#d9f0df] text-[#285b35] border-[#c5e4cb]",
+      darkBg: "bg-[#ffdc45]/20 text-[#ffdc45] border-[#ffdc45]/30",
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
           <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
@@ -53,8 +53,8 @@ export default function StatCard({
       ),
     },
     pending: {
-      lightBg: "bg-amber-50 text-amber-600 border-amber-100/80",
-      darkBg: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+      lightBg: "bg-[#ffedaa] text-[#3b3210] border-[#ffe36a]",
+      darkBg: "bg-[#ffdc45]/20 text-[#ffdc45] border-[#ffdc45]/30",
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
           <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
@@ -66,8 +66,8 @@ export default function StatCard({
       ),
     },
     overdue: {
-      lightBg: "bg-rose-50 text-rose-600 border-rose-100/80",
-      darkBg: "bg-rose-500/20 text-rose-400 border-rose-500/30",
+      lightBg: "bg-rose-50 text-rose-600 border-rose-200/70",
+      darkBg: "bg-rose-500/20 text-rose-300 border-rose-500/30",
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
           <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -75,8 +75,8 @@ export default function StatCard({
       ),
     },
     clients: {
-      lightBg: "bg-slate-100 text-slate-700 border-slate-200",
-      darkBg: "bg-slate-700/60 text-slate-200 border-slate-600",
+      lightBg: "bg-[#f0d9ed] text-[#704266] border-[#e6cbe1]",
+      darkBg: "bg-[#ffdc45]/20 text-[#ffdc45] border-[#ffdc45]/30",
       icon: (
         <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
           <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -91,12 +91,12 @@ export default function StatCard({
   const config = typeConfigs[type] || typeConfigs.billed;
 
   const resolvedValueColor = isSelected
-    ? "text-white"
+    ? "text-[#ffdc45]"
     : valueColor
     ? valueColor
     : type === "overdue"
     ? "text-rose-700 font-black"
-    : "text-slate-900";
+    : "text-[#111522]";
 
   return (
     <div
@@ -105,24 +105,24 @@ export default function StatCard({
       tabIndex={0}
       className={`group relative rounded-2xl p-3 sm:p-4 xl:p-5 border cursor-pointer select-none transition-all duration-200 active:scale-[0.96] ${
         isSelected
-          ? "bg-slate-900 text-white border-slate-800 shadow-xl shadow-slate-900/20 ring-2 ring-emerald-500/30"
-          : "bg-white text-slate-900 border-slate-200/80 shadow-[0_2px_12px_-2px_rgba(15,23,42,0.04)] hover:border-slate-300 hover:shadow-md"
+          ? "bg-[#111522] text-white border-[#111522] shadow-xl shadow-[#111522]/25 ring-2 ring-[#ffdc45]/60"
+          : "bg-white text-[#111522] border-[#e8e7e2] shadow-[0_6px_22px_-4px_rgba(17,21,34,0.05)] hover:border-[#ffdc45] hover:shadow-md"
       }`}
     >
       {/* Top Header: Title + Icon */}
       <div className="flex items-start justify-between gap-1.5 mb-1.5 sm:mb-2">
         <div className="min-w-0">
           <span
-            className={`text-[9px] sm:text-[11px] font-bold uppercase tracking-wider block truncate ${
-              isSelected ? "text-slate-400" : "text-slate-400"
+            className={`text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wider block truncate ${
+              isSelected ? "text-[#e5e6ea]" : "text-[#1f2937]"
             }`}
           >
             {title}
           </span>
           {count !== undefined && type !== "clients" && (
             <span
-              className={`text-[9px] sm:text-[10px] font-semibold ${
-                isSelected ? "text-emerald-400" : "text-slate-500"
+              className={`text-[9px] sm:text-[10px] font-bold ${
+                isSelected ? "text-[#ffdc45]" : "text-[#374151]"
               }`}
             >
               {count} {t.invoicesCountSuffix || "factures"}
@@ -142,14 +142,14 @@ export default function StatCard({
       {/* Main KPI Value */}
       <div className="my-1.5 sm:my-2 flex items-baseline gap-1 flex-nowrap overflow-hidden">
         <span
-          className={`text-base sm:text-xl xl:text-2xl font-extrabold font-mono tracking-tight whitespace-nowrap ${resolvedValueColor}`}
+          className={`text-base sm:text-xl xl:text-2xl font-black font-mono tracking-tight whitespace-nowrap ${resolvedValueColor}`}
         >
           {amount.toLocaleString("fr-FR")}
         </span>
         {unit && (
           <span
             className={`text-[10px] sm:text-xs font-bold uppercase tracking-wider ${
-              isSelected ? "text-emerald-400" : "text-slate-400"
+              isSelected ? "text-[#ffdc45]" : "text-[#374151]"
             }`}
           >
             {unit}
@@ -160,7 +160,7 @@ export default function StatCard({
       {/* Footer: Subtext */}
       <div
         className={`flex items-center justify-between pt-1.5 sm:pt-2 border-t gap-1 ${
-          isSelected ? "border-slate-800" : "border-slate-100"
+          isSelected ? "border-white/10" : "border-[#edece6]"
         }`}
       >
         <div className="flex items-center gap-1 min-w-0">
@@ -169,8 +169,8 @@ export default function StatCard({
               className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold shrink-0 ${
                 isPositive
                   ? isSelected
-                    ? "bg-emerald-500/20 text-emerald-300 border border-emerald-500/30"
-                    : "bg-emerald-50 text-emerald-700 border border-emerald-200/60"
+                    ? "bg-[#ffdc45]/20 text-[#ffdc45] border border-[#ffdc45]/30"
+                    : "bg-[#fff0a6] text-[#453700] border border-[#ffe36a]"
                   : isSelected
                   ? "bg-rose-500/20 text-rose-300 border border-rose-500/30"
                   : "bg-rose-50 text-rose-700 border border-rose-200/60"
@@ -181,8 +181,8 @@ export default function StatCard({
             </span>
           )}
           <span
-            className={`text-[9px] sm:text-[10px] font-medium truncate ${
-              isSelected ? "text-slate-400" : "text-slate-500"
+            className={`text-[9px] sm:text-[10px] font-semibold truncate ${
+              isSelected ? "text-[#d0d3dc]" : "text-[#374151]"
             }`}
           >
             {subtext}
@@ -192,8 +192,8 @@ export default function StatCard({
         <div
           className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shrink-0 transition-colors ${
             isSelected
-              ? "bg-slate-800 text-emerald-400"
-              : "bg-slate-50 text-slate-400 group-hover:bg-emerald-50 group-hover:text-emerald-600"
+              ? "bg-[#191f30] text-[#ffdc45]"
+              : "bg-[#f8f7f3] text-[#374151] group-hover:bg-[#111522] group-hover:text-[#ffdc45]"
           }`}
         >
           <IconArrowUpRight className="w-2.5 h-2.5 sm:w-3 sm:h-3" />

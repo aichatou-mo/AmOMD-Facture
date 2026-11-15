@@ -15,18 +15,18 @@ export default function StatusDonutChart() {
   let accumulatedPercent = 0;
 
   return (
-    <div className="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] flex flex-col justify-between">
+    <div className="bg-white rounded-2xl p-6 border border-[#e8e7e2] shadow-[0_12px_32px_rgba(17,21,34,0.05)] flex flex-col justify-between">
       {/* Header */}
       <div className="flex items-center justify-between mb-2">
         <div>
-          <h3 className="text-base font-bold text-slate-900">
+          <h3 className="font-serif text-base font-medium text-[#111522]">
             Répartition par Statut
           </h3>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-[#697080]">
             État de recouvrement du portefeuille
           </p>
         </div>
-        <button className="text-slate-400 hover:text-slate-600 p-1">
+        <button className="text-[#697080] hover:text-[#111522] p-1">
           <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
             <circle cx="12" cy="12" r="2" />
             <circle cx="19" cy="12" r="2" />
@@ -35,7 +35,7 @@ export default function StatusDonutChart() {
         </button>
       </div>
 
-      {/* SVG Donut Circle (FreshCart style) */}
+      {/* SVG Donut Circle */}
       <div className="flex items-center justify-center my-4 relative">
         <svg width={size} height={size} className="transform -rotate-90">
           <circle
@@ -43,7 +43,7 @@ export default function StatusDonutChart() {
             cy={size / 2}
             r={radius}
             fill="transparent"
-            stroke="#F1F5F9"
+            stroke="#edece6"
             strokeWidth={strokeWidth}
           />
           {STATUS_DISTRIBUTION.map((item) => {

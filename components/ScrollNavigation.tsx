@@ -39,22 +39,22 @@ export default function ScrollNavigation() {
       aria-label="Navigation rapide haut et bas"
     >
       {/* Widget Flottant Dual-Arrow */}
-      <div className="bg-slate-900/95 backdrop-blur-md text-white border border-slate-700/80 shadow-2xl shadow-slate-950/40 rounded-2xl p-1.5 flex flex-col items-center gap-1 transition-all duration-200 hover:border-emerald-500/60 hover:shadow-emerald-950/20">
+      <div className="bg-[#111522]/95 backdrop-blur-md text-white border border-white/15 shadow-2xl shadow-[#111522]/40 rounded-2xl p-1.5 flex flex-col items-center gap-1 transition-all duration-200 hover:border-[#ffdc45]/60">
         {/* Flèche Aller tout en HAUT */}
         <button
           type="button"
           onClick={scrollToTop}
           title="Aller tout en haut (Début)"
-          className="p-2 sm:p-2.5 rounded-xl hover:bg-emerald-500/20 hover:text-emerald-300 text-slate-300 active:scale-90 transition-all duration-150 flex items-center justify-center group/btn"
+          className="p-2 sm:p-2.5 rounded-xl hover:bg-[#ffdc45]/20 hover:text-[#ffdc45] text-[#c4c7d1] active:scale-90 transition-all duration-150 flex items-center justify-center group/btn"
           aria-label="Aller tout en haut"
         >
           <IconArrowUp className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:-translate-y-0.5 transition-transform" />
         </button>
 
         {/* Ligne de séparation subtile avec barre de progression */}
-        <div className="w-5 h-[1px] bg-slate-700 relative overflow-hidden my-0.5">
+        <div className="w-5 h-[1px] bg-white/15 relative overflow-hidden my-0.5">
           <div
-            className="h-full bg-emerald-400 transition-all duration-150"
+            className="h-full bg-[#ffdc45] transition-all duration-150"
             style={{ width: `${scrollProgress}%` }}
           />
         </div>
@@ -64,7 +64,7 @@ export default function ScrollNavigation() {
           type="button"
           onClick={scrollToBottom}
           title="Aller tout en bas (Fin)"
-          className="p-2 sm:p-2.5 rounded-xl hover:bg-emerald-500/20 hover:text-emerald-300 text-slate-300 active:scale-90 transition-all duration-150 flex items-center justify-center group/btn"
+          className="p-2 sm:p-2.5 rounded-xl hover:bg-[#ffdc45]/20 hover:text-[#ffdc45] text-[#c4c7d1] active:scale-90 transition-all duration-150 flex items-center justify-center group/btn"
           aria-label="Aller tout en bas"
         >
           <IconArrowDown className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-y-0.5 transition-transform" />
@@ -72,7 +72,7 @@ export default function ScrollNavigation() {
       </div>
 
       {/* Petit badge d'information escamotable */}
-      <span className="text-[9px] font-mono font-bold text-slate-600 bg-white/80 backdrop-blur-sm px-2 py-0.5 rounded-full border border-slate-200/80 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
+      <span className="text-[9px] font-mono font-bold text-[#111522] bg-[#ffdc45]/95 backdrop-blur-sm px-2 py-0.5 rounded-full border border-[#ffe36a] shadow-sm opacity-0 group-hover:opacity-100 transition-opacity">
         Haut / Bas
       </span>
     </div>

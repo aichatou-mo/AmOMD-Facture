@@ -1,15 +1,26 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import GlobeLanguageSelector from "./GlobeLanguageSelector";
 
 interface AuthPageProps {
   onAuthenticated?: () => void;
+  initialMode?: "login" | "signup";
+  onBack?: () => void;
 }
 
-export default function AuthPage({ onAuthenticated }: AuthPageProps) {
-  const [mode, setMode] = useState<"login" | "signup" | "forgot">("login");
+export default function AuthPage({
+  onAuthenticated,
+  initialMode = "login",
+  onBack,
+}: AuthPageProps) {
+  const [mode, setMode] = useState<"login" | "signup" | "forgot">(initialMode);
+
+  useEffect(() => {
+    setMode(initialMode);
+  }, [initialMode]);
+
   const [fullName, setFullName] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
@@ -31,7 +42,7 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
       return "Votre adresse email n'est pas encore confirmée. Ouvrez l'email envoyé par Supabase et cliquez sur le lien d'activation.";
     }
     if (lower.includes("user already registered")) {
-      return "Un compte existe déjà avec cet email. Cliquez sur « Se connecter ».";
+      return "Un compte existe déjà avec cet email. Cliquez sur « Connexion ».";
     }
     if (lower.includes("password should be at least")) {
       return "Le mot de passe doit contenir au moins 6 caractères.";
@@ -151,71 +162,58 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
   };
 
   return (
-    <div className="min-h-screen w-full bg-[#F8FAFC] relative flex flex-col justify-between overflow-x-hidden font-sans">
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[680px] h-[360px] rounded-full bg-emerald-200/35 blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[420px] h-[320px] rounded-full bg-sky-100/50 blur-3xl" />
-      </div>
-
-      <header className="relative z-10 w-full max-w-6xl mx-auto px-5 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-2xl bg-slate-900 flex items-center justify-center text-white shadow-md shadow-slate-900/15">
-            <svg
-              className="w-5 h-5 text-emerald-400"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <path d="M9 15l2 2 4-4" />
-            </svg>
-          </div>
-          <span className="font-extrabold text-xl tracking-tight text-slate-900">
-            iziFACTURE
-          </span>
+    <div className="min-h-screen w-full relative flex flex-col justify-between overflow-x-hidden font-sans bg-[#f6f7fb] text-slate-800">
+      {/* Top Header Bar */}
+      <header className="relative z-10 w-full max-w-4xl mx-auto px-4 sm:px-6 pt-5 pb-3 flex items-center justify-between gap-3">
+        {onBack ? (
+          <button
+            type="button"
+            onClick={onBack}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 shadow-xs hover:border-slate-300 hover:bg-slate-50 text-xs font-semibold text-slate-600 transition-all active:scale-95 cursor-pointer"
+            title="Retour à l'accueil"
+          >
+            <span>←</span>
+            <span>Retour à l&apos;accueil</span>
+          </button>
+        ) : (
+          <div />
+        )}
+        <div className="flex items-center gap-2">
+          <GlobeLanguageSelector />
         </div>
-
-        <GlobeLanguageSelector />
       </header>
 
-      <main className="relative z-10 flex-1 flex items-center justify-center px-4 py-6">
-        <div className="w-full max-w-md bg-white rounded-3xl border border-slate-200/80 shadow-[0_16px_50px_-12px_rgba(15,23,42,0.08)] p-6 sm:p-8 space-y-6 animate-fade-in">
-          <div className="text-center space-y-1.5">
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
-              {mode === "login"
-                ? "Bon retour sur iziFACTURE"
-                : mode === "signup"
-                ? "Créer votre espace entreprise"
-                : "Réinitialiser le mot de passe"}
+      {/* Main Content Area */}
+      <main className="relative z-10 flex-1 flex items-center justify-center px-4 py-8 sm:py-12">
+        <div className="w-full max-w-[400px] bg-white rounded-[30px] sm:rounded-[32px] border border-slate-100 shadow-[0_20px_50px_rgba(15,23,42,0.06)] p-7 sm:p-9 space-y-6">
+          
+          {/* Header: Title & Subtitle matching the reference */}
+          <div className="text-center">
+            <h1 className="text-2xl sm:text-[26px] font-black text-slate-900 tracking-tight">
+              AMOMD facture
             </h1>
-            <p className="text-xs sm:text-sm text-slate-500">
-              {mode === "login"
-                ? "Connectez-vous pour gérer vos factures et vos clients en temps réel."
-                : mode === "signup"
-                ? "Démarrez avec un compte vierge et vos propres données réelles."
-                : "Saisissez votre email pour recevoir un lien de réinitialisation."}
+            <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1.5">
+              Gérez vos factures en toute simplicité.
             </p>
           </div>
 
+          {/* Segmented Switch Tabs [Connexion | Inscription] */}
           {mode !== "forgot" && (
-            <div className="grid grid-cols-2 p-1 bg-slate-100/90 rounded-2xl border border-slate-200/60">
+            <div className="p-1 bg-[#f1f3f7] rounded-2xl flex items-center">
               <button
                 type="button"
                 onClick={() => {
                   setMode("login");
                   setErrorMsg(null);
+                  setInfoMsg(null);
                 }}
-                className={`py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 active:scale-95 ${
+                className={`py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 flex-1 text-center cursor-pointer ${
                   mode === "login"
-                    ? "bg-slate-900 text-white shadow-md shadow-slate-900/15"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-xs"
+                    : "text-slate-500 hover:text-slate-800"
                 }`}
               >
-                Se connecter
+                Connexion
               </button>
               <button
                 type="button"
@@ -224,23 +222,25 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                   setErrorMsg(null);
                   setInfoMsg(null);
                 }}
-                className={`py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 active:scale-95 ${
+                className={`py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all duration-150 flex-1 text-center cursor-pointer ${
                   mode === "signup"
-                    ? "bg-slate-900 text-white shadow-md shadow-slate-900/15"
-                    : "text-slate-600 hover:text-slate-900"
+                    ? "bg-white text-slate-900 shadow-xs"
+                    : "text-slate-500 hover:text-slate-800"
                 }`}
               >
-                Créer un compte
+                Inscription
               </button>
             </div>
           )}
 
+          {/* Error Message */}
           {errorMsg && (
             <div className="p-3.5 rounded-2xl bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700 leading-relaxed">
               {errorMsg}
             </div>
           )}
 
+          {/* Info / Success Message */}
           {infoMsg && (
             <div className="p-3.5 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800 space-y-2 leading-relaxed">
               <p>{infoMsg}</p>
@@ -249,7 +249,7 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                   type="button"
                   onClick={handleResendConfirmation}
                   disabled={loading}
-                  className="underline font-bold text-emerald-900 hover:text-emerald-700"
+                  className="underline font-bold text-emerald-950 hover:opacity-80 cursor-pointer"
                 >
                   Renvoyer l&apos;email de confirmation
                 </button>
@@ -257,12 +257,13 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
             </div>
           )}
 
+          {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             {mode === "signup" && (
               <>
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Votre nom complet *
+                  <label className="block text-xs font-semibold text-slate-800 mb-1.5">
+                    Nom complet
                   </label>
                   <input
                     type="text"
@@ -270,29 +271,29 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="Ex: Aichatou Moussa"
-                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 transition"
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                    Nom de votre entreprise *
+                  <label className="block text-xs font-semibold text-slate-800 mb-1.5">
+                    Nom de votre entreprise
                   </label>
                   <input
                     type="text"
                     required
                     value={companyName}
                     onChange={(e) => setCompanyName(e.target.value)}
-                    placeholder="Ex: Groupe Horizon SARL"
-                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 transition"
+                    placeholder="Ex: Sahel Tech SARL"
+                    className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all"
                   />
                 </div>
               </>
             )}
 
             <div>
-              <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                Adresse email *
+              <label className="block text-xs font-semibold text-slate-800 mb-1.5">
+                Adresse email
               </label>
               <input
                 type="email"
@@ -300,15 +301,15 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="vous@entreprise.com"
-                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 transition"
+                className="w-full px-4 py-3.5 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all"
               />
             </div>
 
             {mode !== "forgot" && (
               <div>
                 <div className="flex items-center justify-between mb-1.5">
-                  <label className="block text-xs font-bold text-slate-700">
-                    Mot de passe *
+                  <label className="block text-xs font-semibold text-slate-800">
+                    Mot de passe
                   </label>
                   {mode === "login" && (
                     <button
@@ -318,7 +319,7 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                         setErrorMsg(null);
                         setInfoMsg(null);
                       }}
-                      className="text-xs font-semibold text-emerald-700 hover:text-emerald-800"
+                      className="text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors cursor-pointer"
                     >
                       Mot de passe oublié ?
                     </button>
@@ -331,13 +332,13 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                     minLength={6}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    placeholder="Minimum 6 caractères"
-                    className="w-full px-4 pr-16 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 transition"
+                    placeholder="••••••••"
+                    className="w-full px-4 pr-16 py-3.5 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-bold text-slate-400 hover:text-slate-700 px-1.5 py-1"
+                    className="absolute right-3.5 top-1/2 -translate-y-1/2 text-xs font-semibold text-slate-400 hover:text-slate-700 px-1 py-1 cursor-pointer"
                   >
                     {showPassword ? "Masquer" : "Afficher"}
                   </button>
@@ -347,8 +348,8 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
 
             {mode === "signup" && (
               <div>
-                <label className="block text-xs font-bold text-slate-700 mb-1.5">
-                  Confirmer le mot de passe *
+                <label className="block text-xs font-semibold text-slate-800 mb-1.5">
+                  Confirmer le mot de passe
                 </label>
                 <input
                   type={showPassword ? "text" : "password"}
@@ -356,25 +357,26 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                   minLength={6}
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  placeholder="Ressaisissez le mot de passe"
-                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15 transition"
+                  placeholder="••••••••"
+                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:border-slate-900 focus:ring-1 focus:ring-slate-900 transition-all"
                 />
               </div>
             )}
 
+            {/* Rounded Pill CTA button matching screenshot */}
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 disabled:opacity-60 text-white text-sm font-bold shadow-lg shadow-slate-900/15 transition-all duration-150 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-4 px-6 rounded-full bg-[#111522] hover:bg-black disabled:opacity-60 text-white text-sm font-bold shadow-md shadow-slate-900/10 transition-all duration-150 active:scale-95 flex items-center justify-center gap-2 cursor-pointer mt-2"
             >
               {loading ? (
-                <span>Connexion en cours...</span>
+                <span>Chargement...</span>
               ) : mode === "login" ? (
-                <span>Se connecter à mon espace</span>
+                <span>Se connecter</span>
               ) : mode === "signup" ? (
-                <span>Créer mon compte gratuitement</span>
+                <span>S&apos;inscrire</span>
               ) : (
-                <span>Envoyer le lien</span>
+                <span>Envoyer le lien de réinitialisation</span>
               )}
             </button>
 
@@ -386,19 +388,33 @@ export default function AuthPage({ onAuthenticated }: AuthPageProps) {
                   setErrorMsg(null);
                   setInfoMsg(null);
                 }}
-                className="w-full py-2 text-xs font-bold text-slate-600 hover:text-slate-900"
+                className="w-full py-2 text-xs font-bold text-slate-500 hover:text-slate-900 transition-colors cursor-pointer text-center"
               >
                 ← Retour à la connexion
               </button>
             )}
           </form>
+
+          {/* Mobile-first bottom return link */}
+          {onBack && (
+            <div className="pt-2 text-center border-t border-slate-100">
+              <button
+                type="button"
+                onClick={onBack}
+                className="text-xs font-semibold text-slate-500 hover:text-slate-900 transition-colors inline-flex items-center gap-1.5 cursor-pointer py-1"
+              >
+                <span>←</span>
+                <span>Retourner sur la page d&apos;accueil</span>
+              </button>
+            </div>
+          )}
         </div>
       </main>
 
+      {/* Discreet footer */}
       <footer className="relative z-10 py-4 text-center text-xs text-slate-400">
-        iziFACTURE · Plateforme de facturation professionnelle sécurisée
+        AMOMD facture · Plateforme de facturation professionnelle
       </footer>
     </div>
   );
 }
-

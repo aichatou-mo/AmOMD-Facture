@@ -633,7 +633,7 @@ export default function CreateInvoicePage({
         title: "Facture standard (Doit)",
         desc: "Facture commerciale définitive pour une vente de produits ou une prestation de services.",
         prefix: "FAC-",
-        badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
+        badgeBg: "bg-[#fff0a6] text-[#453700] border-[#ffe36a]",
       },
       {
         type: "avoir",
@@ -641,7 +641,7 @@ export default function CreateInvoicePage({
         title: "Facture d'Avoir",
         desc: "Document rectificatif suite à un retour de marchandises, une remise ou une annulation.",
         prefix: "AVOIR-",
-        badgeBg: "bg-sky-50 text-sky-700 border-sky-200",
+        badgeBg: "bg-[#dce6ff] text-[#111522] border-[#c6d1ff]",
       },
       {
         type: "proforma",
@@ -649,7 +649,7 @@ export default function CreateInvoicePage({
         title: "Facture Proforma",
         desc: "Devis chiffré et offre commerciale prévisionnelle avant validation client.",
         prefix: "PRO-",
-        badgeBg: "bg-violet-50 text-violet-700 border-violet-200",
+        badgeBg: "bg-[#d9f0df] text-[#285b35] border-[#b9dfc8]",
       },
     ];
 
@@ -658,17 +658,17 @@ export default function CreateInvoicePage({
         {/* En-tête épuré et professionnel sans cadre superflu */}
         <div className="flex items-center justify-between gap-4 pb-1">
           <div>
-            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+            <h1 className="font-serif text-2xl sm:text-3xl font-medium text-[#111522] tracking-tight">
               Choisissez le type de facture
             </h1>
-            <p className="text-xs sm:text-sm text-slate-500 mt-1">
+            <p className="text-xs sm:text-sm text-[#697080] mt-1">
               Sélectionnez le document à émettre pour ouvrir directement le formulaire de saisie.
             </p>
           </div>
           <button
             type="button"
             onClick={onCancel}
-            className="px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 text-xs font-bold transition active:scale-95 shrink-0 cursor-pointer"
+            className="px-4 py-2 rounded-xl border border-[#e4e2d9] bg-white hover:bg-[#f2f0e8] text-[#111522] text-xs font-bold transition active:scale-95 shrink-0 cursor-pointer"
           >
             {t.cancel || "Annuler"}
           </button>
@@ -681,30 +681,30 @@ export default function CreateInvoicePage({
               key={item.type}
               type="button"
               onClick={() => handleSelectInvoiceType(item.type, true)}
-              className="group w-full text-left bg-white hover:bg-slate-900 text-slate-800 hover:text-white p-5 sm:p-6 rounded-3xl border border-slate-200/90 hover:border-slate-900 shadow-[0_6px_24px_-6px_rgba(15,23,42,0.05)] hover:shadow-xl hover:shadow-slate-900/15 transition-all duration-150 active:scale-[0.99] flex items-center justify-between gap-4 cursor-pointer"
+              className="group w-full text-left bg-white hover:bg-[#111522] text-[#111522] hover:text-white p-5 sm:p-6 rounded-3xl border border-[#e8e7e2] hover:border-[#111522] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.05)] hover:shadow-xl hover:shadow-[#111522]/15 transition-all duration-150 active:scale-[0.99] flex items-center justify-between gap-4 cursor-pointer"
             >
               <div className="flex items-start sm:items-center gap-4 min-w-0">
-                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-slate-100 group-hover:bg-slate-800 text-slate-900 group-hover:text-emerald-400 font-mono font-extrabold text-sm flex items-center justify-center shrink-0 transition-colors">
+                <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#f2f0e8] group-hover:bg-[#191f30] text-[#111522] group-hover:text-[#ffdc45] font-mono font-extrabold text-sm flex items-center justify-center shrink-0 transition-colors">
                   {item.stepNum}
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2.5 flex-wrap">
-                    <h2 className="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 group-hover:text-white transition-colors">
+                    <h2 className="font-serif text-base sm:text-lg font-medium tracking-tight text-[#111522] group-hover:text-white transition-colors">
                       {item.title}
                     </h2>
                     <span
-                      className={`text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border transition-colors group-hover:bg-slate-800 group-hover:text-emerald-400 group-hover:border-emerald-500/30 ${item.badgeBg}`}
+                      className={`text-[10px] font-mono font-bold px-2.5 py-0.5 rounded-full border transition-colors group-hover:bg-[#191f30] group-hover:text-[#ffdc45] group-hover:border-[#ffdc45]/30 ${item.badgeBg}`}
                     >
                       {item.prefix}
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm text-slate-500 group-hover:text-slate-300 mt-1 leading-relaxed transition-colors">
+                  <p className="text-xs sm:text-sm text-[#697080] group-hover:text-[#c4c7d1] mt-1 leading-relaxed transition-colors">
                     {item.desc}
                   </p>
                 </div>
               </div>
 
-              <div className="w-9 h-9 rounded-full bg-slate-50 group-hover:bg-emerald-500 text-slate-400 group-hover:text-white flex items-center justify-center shrink-0 font-bold transition-all">
+              <div className="w-9 h-9 rounded-full bg-[#f8f7f3] group-hover:bg-[#ffdc45] text-[#697080] group-hover:text-[#111522] flex items-center justify-center shrink-0 font-bold transition-all">
                 →
               </div>
             </button>
@@ -722,14 +722,14 @@ export default function CreateInvoicePage({
   return (
     <div className="space-y-5 sm:space-y-6 animate-fade-in pb-16">
       {/* En-tête lumineux et épuré */}
-      <div className="bg-white px-5 py-4 sm:px-6 sm:py-5 rounded-3xl border border-slate-200/80 shadow-[0_8px_30px_-8px_rgba(15,23,42,0.05)] flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
+      <div className="bg-white px-5 py-4 sm:px-6 sm:py-5 rounded-3xl border border-[#e8e7e2] shadow-[0_8px_30px_-8px_rgba(17,21,34,0.05)] flex flex-col sm:flex-row sm:items-center justify-between gap-4 no-print">
         <div>
           <div className="flex items-center gap-2 flex-wrap mb-1">
             {!editingInvoice ? (
               <button
                 type="button"
                 onClick={() => setCurrentStep("choose-type")}
-                className="text-xs font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 transition active:scale-95"
+                className="text-xs font-semibold text-[#5f6571] hover:text-[#111522] flex items-center gap-1 transition active:scale-95"
               >
                 <span>←</span>
                 <span>Changer de type</span>
@@ -738,21 +738,21 @@ export default function CreateInvoicePage({
               <button
                 type="button"
                 onClick={onCancel}
-                className="text-xs font-semibold text-slate-500 hover:text-slate-900 flex items-center gap-1 transition active:scale-95"
+                className="text-xs font-semibold text-[#5f6571] hover:text-[#111522] flex items-center gap-1 transition active:scale-95"
               >
                 <span>←</span>
                 <span>{t.invoices || "Factures"}</span>
               </button>
             )}
-            <span className="text-slate-300">•</span>
-            <span className="text-xs font-semibold text-emerald-700">
+            <span className="text-[#dcdbd4]">•</span>
+            <span className="text-xs font-bold text-[#a18400]">
               {invoiceType === "doit" && "Facture de vente standard (Doit)"}
               {invoiceType === "avoir" && "Facture d'Avoir rectificative"}
               {invoiceType === "proforma" && "Facture Proforma / Devis"}
             </span>
           </div>
 
-          <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 tracking-tight">
+          <h1 className="font-serif text-xl sm:text-2xl font-medium text-[#111522] tracking-tight">
             {editingInvoice
               ? `Modifier la facture ${editingInvoice.number}`
               : "Nouvelle facture"}
@@ -762,7 +762,7 @@ export default function CreateInvoicePage({
         <button
           type="button"
           onClick={onCancel}
-          className="px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 text-xs font-bold transition active:scale-95 shrink-0 self-start sm:self-auto cursor-pointer"
+          className="px-4 py-2 rounded-xl border border-[#e4e2d9] bg-white hover:bg-[#f2f0e8] text-[#111522] text-xs font-bold transition active:scale-95 shrink-0 self-start sm:self-auto cursor-pointer"
         >
           {t.cancel || "Annuler"}
         </button>
@@ -783,14 +783,14 @@ export default function CreateInvoicePage({
       )}
 
       {/* Switcher Mobile Formulaire / Aperçu */}
-      <div className="flex xl:hidden bg-white p-1.5 rounded-2xl border border-slate-200/80 shadow-sm sticky top-16 z-30 no-print">
+      <div className="flex xl:hidden bg-white p-1.5 rounded-2xl border border-[#e8e7e2] shadow-sm sticky top-16 z-30 no-print">
         <button
           type="button"
           onClick={() => setMobileTab("form")}
           className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all duration-150 active:scale-95 ${
             mobileTab === "form"
-              ? "bg-slate-900 text-white shadow-sm"
-              : "text-slate-600 hover:text-slate-900"
+              ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+              : "text-[#5f6571] hover:text-[#111522]"
           }`}
         >
           Saisie de la facture
@@ -800,8 +800,8 @@ export default function CreateInvoicePage({
           onClick={() => setMobileTab("preview")}
           className={`flex-1 py-2.5 text-xs font-bold rounded-xl transition-all duration-150 active:scale-95 ${
             mobileTab === "preview"
-              ? "bg-slate-900 text-white shadow-sm"
-              : "text-slate-600 hover:text-slate-900"
+              ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+              : "text-[#5f6571] hover:text-[#111522]"
           }`}
         >
           Aperçu du document
@@ -818,18 +818,18 @@ export default function CreateInvoicePage({
         >
           {/* Bloc contextuel Facture d'Avoir */}
           {invoiceType === "avoir" && (
-            <div className="bg-white p-5 sm:p-6 rounded-3xl border border-sky-200/90 shadow-[0_6px_24px_-6px_rgba(14,165,233,0.08)] space-y-4">
+            <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#c6d1ff] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.06)] space-y-4">
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-extrabold text-slate-900">
+                <h2 className="text-sm font-extrabold text-[#111522]">
                   Référence & Motif de l&apos;Avoir
                 </h2>
-                <span className="text-[11px] font-mono font-bold text-sky-700 bg-sky-50 px-2.5 py-0.5 rounded-full border border-sky-200">
+                <span className="text-[11px] font-mono font-bold text-[#111522] bg-[#dce6ff] px-2.5 py-0.5 rounded-full border border-[#c6d1ff]">
                   Facture rectificative
                 </span>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     N° de facture d&apos;origine
                   </label>
                   <input
@@ -837,11 +837,11 @@ export default function CreateInvoicePage({
                     placeholder="Ex : FAC-2026-1024"
                     value={originalInvoiceRef}
                     onChange={(e) => setOriginalInvoiceRef(e.target.value)}
-                    className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-mono font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-3.5 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-mono font-semibold text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     Motif de l&apos;avoir
                   </label>
                   <input
@@ -849,7 +849,7 @@ export default function CreateInvoicePage({
                     placeholder="Ex : Retour de marchandises, remise..."
                     value={avoirReason}
                     onChange={(e) => setAvoirReason(e.target.value)}
-                    className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-3.5 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
               </div>
@@ -858,12 +858,12 @@ export default function CreateInvoicePage({
 
           {/* Bloc contextuel Facture Proforma */}
           {invoiceType === "proforma" && (
-            <div className="bg-white p-5 sm:p-6 rounded-3xl border border-violet-200/90 shadow-[0_6px_24px_-6px_rgba(139,92,246,0.08)] space-y-3.5">
+            <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#ffe36a] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.06)] space-y-3.5">
               <div className="flex items-center justify-between">
-                <h2 className="text-sm font-extrabold text-slate-900">
+                <h2 className="text-sm font-extrabold text-[#111522]">
                   Validité de la Facture Proforma
                 </h2>
-                <span className="text-[11px] font-mono font-bold text-violet-700 bg-violet-50 px-2.5 py-0.5 rounded-full border border-violet-200">
+                <span className="text-[11px] font-mono font-bold text-[#453700] bg-[#fff0a6] px-2.5 py-0.5 rounded-full border border-[#ffe36a]">
                   Offre chiffrée
                 </span>
               </div>
@@ -875,8 +875,8 @@ export default function CreateInvoicePage({
                     onClick={() => setProformaValidityDays(days)}
                     className={`px-3.5 py-2 rounded-xl text-xs font-mono font-bold transition active:scale-95 ${
                       proformaValidityDays === days
-                        ? "bg-slate-900 text-white shadow-sm"
-                        : "bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100"
+                        ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+                        : "bg-[#f8f7f3] text-[#5f6571] border border-[#e4e2d9] hover:bg-[#f2f0e8]"
                     }`}
                   >
                     {days} jours
@@ -887,26 +887,26 @@ export default function CreateInvoicePage({
           )}
 
           {/* CARTE 1 : CLIENT DESTINATAIRE */}
-          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-slate-200/80 shadow-[0_6px_24px_-6px_rgba(15,23,42,0.04)] space-y-5">
+          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#e8e7e2] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.04)] space-y-5">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <h2 className="text-base font-extrabold text-slate-900">
+                <h2 className="font-serif text-lg font-medium text-[#111522]">
                   Client destinataire
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-[#697080] mt-0.5">
                   Sélectionnez un client enregistré ou saisissez un nouveau client.
                 </p>
               </div>
 
               {clients.length > 0 && (
-                <div className="inline-flex bg-slate-100 p-1 rounded-xl self-start">
+                <div className="inline-flex bg-[#f2f0e8] border border-[#e8e7e2] p-1 rounded-xl self-start">
                   <button
                     type="button"
                     onClick={() => setClientMode("existing")}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition active:scale-95 ${
                       clientMode === "existing"
-                        ? "bg-slate-900 text-white shadow-sm"
-                        : "text-slate-600 hover:text-slate-900"
+                        ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+                        : "text-[#5f6571] hover:text-[#111522]"
                     }`}
                   >
                     Annuaire ({clients.length})
@@ -916,8 +916,8 @@ export default function CreateInvoicePage({
                     onClick={() => setClientMode("new")}
                     className={`px-3 py-1.5 rounded-lg text-xs font-bold transition active:scale-95 ${
                       clientMode === "new"
-                        ? "bg-slate-900 text-white shadow-sm"
-                        : "text-slate-600 hover:text-slate-900"
+                        ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+                        : "text-[#5f6571] hover:text-[#111522]"
                     }`}
                   >
                     + Nouveau client
@@ -931,7 +931,7 @@ export default function CreateInvoicePage({
                 <select
                   value={selectedClientId}
                   onChange={(e) => setSelectedClientId(e.target.value)}
-                  className="w-full px-4 py-3 bg-white border border-slate-200 rounded-2xl text-sm font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                  className="w-full px-4 py-3 bg-[#f8f7f3] border border-[#e4e2d9] rounded-2xl text-sm font-semibold text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                 >
                   {clients.map((c) => (
                     <option key={c.id} value={c.id}>
@@ -943,38 +943,38 @@ export default function CreateInvoicePage({
                 </select>
 
                 {selectedClient && (
-                  <div className="px-4 py-3 rounded-2xl bg-slate-50/80 border border-slate-100 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-slate-600">
+                  <div className="px-4 py-3 rounded-2xl bg-[#f8f7f3] border border-[#e8e7e2] flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#5f6571]">
                     <div>
-                      <span className="text-[10px] uppercase font-bold text-slate-400 block">Raison sociale / Client</span>
-                      <strong className="text-slate-900">{selectedClient.name}</strong>
+                      <span className="text-[10px] uppercase font-bold text-[#697080] block">Raison sociale / Client</span>
+                      <strong className="text-[#111522]">{selectedClient.name}</strong>
                     </div>
                     {selectedClient.contactPerson && (
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-slate-400 block">Interlocuteur</span>
-                        <strong className="text-slate-800">{selectedClient.contactPerson}</strong>
+                        <span className="text-[10px] uppercase font-bold text-[#697080] block">Interlocuteur</span>
+                        <strong className="text-[#111522]">{selectedClient.contactPerson}</strong>
                       </div>
                     )}
                     {(selectedClient as any)?.nif && (
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-slate-400 block">NIF Client</span>
-                        <span className="font-mono font-bold text-slate-800">{(selectedClient as any).nif}</span>
+                        <span className="text-[10px] uppercase font-bold text-[#697080] block">NIF Client</span>
+                        <span className="font-mono font-bold text-[#111522]">{(selectedClient as any).nif}</span>
                       </div>
                     )}
                     {selectedClient.phone && (
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-slate-400 block">Téléphone</span>
-                        <span className="font-mono">{selectedClient.phone}</span>
+                        <span className="text-[10px] uppercase font-bold text-[#697080] block">Téléphone</span>
+                        <span className="font-mono text-[#111522]">{selectedClient.phone}</span>
                       </div>
                     )}
                     {selectedClient.email && (
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-slate-400 block">Email</span>
+                        <span className="text-[10px] uppercase font-bold text-[#697080] block">Email</span>
                         <span>{selectedClient.email}</span>
                       </div>
                     )}
                     {(selectedClient.city || selectedClient.address) && (
                       <div>
-                        <span className="text-[10px] uppercase font-bold text-slate-400 block">Ville & Adresse</span>
+                        <span className="text-[10px] uppercase font-bold text-[#697080] block">Ville & Adresse</span>
                         <span>{[selectedClient.address, selectedClient.city].filter(Boolean).join(", ")}</span>
                       </div>
                     )}
@@ -984,7 +984,7 @@ export default function CreateInvoicePage({
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     Raison sociale / Entreprise du client *
                   </label>
                   <input
@@ -992,12 +992,12 @@ export default function CreateInvoicePage({
                     placeholder="Ex : Société Sahel Énergie SARL"
                     value={newClientName}
                     onChange={(e) => setNewClientName(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-semibold text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     Nom de l&apos;interlocuteur / Responsable client
                   </label>
                   <input
@@ -1005,12 +1005,12 @@ export default function CreateInvoicePage({
                     placeholder="Ex : M. Amadou Moussa"
                     value={newClientContact}
                     onChange={(e) => setNewClientContact(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     Téléphone / WhatsApp
                   </label>
                   <input
@@ -1018,12 +1018,12 @@ export default function CreateInvoicePage({
                     placeholder="Ex : +227 90 00 00 00"
                     value={newClientPhone}
                     onChange={(e) => setNewClientPhone(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-mono text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-mono text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     NIF Client (Optionnel)
                   </label>
                   <input
@@ -1031,12 +1031,12 @@ export default function CreateInvoicePage({
                     placeholder="Ex : 54291/R"
                     value={newClientNif}
                     onChange={(e) => setNewClientNif(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-mono text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-mono text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     Email
                   </label>
                   <input
@@ -1044,12 +1044,12 @@ export default function CreateInvoicePage({
                     placeholder="contact@client.com"
                     value={newClientEmail}
                     onChange={(e) => setNewClientEmail(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     Ville
                   </label>
                   <input
@@ -1057,12 +1057,12 @@ export default function CreateInvoicePage({
                     placeholder="Ex : Niamey, Diffa, Agadez..."
                     value={newClientCity}
                     onChange={(e) => setNewClientCity(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
 
                 <div className="sm:col-span-2">
-                  <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                  <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                     Adresse physique
                   </label>
                   <input
@@ -1070,7 +1070,7 @@ export default function CreateInvoicePage({
                     placeholder="Quartier, rue, porte ou boîte postale"
                     value={newClientAddress}
                     onChange={(e) => setNewClientAddress(e.target.value)}
-                    className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                    className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                   />
                 </div>
               </div>
@@ -1078,32 +1078,32 @@ export default function CreateInvoicePage({
           </div>
 
           {/* CARTE 2 : INFORMATIONS DE LA FACTURE */}
-          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-slate-200/80 shadow-[0_6px_24px_-6px_rgba(15,23,42,0.04)] space-y-5">
-            <h2 className="text-base font-extrabold text-slate-900">
+          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#e8e7e2] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.04)] space-y-5">
+            <h2 className="font-serif text-lg font-medium text-[#111522]">
               Informations générales
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                   Numéro de facture
                 </label>
                 <input
                   type="text"
                   value={invoiceNumber}
                   onChange={(e) => setInvoiceNumber(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                  className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-mono font-bold text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                   Mode de paiement
                 </label>
                 <select
                   value={paymentMethod}
                   onChange={(e) => setPaymentMethod(e.target.value as PaymentMethodType)}
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-semibold text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                  className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-semibold text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                 >
                   <option value="Mobile Money">Mobile Money (Airtel, Moov, MyNita, Amanata)</option>
                   <option value="Carte Bancaire">Carte Bancaire (Visa, Mastercard, GIM-UEMOA)</option>
@@ -1112,33 +1112,33 @@ export default function CreateInvoicePage({
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                   Date d&apos;émission
                 </label>
                 <input
                   type="date"
                   value={issueDate}
                   onChange={(e) => setIssueDate(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-mono text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                  className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-mono text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                <label className="block text-xs font-semibold text-[#5f6571] mb-1.5">
                   Date d&apos;échéance
                 </label>
                 <input
                   type="date"
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm font-mono text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                  className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-mono text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                 />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-xs font-semibold text-slate-700 mb-1.5 flex items-center justify-between">
+                <label className="block text-xs font-semibold text-[#5f6571] mb-1.5 flex items-center justify-between">
                   <span>Objet / Désignation de la facture</span>
-                  <span className="text-[11px] text-slate-400 font-normal">Synonyme de la prestation / fourniture</span>
+                  <span className="text-[11px] text-[#808392] font-normal">Synonyme de la prestation / fourniture</span>
                 </label>
                 <input
                   type="text"
@@ -1151,29 +1151,29 @@ export default function CreateInvoicePage({
                     }
                   }}
                   placeholder="Ex : Fourniture de sacs de ciment, Session de formation, Transport de vivres..."
-                  className="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/10 transition"
+                  className="w-full px-4 py-2.5 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm text-[#111522] placeholder-[#808392] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-4 focus:ring-[#ffdc45]/20 transition"
                 />
               </div>
             </div>
           </div>
 
           {/* CARTE 3 : LIGNES DE PRESTATIONS / ARTICLES */}
-          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-slate-200/80 shadow-[0_6px_24px_-6px_rgba(15,23,42,0.04)] space-y-5">
+          <div className="bg-white p-5 sm:p-7 rounded-3xl border border-[#e8e7e2] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.04)] space-y-5">
             <div className="flex items-center justify-between gap-3">
               <div>
-                <h2 className="text-base font-extrabold text-slate-900">
+                <h2 className="font-serif text-lg font-medium text-[#111522]">
                   Détail des prestations
                 </h2>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-[#697080] mt-0.5">
                   Ajoutez vos articles ou services facturés en FCFA.
                 </p>
               </div>
               <button
                 type="button"
                 onClick={handleAddItem}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition active:scale-95 shrink-0"
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-[#111522] hover:bg-[#191f30] text-white text-xs font-bold transition active:scale-95 shrink-0 cursor-pointer"
               >
-                <IconPlus className="w-3.5 h-3.5 text-emerald-400" />
+                <IconPlus className="w-3.5 h-3.5 text-[#ffdc45]" />
                 <span>Ajouter une ligne</span>
               </button>
             </div>
@@ -1186,10 +1186,10 @@ export default function CreateInvoicePage({
                 return (
                   <div
                     key={item.id}
-                    className="p-4 sm:p-5 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 space-y-3.5 transition hover:border-slate-300"
+                    className="p-4 sm:p-5 rounded-2xl bg-[#f8f7f3] border border-[#e8e7e2] space-y-3.5 transition hover:border-[#dcdbd4]"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-mono font-bold text-slate-500">
+                      <span className="text-xs font-mono font-bold text-[#5f6571]">
                         Ligne {index + 1}
                       </span>
                       {items.length > 1 && (
@@ -1206,7 +1206,7 @@ export default function CreateInvoicePage({
 
                     <div className="space-y-3">
                       <div>
-                        <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                        <label className="block text-[11px] font-semibold text-[#5f6571] mb-1">
                           Désignation
                         </label>
                         <input
@@ -1216,13 +1216,13 @@ export default function CreateInvoicePage({
                             handleUpdateItem(item.id, "description", e.target.value)
                           }
                           placeholder="Description du produit ou de la prestation"
-                          className="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-500 transition"
+                          className="w-full px-3.5 py-2.5 bg-white border border-[#e4e2d9] rounded-xl text-sm text-[#111522] placeholder-[#808392] focus:outline-none focus:border-[#111522] transition"
                         />
                       </div>
 
                       <div className="grid grid-cols-3 gap-3">
                         <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                          <label className="block text-[11px] font-semibold text-[#5f6571] mb-1">
                             Unité
                           </label>
                           <input
@@ -1232,12 +1232,12 @@ export default function CreateInvoicePage({
                               handleUpdateItem(item.id, "unit", e.target.value)
                             }
                             placeholder="Unité, Jour, Forfait..."
-                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm font-medium text-slate-900 focus:outline-none focus:border-emerald-500 transition"
+                            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl text-xs sm:text-sm font-medium text-[#111522] focus:outline-none focus:border-[#111522] transition"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                          <label className="block text-[11px] font-semibold text-[#5f6571] mb-1">
                             Quantité
                           </label>
                           <input
@@ -1248,12 +1248,12 @@ export default function CreateInvoicePage({
                             onChange={(e) =>
                               handleUpdateItem(item.id, "quantity", e.target.value)
                             }
-                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500 transition"
+                            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl text-xs sm:text-sm font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522] transition"
                           />
                         </div>
 
                         <div>
-                          <label className="block text-[11px] font-semibold text-slate-600 mb-1">
+                          <label className="block text-[11px] font-semibold text-[#5f6571] mb-1">
                             Prix Unitaire (FCFA)
                           </label>
                           <input
@@ -1265,15 +1265,15 @@ export default function CreateInvoicePage({
                             onChange={(e) =>
                               handleUpdateItem(item.id, "unitPrice", e.target.value)
                             }
-                            className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500 transition"
+                            className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl text-xs sm:text-sm font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522] transition"
                           />
                         </div>
                       </div>
                     </div>
 
-                    <div className="flex items-center justify-between pt-2.5 border-t border-slate-200/70 text-xs">
-                      <span className="text-slate-500">Montant HT de la ligne</span>
-                      <span className="font-mono font-extrabold text-slate-900 text-sm">
+                    <div className="flex items-center justify-between pt-2.5 border-t border-[#e4e2d9] text-xs">
+                      <span className="text-[#697080]">Montant HT de la ligne</span>
+                      <span className="font-mono font-extrabold text-[#111522] text-sm">
                         {formatFCFA(lineTotal)}
                       </span>
                     </div>
@@ -1286,22 +1286,22 @@ export default function CreateInvoicePage({
           {/* SECTIONS OPTIONNELLES DÉDUCTIBLES & MARCHÉS (AVEC FERMETURE AUTOMATIQUE AU CLIC DEHORS) */}
           <div className="space-y-3.5">
             {/* Remise, Escompte, Acompte & Précompte */}
-            <div ref={deductionsRef} className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+            <div ref={deductionsRef} className="bg-white p-4 sm:p-5 rounded-3xl border border-[#e8e7e2] shadow-sm space-y-3">
               <button
                 type="button"
                 onClick={() => setShowAdvancedDeductions(!showAdvancedDeductions)}
-                className="w-full py-2 px-3 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-bold text-slate-700 flex items-center justify-between transition cursor-pointer"
+                className="w-full py-2 px-3 rounded-2xl bg-[#f8f7f3] hover:bg-[#f2f0e8] border border-[#e4e2d9] text-xs font-bold text-[#111522] flex items-center justify-between transition cursor-pointer"
               >
                 <span>Remise, Escompte, Acompte & Précompte ISB (Optionnel)</span>
-                <span className="font-mono text-slate-500 text-sm">
+                <span className="font-mono text-[#5f6571] text-sm">
                   {showAdvancedDeductions ? "−" : "+"}
                 </span>
               </button>
 
               {showAdvancedDeductions && (
-                <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs animate-fade-in">
+                <div className="p-4 rounded-2xl bg-[#f8f7f3] border border-[#e8e7e2] grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs animate-fade-in">
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       Remise commerciale (%)
                     </label>
                     <input
@@ -1312,11 +1312,11 @@ export default function CreateInvoicePage({
                       value={discountPercent || ""}
                       placeholder="0"
                       onChange={(e) => setDiscountPercent(Number(e.target.value) || 0)}
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       Escompte de règlement (%)
                     </label>
                     <input
@@ -1327,11 +1327,11 @@ export default function CreateInvoicePage({
                       value={escomptePercent || ""}
                       placeholder="0"
                       onChange={(e) => setEscomptePercent(Number(e.target.value) || 0)}
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       Acompte / Avance versée (FCFA)
                     </label>
                     <input
@@ -1341,11 +1341,11 @@ export default function CreateInvoicePage({
                       value={advanceAmount || ""}
                       placeholder="0"
                       onChange={(e) => setAdvanceAmount(Number(e.target.value) || 0)}
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       Précompte fiscal / ISB (%)
                     </label>
                     <input
@@ -1356,11 +1356,11 @@ export default function CreateInvoicePage({
                       value={precompteRate || ""}
                       placeholder="Ex : 0, 2, 5"
                       onChange={(e) => setPrecompteRate(Number(e.target.value) || 0)}
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       Consignation d&apos;emballages (FCFA)
                     </label>
                     <input
@@ -1370,33 +1370,33 @@ export default function CreateInvoicePage({
                       value={consignationAmount || ""}
                       placeholder="0"
                       onChange={(e) => setConsignationAmount(Number(e.target.value) || 0)}
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono font-bold text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono font-bold text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
 
                   {/* Récapitulatif dynamique du décompte en cascade SYSCOHADA */}
                   {(discountPercent > 0 || escomptePercent > 0 || advanceAmount > 0 || precompteRate > 0) && (
-                    <div className="sm:col-span-2 p-3.5 bg-emerald-50/80 border border-emerald-200/80 rounded-2xl space-y-1.5 text-xs">
-                      <div className="flex items-center justify-between pb-1 border-b border-emerald-200">
-                        <span className="font-extrabold text-emerald-950 flex items-center gap-1.5">
+                    <div className="sm:col-span-2 p-3.5 bg-[#111522] text-white border border-white/10 rounded-2xl space-y-1.5 text-xs">
+                      <div className="flex items-center justify-between pb-1.5 border-b border-white/10">
+                        <span className="font-extrabold text-white flex items-center gap-1.5">
                           <span>📐</span>
                           <span>Décompte en cascade (Norme SYSCOHADA)</span>
                         </span>
-                        <span className="text-[10px] font-bold text-emerald-800 bg-white px-2 py-0.5 rounded-full border border-emerald-200">
+                        <span className="text-[10px] font-bold text-[#111522] bg-[#ffdc45] px-2 py-0.5 rounded-full">
                           Niger / UEMOA
                         </span>
                       </div>
-                      <div className="flex justify-between text-slate-700">
+                      <div className="flex justify-between text-[#c4c7d1]">
                         <span>Total Brut HT :</span>
-                        <span className="font-mono font-bold text-slate-900">{formatFCFA(totals.rawSubtotalHT)}</span>
+                        <span className="font-mono font-bold text-white">{formatFCFA(totals.rawSubtotalHT)}</span>
                       </div>
                       {totals.discountAmount > 0 && (
                         <>
-                          <div className="flex justify-between text-rose-700">
+                          <div className="flex justify-between text-rose-300">
                             <span>Remise ({totals.discountPercent}%) :</span>
                             <span className="font-mono font-bold">-{formatFCFA(totals.discountAmount)}</span>
                           </div>
-                          <div className="flex justify-between py-0.5 px-2 bg-white rounded text-emerald-950 font-extrabold border border-emerald-200/60">
+                          <div className="flex justify-between py-0.5 px-2 bg-[#141a2b] rounded text-[#ffdc45] font-extrabold border border-white/10">
                             <span>➔ Net Commercial :</span>
                             <span className="font-mono">{formatFCFA(totals.netCommercial)}</span>
                           </div>
@@ -1404,45 +1404,45 @@ export default function CreateInvoicePage({
                       )}
                       {totals.escompteAmount > 0 && (
                         <>
-                          <div className="flex justify-between text-rose-700">
+                          <div className="flex justify-between text-rose-300">
                             <span>Escompte ({totals.escomptePercent}%) :</span>
                             <span className="font-mono font-bold">-{formatFCFA(totals.escompteAmount)}</span>
                           </div>
-                          <div className="flex justify-between py-0.5 px-2 bg-white rounded text-blue-950 font-extrabold border border-blue-200/60">
+                          <div className="flex justify-between py-0.5 px-2 bg-[#141a2b] rounded text-[#c9d4ff] font-extrabold border border-white/10">
                             <span>➔ Net Financier :</span>
                             <span className="font-mono">{formatFCFA(totals.netFinancier)}</span>
                           </div>
                         </>
                       )}
                       {totals.advanceAmount > 0 && (
-                        <div className="flex justify-between text-indigo-700">
+                        <div className="flex justify-between text-[#c9d4ff]">
                           <span>Avance déduite :</span>
                           <span className="font-mono font-bold">-{formatFCFA(totals.advanceAmount)}</span>
                         </div>
                       )}
                       {(totals.discountAmount > 0 || totals.escompteAmount > 0 || totals.advanceAmount > 0) && (
-                        <div className="flex justify-between text-slate-800 font-bold border-t border-emerald-200 pt-1">
+                        <div className="flex justify-between text-white font-bold border-t border-white/10 pt-1">
                           <span>Montant HT imposable :</span>
                           <span className="font-mono">{formatFCFA(totals.subtotalHT)}</span>
                         </div>
                       )}
-                      <div className="flex justify-between text-slate-700">
+                      <div className="flex justify-between text-[#c4c7d1]">
                         <span>TVA ({taxRate}%) :</span>
-                        <span className="font-mono font-bold">{formatFCFA(totals.taxAmount)}</span>
+                        <span className="font-mono font-bold text-white">{formatFCFA(totals.taxAmount)}</span>
                       </div>
-                      <div className="flex justify-between py-0.5 px-2 bg-white rounded text-slate-950 font-black border border-slate-200">
+                      <div className="flex justify-between py-0.5 px-2 bg-[#141a2b] rounded text-white font-black border border-white/10">
                         <span>Total TTC :</span>
                         <span className="font-mono">{formatFCFA(totals.totalTTC)}</span>
                       </div>
                       {totals.precompteAmount > 0 && (
-                        <div className="flex justify-between text-amber-800">
+                        <div className="flex justify-between text-[#ffdc45]">
                           <span>Précompte ({totals.precompteRate}%) :</span>
                           <span className="font-mono font-bold">-{formatFCFA(totals.precompteAmount)}</span>
                         </div>
                       )}
-                      <div className="flex justify-between text-slate-900 font-black pt-1 border-t border-emerald-300 text-sm">
+                      <div className="flex justify-between text-white font-black pt-1.5 border-t border-white/15 text-sm">
                         <span>Net à payer estimé :</span>
-                        <span className="font-mono text-emerald-800">{formatFCFA(totals.netToPay)}</span>
+                        <span className="font-mono text-[#ffdc45]">{formatFCFA(totals.netToPay)}</span>
                       </div>
                     </div>
                   )}
@@ -1451,22 +1451,22 @@ export default function CreateInvoicePage({
             </div>
 
             {/* Références Bon de Commande / Marché */}
-            <div ref={orderRefsRef} className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200/80 shadow-sm space-y-3">
+            <div ref={orderRefsRef} className="bg-white p-4 sm:p-5 rounded-3xl border border-[#e8e7e2] shadow-sm space-y-3">
               <button
                 type="button"
                 onClick={() => setShowOrderRefs(!showOrderRefs)}
-                className="w-full py-2 px-3 rounded-2xl bg-slate-50 hover:bg-slate-100 border border-slate-200/80 text-xs font-bold text-slate-700 flex items-center justify-between transition cursor-pointer"
+                className="w-full py-2 px-3 rounded-2xl bg-[#f8f7f3] hover:bg-[#f2f0e8] border border-[#e4e2d9] text-xs font-bold text-[#111522] flex items-center justify-between transition cursor-pointer"
               >
                 <span>Références Bon de Commande / Contrat / Compte (Optionnel)</span>
-                <span className="font-mono text-slate-500 text-sm">
+                <span className="font-mono text-[#5f6571] text-sm">
                   {showOrderRefs ? "−" : "+"}
                 </span>
               </button>
 
               {showOrderRefs && (
-                <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs animate-fade-in">
+                <div className="p-4 rounded-2xl bg-[#f8f7f3] border border-[#e8e7e2] grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-xs animate-fade-in">
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       N° Bon de Commande (PO)
                     </label>
                     <input
@@ -1474,11 +1474,11 @@ export default function CreateInvoicePage({
                       value={poNumber}
                       onChange={(e) => setPoNumber(e.target.value)}
                       placeholder="Optionnel"
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       N° de Contrat / Marché
                     </label>
                     <input
@@ -1486,11 +1486,11 @@ export default function CreateInvoicePage({
                       value={contractNumber}
                       onChange={(e) => setContractNumber(e.target.value)}
                       placeholder="Optionnel"
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       N° Fournisseur (Vendor ID)
                     </label>
                     <input
@@ -1498,11 +1498,11 @@ export default function CreateInvoicePage({
                       value={vendorNumber}
                       onChange={(e) => setVendorNumber(e.target.value)}
                       placeholder="Optionnel"
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div>
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       Référence LTI / Livraison
                     </label>
                     <input
@@ -1510,11 +1510,11 @@ export default function CreateInvoicePage({
                       value={ltiNumber}
                       onChange={(e) => setLtiNumber(e.target.value)}
                       placeholder="Optionnel"
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                   <div className="sm:col-span-2">
-                    <label className="block font-semibold text-slate-600 mb-1">
+                    <label className="block font-semibold text-[#5f6571] mb-1">
                       Coordonnées de paiement affichées (Mobile Money / RIB)
                     </label>
                     <input
@@ -1522,7 +1522,7 @@ export default function CreateInvoicePage({
                       value={bankAccountRef}
                       onChange={(e) => setBankAccountRef(e.target.value)}
                       placeholder="Ex : Airtel Money +227 ... ou RIB bancaire"
-                      className="w-full px-3 py-2 bg-white border border-slate-200 rounded-xl font-mono text-slate-900 focus:outline-none focus:border-emerald-500"
+                      className="w-full px-3 py-2 bg-white border border-[#e4e2d9] rounded-xl font-mono text-[#111522] focus:outline-none focus:border-[#111522]"
                     />
                   </div>
                 </div>
@@ -1531,13 +1531,13 @@ export default function CreateInvoicePage({
           </div>
 
           {/* CARTE TVA VARIABLE & RÉSUMÉ FINANCIER DANS LE FORMULAIRE */}
-          <div className="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-[0_6px_24px_-6px_rgba(15,23,42,0.04)] space-y-4 no-print">
+          <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#e8e7e2] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.04)] space-y-4 no-print">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
-                <label className="block text-sm font-extrabold text-slate-900">
+                <label className="block text-sm font-extrabold text-[#111522]">
                   TVA variable (%)
                 </label>
-                <p className="text-xs text-slate-500">
+                <p className="text-xs text-[#697080]">
                   Modifiez le taux de TVA en direct pour recalculer les totaux
                 </p>
               </div>
@@ -1552,9 +1552,9 @@ export default function CreateInvoicePage({
                     const val = parseFloat(e.target.value);
                     setTaxRate(Number.isNaN(val) ? 0 : Math.max(0, Math.min(100, val)));
                   }}
-                  className="w-full pl-3 pr-7 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm font-mono font-extrabold text-slate-900 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/15"
+                  className="w-full pl-3 pr-7 py-2 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-sm font-mono font-extrabold text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522] focus:ring-2 focus:ring-[#ffdc45]/30"
                 />
-                <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-slate-400">
+                <span className="absolute right-2.5 top-1/2 -translate-y-1/2 text-xs font-mono font-bold text-[#697080]">
                   %
                 </span>
               </div>
@@ -1569,10 +1569,10 @@ export default function CreateInvoicePage({
                     key={rate}
                     type="button"
                     onClick={() => setTaxRate(rate)}
-                    className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition active:scale-95 ${
+                    className={`px-3 py-1.5 rounded-xl text-xs font-mono font-bold transition active:scale-95 cursor-pointer ${
                       active
-                        ? "bg-slate-900 text-white shadow-sm"
-                        : "bg-slate-50 text-slate-700 border border-slate-200 hover:bg-slate-100"
+                        ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+                        : "bg-[#f8f7f3] text-[#5f6571] border border-[#e4e2d9] hover:bg-[#f2f0e8]"
                     }`}
                   >
                     {rate}%
@@ -1582,10 +1582,10 @@ export default function CreateInvoicePage({
             </div>
 
             {/* Décomposition financière en direct */}
-            <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 space-y-2 text-xs">
-              <div className="flex justify-between text-slate-600">
+            <div className="p-4 rounded-2xl bg-[#f8f7f3] border border-[#e8e7e2] space-y-2 text-xs">
+              <div className="flex justify-between text-[#5f6571]">
                 <span>Sous-total HT</span>
-                <span className="font-mono font-bold text-slate-900">
+                <span className="font-mono font-bold text-[#111522]">
                   {formatFCFA(totals.rawSubtotalHT)}
                 </span>
               </div>
@@ -1617,14 +1617,14 @@ export default function CreateInvoicePage({
                 </div>
               )}
 
-              <div className="flex justify-between text-slate-600">
+              <div className="flex justify-between text-[#5f6571]">
                 <span>TVA ({taxRate}%)</span>
-                <span className="font-mono font-bold text-slate-900">
+                <span className="font-mono font-bold text-[#111522]">
                   {formatFCFA(totals.taxAmount)}
                 </span>
               </div>
 
-              <div className="flex justify-between text-slate-800 font-bold pt-1.5 border-t border-slate-200/70">
+              <div className="flex justify-between text-[#111522] font-bold pt-1.5 border-t border-[#e8e7e2]">
                 <span>Total TTC</span>
                 <span className="font-mono">{formatFCFA(totals.totalTTC)}</span>
               </div>
@@ -1638,15 +1638,15 @@ export default function CreateInvoicePage({
                 </div>
               )}
 
-              <div className="pt-2.5 border-t-2 border-slate-200 flex items-center justify-between">
-                <span className="text-sm font-extrabold text-slate-900">
+              <div className="pt-2.5 mt-1 border-t-2 border-[#e8e7e2] bg-[#111522] text-white px-3.5 py-2.5 rounded-xl flex items-center justify-between">
+                <span className="text-sm font-extrabold text-white">
                   {invoiceType === "avoir"
                     ? "Net à déduire"
                     : invoiceType === "proforma"
                     ? "Montant Proforma Net"
                     : "Net à payer"}
                 </span>
-                <span className="text-lg sm:text-xl font-black font-mono text-emerald-700 whitespace-nowrap">
+                <span className="text-lg sm:text-xl font-black font-mono text-[#ffdc45] whitespace-nowrap">
                   {formatFCFA(totals.netToPay)}
                 </span>
               </div>
@@ -1654,11 +1654,11 @@ export default function CreateInvoicePage({
           </div>
 
           {/* BARRE FINALE D'ENREGISTREMENT EN BAS DU FORMULAIRE */}
-          <div className="bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-[0_6px_24px_-6px_rgba(15,23,42,0.04)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div className="bg-white p-5 sm:p-6 rounded-3xl border border-[#e8e7e2] shadow-[0_6px_24px_-6px_rgba(17,21,34,0.04)] flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
             <button
               type="button"
               onClick={onCancel}
-              className="px-4 py-3 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-600 text-xs font-bold transition active:scale-95 text-center cursor-pointer"
+              className="px-4 py-3 rounded-xl border border-[#e4e2d9] bg-white hover:bg-[#f2f0e8] text-[#111522] text-xs font-bold transition active:scale-95 text-center cursor-pointer"
             >
               {t.cancel || "Annuler"}
             </button>
@@ -1668,7 +1668,7 @@ export default function CreateInvoicePage({
                 type="button"
                 disabled={isSaving}
                 onClick={() => handleSave("brouillon")}
-                className="px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-bold transition active:scale-95 disabled:opacity-50 text-center cursor-pointer"
+                className="px-4 py-3 rounded-xl border border-[#e4e2d9] bg-[#f8f7f3] hover:bg-[#f2f0e8] text-[#111522] text-xs font-bold transition active:scale-95 disabled:opacity-50 text-center cursor-pointer"
               >
                 Enregistrer comme brouillon
               </button>
@@ -1677,9 +1677,9 @@ export default function CreateInvoicePage({
                 type="button"
                 disabled={isSaving}
                 onClick={() => handleSave("envoyee")}
-                className="px-6 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-extrabold shadow-lg shadow-slate-900/15 transition-all duration-150 active:scale-95 flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
+                className="px-6 py-3.5 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs sm:text-sm font-extrabold shadow-lg shadow-[#ffdc45]/25 transition-all duration-150 active:scale-95 flex items-center justify-center gap-2 disabled:opacity-60 cursor-pointer"
               >
-                <IconCheck className="w-4 h-4 text-emerald-400" />
+                <IconCheck className="w-4 h-4 text-[#111522]" />
                 <span>
                   {isSaving ? "Enregistrement en cours..." : "Enregistrer la facture"}
                 </span>
@@ -1695,7 +1695,7 @@ export default function CreateInvoicePage({
           }`}
         >
           {/* Barre d'outils du document : Modèles & Exportation rapide */}
-          <div className="bg-white px-4 py-3 rounded-2xl border border-slate-200/80 shadow-sm flex flex-wrap items-center justify-between gap-2 no-print">
+          <div className="bg-white px-4 py-3 rounded-2xl border border-[#e8e7e2] shadow-sm flex flex-wrap items-center justify-between gap-2 no-print">
             <div className="flex items-center gap-1.5 flex-wrap">
               {[
                 { id: "tpl-1", label: "Standard" },
@@ -1712,8 +1712,8 @@ export default function CreateInvoicePage({
                   onClick={() => setSelectedTemplateId(tpl.id)}
                   className={`px-3 py-1.5 rounded-xl text-xs font-bold transition active:scale-95 cursor-pointer ${
                     selectedTemplateId === tpl.id
-                      ? "bg-slate-900 text-white shadow-sm"
-                      : "bg-slate-100 hover:bg-slate-200 text-slate-700"
+                      ? "bg-[#111522] text-[#ffdc45] shadow-sm"
+                      : "bg-[#f2f0e8] hover:bg-[#e8e7e2] text-[#5f6571] hover:text-[#111522]"
                   }`}
                 >
                   {tpl.label}
@@ -1725,7 +1725,7 @@ export default function CreateInvoicePage({
               <button
                 type="button"
                 onClick={handlePrint}
-                className="px-3 py-1.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold transition active:scale-95 flex items-center gap-1.5 cursor-pointer"
+                className="px-3 py-1.5 rounded-xl border border-[#e4e2d9] bg-white hover:bg-[#f8f7f3] text-[#111522] text-xs font-bold transition active:scale-95 flex items-center gap-1.5 cursor-pointer"
                 title="Imprimer directement"
               >
                 <IconPrinter className="w-3.5 h-3.5" />
@@ -1734,10 +1734,10 @@ export default function CreateInvoicePage({
               <button
                 type="button"
                 onClick={handleDownloadPdf}
-                className="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition active:scale-95 flex items-center gap-1.5 shadow-sm cursor-pointer"
+                className="px-3 py-1.5 rounded-xl bg-[#111522] hover:bg-[#191f30] text-white text-xs font-bold transition active:scale-95 flex items-center gap-1.5 shadow-sm cursor-pointer"
                 title="Télécharger en PDF"
               >
-                <IconDownload className="w-3.5 h-3.5 text-emerald-400" />
+                <IconDownload className="w-3.5 h-3.5 text-[#ffdc45]" />
                 <span className="hidden sm:inline">Télécharger PDF</span>
               </button>
             </div>
@@ -1761,37 +1761,37 @@ export default function CreateInvoicePage({
         createPortal(
           <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 no-print">
             <div
-              className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm"
+              className="fixed inset-0 bg-[#0c111d]/75 backdrop-blur-sm"
               onClick={() => {
                 setSavedInvoiceModal(null);
                 if (onNavigateToInvoices) onNavigateToInvoices();
               }}
             />
 
-            <div className="relative bg-white rounded-3xl border border-slate-200 shadow-2xl w-full max-w-md p-6 sm:p-7 space-y-5 animate-fade-in z-10">
-              <div className="w-14 h-14 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center mx-auto">
+            <div className="relative bg-[#f8f7f3] rounded-3xl border border-[#e8e7e2] shadow-2xl w-full max-w-md p-6 sm:p-7 space-y-5 animate-fade-in z-10">
+              <div className="w-14 h-14 rounded-2xl bg-[#d9f0df] border border-[#b9dfc8] text-[#285b35] flex items-center justify-center mx-auto">
                 <IconCheck className="w-7 h-7" />
               </div>
 
               <div className="text-center space-y-1.5">
-                <h3 className="text-lg sm:text-xl font-extrabold text-slate-900">
+                <h3 className="font-serif text-xl sm:text-2xl font-medium text-[#111522]">
                   Facture enregistrée avec succès !
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500">
+                <p className="text-xs sm:text-sm text-[#697080]">
                   Votre facture{" "}
-                  <strong className="font-mono text-slate-900">
+                  <strong className="font-mono text-[#111522]">
                     {savedInvoiceModal.number}
                   </strong>{" "}
-                  pour <strong className="text-slate-900">{savedInvoiceModal.clientName}</strong>{" "}
+                  pour <strong className="text-[#111522]">{savedInvoiceModal.clientName}</strong>{" "}
                   a bien été sauvegardée dans votre compte.
                 </p>
               </div>
 
-              <div className="p-4 rounded-2xl bg-[#F8FAFC] border border-slate-200/80 flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">
+              <div className="p-4 rounded-2xl bg-[#111522] text-white border border-white/10 flex items-center justify-between">
+                <span className="text-xs font-bold text-[#b9bdc9] uppercase tracking-wider">
                   Montant Net
                 </span>
-                <span className="text-lg font-black font-mono text-emerald-700">
+                <span className="text-lg font-black font-mono text-[#ffdc45]">
                   {formatFCFA(savedInvoiceModal.netToPay || savedInvoiceModal.totalTTC)}
                 </span>
               </div>
@@ -1805,9 +1805,9 @@ export default function CreateInvoicePage({
                     setSavedInvoiceModal(null);
                     if (onNavigateToInvoices) onNavigateToInvoices();
                   }}
-                  className="w-full py-3.5 px-4 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white text-xs sm:text-sm font-extrabold shadow-lg shadow-slate-900/20 transition active:scale-95 flex items-center justify-center gap-2.5 cursor-pointer"
+                  className="w-full py-3.5 px-4 rounded-2xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs sm:text-sm font-extrabold shadow-lg shadow-[#ffdc45]/25 transition active:scale-95 flex items-center justify-center gap-2.5 cursor-pointer"
                 >
-                  <IconDownload className="w-4 h-4 text-emerald-400" />
+                  <IconDownload className="w-4 h-4 text-[#111522]" />
                   <span>Télécharger en PDF et voir mes factures</span>
                 </button>
 
@@ -1817,7 +1817,7 @@ export default function CreateInvoicePage({
                     setSavedInvoiceModal(null);
                     if (onNavigateToInvoices) onNavigateToInvoices();
                   }}
-                  className="w-full py-3 px-4 rounded-2xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs sm:text-sm font-bold transition active:scale-95 cursor-pointer"
+                  className="w-full py-3 px-4 rounded-2xl bg-[#111522] hover:bg-[#191f30] text-white border border-[#111522] text-xs sm:text-sm font-bold transition active:scale-95 cursor-pointer"
                 >
                   Aller à la liste des factures
                 </button>
@@ -1830,7 +1830,7 @@ export default function CreateInvoicePage({
                       setSavedInvoiceModal(null);
                       onNavigateToDetail(inv);
                     }}
-                    className="w-full py-2.5 px-4 rounded-2xl bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 text-xs font-semibold transition active:scale-95 cursor-pointer"
+                    className="w-full py-2.5 px-4 rounded-2xl bg-white hover:bg-[#f2f0e8] text-[#5f6571] hover:text-[#111522] border border-[#e4e2d9] text-xs font-semibold transition active:scale-95 cursor-pointer"
                   >
                     Ouvrir l&apos;aperçu détaillé
                   </button>
@@ -1847,17 +1847,17 @@ export default function CreateInvoicePage({
         createPortal(
           <div className="fixed inset-0 z-[99999] overflow-y-auto no-print">
             <div
-              className="fixed inset-0 bg-slate-950/60 backdrop-blur-sm"
+              className="fixed inset-0 bg-[#0c111d]/75 backdrop-blur-sm"
               onClick={() => setShowPrintModal(false)}
             />
             <div className="flex min-h-full items-center justify-center p-2 sm:p-4">
-              <div className="relative rounded-3xl bg-slate-100 text-left shadow-2xl w-full max-w-4xl border border-slate-200 animate-fade-in flex flex-col max-h-[92vh]">
-                <div className="flex items-center justify-between px-5 py-4 bg-white border-b border-slate-200 rounded-t-3xl shrink-0">
+              <div className="relative rounded-3xl bg-[#f8f7f3] text-left shadow-2xl w-full max-w-4xl border border-[#e8e7e2] animate-fade-in flex flex-col max-h-[92vh]">
+                <div className="flex items-center justify-between px-5 py-4 bg-[#111522] text-white border-b border-white/10 rounded-t-3xl shrink-0">
                   <div>
-                    <h3 className="text-sm sm:text-base font-extrabold text-slate-900">
+                    <h3 className="font-serif text-base sm:text-lg font-medium text-white">
                       Aperçu A4 — {invoiceNumber}
                     </h3>
-                    <p className="text-xs text-slate-500">
+                    <p className="text-xs text-[#b9bdc9]">
                       Mise en page officielle prête pour PDF ou impression
                     </p>
                   </div>
@@ -1868,23 +1868,23 @@ export default function CreateInvoicePage({
                         setShowPrintModal(false);
                         setTimeout(() => handlePrint(), 150);
                       }}
-                      className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold transition active:scale-95 flex items-center gap-2"
+                      className="px-4 py-2 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs font-bold transition active:scale-95 flex items-center gap-2 cursor-pointer"
                     >
-                      <IconPrinter className="w-3.5 h-3.5 text-emerald-400" />
+                      <IconPrinter className="w-3.5 h-3.5 text-[#111522]" />
                       <span>Imprimer</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setShowPrintModal(false)}
-                      className="w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold"
+                      className="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-sm font-bold cursor-pointer"
                     >
                       ✕
                     </button>
                   </div>
                 </div>
 
-                <div className="flex-1 min-h-0 overflow-y-auto modal-scrollbar p-3 sm:p-6 bg-slate-200/60 flex justify-center">
-                  <div className="w-full max-w-[210mm] shadow-2xl rounded-sm bg-white border border-slate-300 overflow-hidden">
+                <div className="flex-1 min-h-0 overflow-y-auto modal-scrollbar p-3 sm:p-6 bg-[#edece6] flex justify-center">
+                  <div className="w-full max-w-[210mm] shadow-2xl rounded-sm bg-white border border-[#dcdbd4] overflow-hidden">
                     <InvoiceLivePreview
                       invoice={previewInvoiceData}
                       company={issuerCompany}

@@ -98,42 +98,42 @@ export default function NewInvoiceModal({
   return (
     <div className="fixed inset-0 z-50 overflow-y-auto">
       <div
-        className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm transition-opacity"
+        className="fixed inset-0 bg-[#0c111d]/70 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
 
       <div className="flex min-h-full items-center justify-center p-3 sm:p-6 text-center">
-        <div className="relative transform overflow-hidden rounded-3xl bg-white text-left shadow-2xl transition-all sm:my-8 w-full max-w-3xl border border-slate-200 animate-fade-in">
+        <div className="relative transform overflow-hidden rounded-3xl bg-[#f8f7f3] text-left shadow-2xl transition-all sm:my-8 w-full max-w-3xl border border-[#e8e7e2] animate-fade-in">
           {/* Header */}
-          <div className="flex items-center justify-between px-6 py-4 bg-slate-50 border-b border-slate-200">
+          <div className="flex items-center justify-between px-6 py-4 bg-[#111522] text-white border-b border-white/10">
             <div>
-              <h3 className="text-base sm:text-lg font-extrabold text-slate-900">
+              <h3 className="font-serif text-lg sm:text-xl font-medium text-white">
                 Créer une nouvelle facture
               </h3>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-[#b9bdc9]">
                 Numérotation automatique · TVA 18% · Montants en FCFA
               </p>
             </div>
             <button
               onClick={onClose}
-              className="p-1.5 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200 transition"
+              className="p-1.5 rounded-xl text-[#858b9a] hover:text-white hover:bg-white/10 transition"
             >
               <IconClose className="w-5 h-5" />
             </button>
           </div>
 
           {/* Form */}
-          <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
+          <div className="p-6 space-y-5 max-h-[75vh] overflow-y-auto bg-white">
             {/* Client & Payment Method */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#5f6571] mb-1">
                   Client destinataire
                 </label>
                 <select
                   value={selectedClientId}
                   onChange={(e) => setSelectedClientId(e.target.value)}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-semibold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-xs sm:text-sm font-semibold text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522]"
                 >
                   {TOP_CLIENTS.map((client) => (
                     <option key={client.id} value={client.id}>
@@ -141,13 +141,13 @@ export default function NewInvoiceModal({
                     </option>
                   ))}
                 </select>
-                <p className="text-[11px] text-slate-400 mt-1">
+                <p className="text-[11px] text-[#697080] mt-1">
                   Contact : {selectedClient.contactPerson} · {selectedClient.phone}
                 </p>
               </div>
 
               <div>
-                <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#5f6571] mb-1">
                   Type de Paiement (3 options)
                 </label>
                 <select
@@ -159,41 +159,41 @@ export default function NewInvoiceModal({
                     if (val === "Carte Bancaire") setPaymentDetail("Visa / Mastercard GIM-UEMOA");
                     if (val === "Carte de Crédit") setPaymentDetail("Carte Crédit Entreprise");
                   }}
-                  className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm font-bold text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500"
+                  className="w-full px-3 py-2 bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl text-xs sm:text-sm font-bold text-[#111522] focus:bg-white focus:outline-none focus:border-[#111522]"
                 >
                   <option value="Mobile Money">📱 Mobile Money (Airtel, Moov, MyNita, Amanata)</option>
                   <option value="Carte Bancaire">💳 Carte Bancaire (Visa, Mastercard, GIM-UEMOA)</option>
                   <option value="Carte de Crédit">🏦 Carte de Crédit (Affaires / Différé)</option>
                 </select>
-                <p className="text-[11px] text-emerald-700 font-semibold mt-1">
+                <p className="text-[11px] text-[#a18400] font-semibold mt-1">
                   Canal sélectionné : {paymentMethod}
                 </p>
               </div>
             </div>
 
             {/* Dates */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 p-3.5 rounded-2xl border border-slate-100">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-[#f8f7f3] p-3.5 rounded-2xl border border-[#e8e7e2]">
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-1">
-                  Date d'émission
+                <label className="block text-xs font-bold text-[#5f6571] mb-1">
+                  Date d&apos;émission
                 </label>
                 <input
                   type="date"
                   value={issueDate}
                   onChange={(e) => setIssueDate(e.target.value)}
-                  className="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs font-mono font-semibold text-slate-800"
+                  className="w-full px-3 py-1.5 bg-white border border-[#e4e2d9] rounded-xl text-xs font-mono font-semibold text-[#111522] focus:outline-none focus:border-[#111522]"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold text-slate-600 mb-1">
-                  Date d'échéance
+                <label className="block text-xs font-bold text-[#5f6571] mb-1">
+                  Date d&apos;échéance
                 </label>
                 <input
                   type="date"
                   value={dueDate}
                   onChange={(e) => setDueDate(e.target.value)}
-                  className="w-full px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs font-mono font-semibold text-slate-800"
+                  className="w-full px-3 py-1.5 bg-white border border-[#e4e2d9] rounded-xl text-xs font-mono font-semibold text-[#111522] focus:outline-none focus:border-[#111522]"
                 />
               </div>
             </div>
@@ -201,13 +201,13 @@ export default function NewInvoiceModal({
             {/* Items */}
             <div>
               <div className="flex items-center justify-between mb-2">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-slate-700">
+                <h4 className="text-xs font-bold uppercase tracking-wider text-[#5f6571]">
                   Lignes de la Facture
                 </h4>
                 <button
                   type="button"
                   onClick={handleAddItem}
-                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold transition"
+                  className="inline-flex items-center gap-1 px-2.5 py-1 rounded-xl bg-[#111522] text-[#ffdc45] hover:bg-[#191f30] text-xs font-bold transition active:scale-95"
                 >
                   <IconPlus className="w-3.5 h-3.5" />
                   <span>Ajouter une ligne</span>
@@ -220,14 +220,14 @@ export default function NewInvoiceModal({
                   return (
                     <div
                       key={item.id}
-                      className="flex flex-col sm:flex-row items-center gap-2 p-2.5 rounded-2xl bg-slate-50/70 border border-slate-200/80"
+                      className="flex flex-col sm:flex-row items-center gap-2 p-2.5 rounded-2xl bg-[#f8f7f3] border border-[#e8e7e2]"
                     >
                       <input
                         type="text"
                         placeholder="Description..."
                         value={item.description}
                         onChange={(e) => handleUpdateItem(item.id, "description", e.target.value)}
-                        className="w-full sm:flex-1 px-3 py-1.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-800"
+                        className="w-full sm:flex-1 px-3 py-1.5 bg-white border border-[#e4e2d9] rounded-xl text-xs font-medium text-[#111522] focus:outline-none focus:border-[#111522]"
                       />
 
                       <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -237,7 +237,7 @@ export default function NewInvoiceModal({
                           placeholder="Qté"
                           value={item.quantity}
                           onChange={(e) => handleUpdateItem(item.id, "quantity", e.target.value)}
-                          className="w-16 px-2 py-1.5 text-center bg-white border border-slate-200 rounded-xl text-xs font-mono font-bold text-slate-800"
+                          className="w-16 px-2 py-1.5 text-center bg-white border border-[#e4e2d9] rounded-xl text-xs font-mono font-bold text-[#111522]"
                         />
 
                         <input
@@ -246,10 +246,10 @@ export default function NewInvoiceModal({
                           placeholder="Prix unitaire"
                           value={item.unitPrice}
                           onChange={(e) => handleUpdateItem(item.id, "unitPrice", e.target.value)}
-                          className="w-28 px-2.5 py-1.5 text-right bg-white border border-slate-200 rounded-xl text-xs font-mono font-bold text-slate-800"
+                          className="w-28 px-2.5 py-1.5 text-right bg-white border border-[#e4e2d9] rounded-xl text-xs font-mono font-bold text-[#111522]"
                         />
 
-                        <div className="w-28 text-right font-mono font-bold text-slate-900 text-xs">
+                        <div className="w-28 text-right font-mono font-bold text-[#111522] text-xs">
                           {formatFCFA(lineTotal)}
                         </div>
 
@@ -257,7 +257,7 @@ export default function NewInvoiceModal({
                           type="button"
                           onClick={() => handleRemoveItem(item.id)}
                           disabled={items.length <= 1}
-                          className="p-1.5 text-slate-400 hover:text-rose-600 disabled:opacity-30 rounded-lg"
+                          className="p-1.5 text-[#808392] hover:text-rose-600 disabled:opacity-30 rounded-lg"
                         >
                           <IconTrash className="w-4 h-4" />
                         </button>
@@ -269,30 +269,30 @@ export default function NewInvoiceModal({
             </div>
 
             {/* Totals */}
-            <div className="p-3.5 rounded-2xl bg-emerald-50/50 border border-emerald-100 flex flex-col sm:flex-row justify-between items-end sm:items-center gap-3">
-              <div className="text-xs text-slate-600">
+            <div className="p-4 rounded-2xl bg-[#111522] text-white border border-white/10 flex flex-col sm:flex-row justify-between items-end sm:items-center gap-3">
+              <div className="text-xs text-[#b9bdc9]">
                 TVA : 18% (Réglementation DGI Niger / UEMOA)
               </div>
               <div className="text-right space-y-1">
-                <div className="text-xs text-slate-500">
-                  Sous-total HT : <span className="font-mono font-bold text-slate-800">{formatFCFA(totals.subtotalHT)}</span>
+                <div className="text-xs text-[#b9bdc9]">
+                  Sous-total HT : <span className="font-mono font-bold text-white">{formatFCFA(totals.subtotalHT)}</span>
                 </div>
-                <div className="text-xs text-slate-500">
-                  TVA 18% : <span className="font-mono font-bold text-slate-800">{formatFCFA(totals.taxAmount)}</span>
+                <div className="text-xs text-[#b9bdc9]">
+                  TVA 18% : <span className="font-mono font-bold text-white">{formatFCFA(totals.taxAmount)}</span>
                 </div>
-                <div className="text-sm font-extrabold text-slate-900 pt-1 border-t border-emerald-200">
-                  Total TTC : <span className="font-mono text-emerald-700">{formatFCFA(totals.totalTTC)}</span>
+                <div className="text-sm font-extrabold text-white pt-1.5 border-t border-white/15">
+                  Total TTC : <span className="font-mono text-[#ffdc45]">{formatFCFA(totals.totalTTC)}</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Footer Actions */}
-          <div className="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+          <div className="px-6 py-4 bg-[#f2f0e8] border-t border-[#e8e7e2] flex items-center justify-between">
             <button
               type="button"
               onClick={onClose}
-              className="px-3 py-1.5 text-xs font-bold text-slate-600 hover:text-slate-800"
+              className="px-3 py-1.5 text-xs font-bold text-[#5f6571] hover:text-[#111522]"
             >
               Annuler
             </button>
@@ -301,14 +301,14 @@ export default function NewInvoiceModal({
               <button
                 type="button"
                 onClick={() => handleSubmit("brouillon")}
-                className="px-3.5 py-2 rounded-xl border border-slate-300 bg-white hover:bg-slate-100 text-slate-700 text-xs font-bold shadow-sm"
+                className="px-3.5 py-2 rounded-xl border border-[#d6d3c9] bg-white hover:bg-[#f8f7f3] text-[#111522] text-xs font-bold shadow-sm transition active:scale-95"
               >
                 Enregistrer brouillon
               </button>
               <button
                 type="button"
                 onClick={() => handleSubmit("envoyee")}
-                className="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold shadow-md shadow-emerald-600/30 transition hover:shadow-lg active:scale-95"
+                className="px-4 py-2 rounded-xl bg-[#ffdc45] hover:bg-[#ffe879] text-[#111522] text-xs font-bold shadow-md shadow-[#111522]/15 transition active:scale-95"
               >
                 Émettre & Envoyer
               </button>

@@ -117,23 +117,23 @@ export default function OfficeColorPicker({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2.5 px-3 py-2 bg-white hover:bg-slate-50 border border-slate-200/90 rounded-xl shadow-xs transition active:scale-95 cursor-pointer text-xs font-bold text-slate-800"
+        className="flex items-center gap-2.5 px-3 py-2 bg-white hover:bg-[#f8f7f3] border border-[#e4e2d9] rounded-xl shadow-xs transition active:scale-95 cursor-pointer text-xs font-bold text-[#111522]"
         title="Ouvrir le nuancier de couleurs"
       >
         <span
-          className="w-5 h-5 rounded-md border border-slate-300 shadow-2xs shrink-0"
+          className="w-5 h-5 rounded-md border border-[#d6d3c9] shadow-2xs shrink-0"
           style={{ backgroundColor: value }}
         />
         <div className="flex flex-col text-left">
-          <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider leading-none">
+          <span className="text-[10px] text-[#697080] font-semibold uppercase tracking-wider leading-none">
             {label}
           </span>
-          <span className="font-mono text-xs font-extrabold text-slate-800 leading-tight">
+          <span className="font-mono text-xs font-extrabold text-[#111522] leading-tight">
             {value.toUpperCase()}
           </span>
         </div>
         <IconChevronDown
-          className={`w-3.5 h-3.5 text-slate-500 transition-transform ml-1 ${
+          className={`w-3.5 h-3.5 text-[#5f6571] transition-transform ml-1 ${
             isOpen ? "rotate-180" : ""
           }`}
         />
@@ -142,28 +142,28 @@ export default function OfficeColorPicker({
       {/* Popover Menu façon Microsoft Office / Word */}
       {isOpen && (
         <div
-          className="absolute z-50 mt-2 left-0 sm:left-auto sm:right-0 w-[275px] bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-3 animate-in fade-in zoom-in-95 duration-100"
-          style={{ filter: "drop-shadow(0 15px 30px rgba(15, 23, 42, 0.15))" }}
+          className="absolute z-50 mt-2 left-0 sm:left-auto sm:right-0 w-[275px] bg-white rounded-2xl shadow-2xl border border-[#e8e7e2] p-3 animate-in fade-in zoom-in-95 duration-100"
+          style={{ filter: "drop-shadow(0 15px 30px rgba(17, 21, 34, 0.16))" }}
         >
-          {/* 1. Bouton Automatique (Défaut Noir / Obsidienne) */}
+          {/* 1. Bouton Automatique (Défaut Bleu Nuit) */}
           <button
             type="button"
-            onClick={() => handleSelectColor("#0F172A")}
-            className="w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg hover:bg-slate-100 text-xs font-bold text-slate-800 transition text-left cursor-pointer"
+            onClick={() => handleSelectColor("#111522")}
+            className="w-full flex items-center gap-2.5 px-2.5 py-1.5 rounded-lg hover:bg-[#f2f0e8] text-xs font-bold text-[#111522] transition text-left cursor-pointer"
           >
-            <span className="w-4 h-4 rounded border border-slate-400 bg-slate-900 shrink-0" />
-            <span>Automatique</span>
-            {value.toUpperCase() === "#0F172A" && (
-              <span className="ml-auto text-emerald-600 text-[11px] font-bold">✓</span>
+            <span className="w-4 h-4 rounded border border-[#111522] bg-[#111522] shrink-0" />
+            <span>Automatique (Bleu Nuit)</span>
+            {value.toUpperCase() === "#111522" && (
+              <span className="ml-auto text-[#a18400] text-[11px] font-bold">✓</span>
             )}
           </button>
 
           {/* Séparateur */}
-          <div className="h-px bg-slate-100 my-2" />
+          <div className="h-px bg-[#edece6] my-2" />
 
           {/* 2. COULEURS DU THÈME */}
           <div className="mb-3">
-            <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block mb-1.5 px-1">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#697080] block mb-1.5 px-1">
               Couleurs du thème
             </span>
 
@@ -176,8 +176,8 @@ export default function OfficeColorPicker({
                   onClick={() => handleSelectColor(col.base)}
                   className={`w-5 h-5 rounded-xs transition-transform hover:scale-110 border ${
                     value.toLowerCase() === col.base.toLowerCase()
-                      ? "ring-2 ring-emerald-500 border-white"
-                      : "border-slate-200"
+                      ? "ring-2 ring-[#ffdc45] border-[#111522]"
+                      : "border-[#e4e2d9]"
                   }`}
                   style={{ backgroundColor: col.base }}
                   title={col.base}
@@ -199,8 +199,8 @@ export default function OfficeColorPicker({
                         onClick={() => handleSelectColor(shade)}
                         className={`w-5 h-4 rounded-xs transition-transform hover:scale-110 border ${
                           isSelected
-                            ? "ring-2 ring-emerald-500 border-white"
-                            : "border-slate-150"
+                            ? "ring-2 ring-[#ffdc45] border-[#111522]"
+                            : "border-[#edece6]"
                         }`}
                         style={{ backgroundColor: shade }}
                         title={shade}
@@ -213,8 +213,8 @@ export default function OfficeColorPicker({
           </div>
 
           {/* 3. COULEURS STANDARD */}
-          <div className="mb-3 pt-2 border-t border-slate-100">
-            <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 block mb-1.5 px-1">
+          <div className="mb-3 pt-2 border-t border-[#edece6]">
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#697080] block mb-1.5 px-1">
               Couleurs standard
             </span>
             <div className="grid grid-cols-10 gap-1 px-1">
@@ -225,8 +225,8 @@ export default function OfficeColorPicker({
                   onClick={() => handleSelectColor(std.hex)}
                   className={`w-5 h-5 rounded-xs transition-transform hover:scale-110 border ${
                     value.toLowerCase() === std.hex.toLowerCase()
-                      ? "ring-2 ring-emerald-500 border-white"
-                      : "border-slate-200"
+                      ? "ring-2 ring-[#ffdc45] border-[#111522]"
+                      : "border-[#e4e2d9]"
                   }`}
                   style={{ backgroundColor: std.hex }}
                   title={std.name}
@@ -236,12 +236,12 @@ export default function OfficeColorPicker({
           </div>
 
           {/* 4. AUTRES COULEURS / MIXER LIBRE */}
-          <div className="pt-2 border-t border-slate-100">
+          <div className="pt-2 border-t border-[#edece6]">
             <div className="flex items-center justify-between gap-2 px-1">
               <button
                 type="button"
                 onClick={() => nativeInputRef.current?.click()}
-                className="flex items-center gap-2 py-1.5 px-2 rounded-lg hover:bg-slate-100 text-xs font-bold text-slate-700 transition cursor-pointer flex-1"
+                className="flex items-center gap-2 py-1.5 px-2 rounded-lg hover:bg-[#f2f0e8] text-xs font-bold text-[#111522] transition cursor-pointer flex-1"
               >
                 {/* Icône roue chromatique */}
                 <span className="text-sm">🎨</span>
@@ -252,7 +252,7 @@ export default function OfficeColorPicker({
               <input
                 ref={nativeInputRef}
                 type="color"
-                value={value.startsWith("#") ? value : "#059669"}
+                value={value.startsWith("#") ? value : "#111522"}
                 onChange={(e) => handleSelectColor(e.target.value)}
                 className="sr-only"
               />
@@ -268,8 +268,8 @@ export default function OfficeColorPicker({
                     onChange(val);
                   }
                 }}
-                placeholder="#059669"
-                className="w-20 px-2 py-1 font-mono text-[11px] font-bold text-slate-800 bg-slate-50 border border-slate-200 rounded-md uppercase text-center focus:bg-white focus:outline-none focus:border-emerald-500"
+                placeholder="#111522"
+                className="w-20 px-2 py-1 font-mono text-[11px] font-bold text-[#111522] bg-[#f8f7f3] border border-[#e4e2d9] rounded-md uppercase text-center focus:bg-white focus:outline-none focus:border-[#111522]"
               />
             </div>
           </div>

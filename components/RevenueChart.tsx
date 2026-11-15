@@ -213,20 +213,20 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
   const gridSteps = [0, maxVal * 0.25, maxVal * 0.5, maxVal * 0.75, maxVal];
 
   return (
-    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-[0_4px_20px_-4px_rgba(15,23,42,0.04)] overflow-hidden">
+    <div className="bg-white rounded-2xl p-4 sm:p-5 border border-[#e8e7e2] shadow-[0_12px_32px_rgba(17,21,34,0.05)] overflow-hidden">
       {/* Header Row: Titre & Sélecteur Responsive (Mois / Trimestre / Année) */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
         <div className="flex items-center gap-2">
-          <h3 className="text-sm sm:text-base font-bold text-slate-900 truncate">
+          <h3 className="font-serif text-base sm:text-lg font-medium text-[#111522] truncate">
             {t.revenueEvolution || "Évolution du Chiffre d'Affaires"}
           </h3>
-          <span className="inline-flex text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/60">
+          <span className="inline-flex text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-[#fff0a6] text-[#332900] border border-[#ffe36a]">
             {t.realTime || "Temps réel"}
           </span>
         </div>
 
-        {/* Sélecteur de Plage Temporelle : Pleine visibilité mobile avec contraste noir obsidienne GEMINI.md */}
-        <div className="inline-flex bg-slate-100 p-1 rounded-xl text-xs font-semibold text-slate-600 self-start sm:self-auto w-full sm:w-auto justify-between sm:justify-start">
+        {/* Sélecteur de Plage Temporelle : Pleine visibilité mobile avec contraste Bleu Nuit */}
+        <div className="inline-flex bg-[#edece6] p-1 rounded-xl text-xs font-bold text-[#1f2937] self-start sm:self-auto w-full sm:w-auto justify-between sm:justify-start">
           {[
             { id: "mois", label: t.month || "Mois" },
             { id: "trim", label: t.quarter || "Trimestre" },
@@ -240,9 +240,9 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
                   setActiveRange(r.id as any);
                   setHoveredIndex(null);
                 }}
-                className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-bold transition-all duration-150 active:scale-95 ${isSelected
-                  ? "bg-slate-900 text-white shadow-sm ring-1 ring-emerald-500/50"
-                  : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/70"
+                className={`flex-1 sm:flex-initial px-3 py-1.5 rounded-lg text-xs font-black transition-all duration-150 active:scale-95 cursor-pointer ${isSelected
+                  ? "bg-[#111522] text-[#ffdc45] shadow-sm ring-1 ring-[#ffdc45]/40"
+                  : "text-[#1f2937] hover:text-[#111522] hover:bg-white/70"
                   }`}
               >
                 {r.label}
@@ -253,23 +253,23 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
       </div>
 
       {/* Amount Display & Legend */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-2 border-b border-slate-100">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4 pb-2 border-b border-[#edece6]">
         <div className="flex items-baseline gap-2">
-          <span className="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono tracking-tight whitespace-nowrap">
+          <span className="text-xl sm:text-2xl font-black text-[#111522] font-mono tracking-tight whitespace-nowrap">
             {formatFCFA(activeHover.collected)}
           </span>
-          <span className="inline-flex items-center text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full">
+          <span className="inline-flex items-center text-[11px] font-bold text-[#285b35] bg-[#d9f0df] px-2 py-0.5 rounded-full">
             ↗ +18.4%
           </span>
         </div>
 
-        <div className="flex items-center gap-3 text-xs font-medium">
-          <span className="flex items-center gap-1.5 text-slate-700">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm" />
+        <div className="flex items-center gap-3 text-xs font-bold">
+          <span className="flex items-center gap-1.5 text-[#111522]">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#ffdc45] border border-[#a18400] shadow-sm" />
             {t.collected || "Encaissé"}
           </span>
-          <span className="flex items-center gap-1.5 text-slate-400">
-            <span className="w-2.5 h-2.5 rounded-full bg-slate-300" />
+          <span className="flex items-center gap-1.5 text-[#374151]">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#111522]/60" />
             {t.billed || "Facturé"}
           </span>
         </div>
@@ -282,12 +282,12 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
           className="w-full h-auto overflow-visible select-none"
         >
           <defs>
-            <linearGradient id="revenueEmeraldGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#10B981" stopOpacity="0.25" />
-              <stop offset="95%" stopColor="#10B981" stopOpacity="0.0" />
+            <linearGradient id="revenueGoldGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#ffdc45" stopOpacity="0.38" />
+              <stop offset="95%" stopColor="#ffdc45" stopOpacity="0.0" />
             </linearGradient>
             <filter id="revenueSoftGlow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#059669" floodOpacity="0.25" />
+              <feDropShadow dx="0" dy="3" stdDeviation="3" floodColor="#111522" floodOpacity="0.20" />
             </filter>
           </defs>
 
@@ -301,7 +301,7 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
                   y1={y}
                   x2={width - paddingX}
                   y2={y}
-                  stroke="#F1F5F9"
+                  stroke="#edece6"
                   strokeWidth="1"
                   strokeDasharray={val === 0 ? "none" : "3 3"}
                 />
@@ -309,7 +309,7 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
                   x={paddingX - 8}
                   y={y + 3.5}
                   textAnchor="end"
-                  fill="#94A3B8"
+                  fill="#697080"
                   fontSize="9.5"
                   fontFamily="JetBrains Mono"
                 >
@@ -320,22 +320,22 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
           })}
 
           {/* Area fill */}
-          <path d={areaPath} fill="url(#revenueEmeraldGradient)" />
+          <path d={areaPath} fill="url(#revenueGoldGradient)" />
 
           {/* Billed line */}
           <path
             d={billedPath}
             fill="none"
-            stroke="#CBD5E1"
-            strokeWidth="1.8"
-            strokeDasharray="3 3"
+            stroke="#c6d1ff"
+            strokeWidth="2"
+            strokeDasharray="4 3"
           />
 
           {/* Collected line */}
           <path
             d={collectedPath}
             fill="none"
-            stroke="#059669"
+            stroke="#111522"
             strokeWidth="3"
             strokeLinecap="round"
             filter="url(#revenueSoftGlow)"
@@ -348,10 +348,10 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
               y1={paddingY}
               x2={activeHover.x}
               y2={height - paddingY}
-              stroke="#059669"
+              stroke="#a18400"
               strokeWidth="1.2"
               strokeDasharray="2 2"
-              opacity="0.5"
+              opacity="0.65"
             />
           )}
 
@@ -368,9 +368,9 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
                 <circle
                   cx={p.x}
                   cy={p.yCollected}
-                  r={isHovered ? "5.5" : "3.5"}
-                  fill={isHovered ? "#059669" : "#FFFFFF"}
-                  stroke="#059669"
+                  r={isHovered ? "6" : "3.8"}
+                  fill={isHovered ? "#ffdc45" : "#FFFFFF"}
+                  stroke="#111522"
                   strokeWidth={isHovered ? "2.5" : "1.8"}
                 />
                 <rect
@@ -393,14 +393,14 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
                 width="128"
                 height="24"
                 rx="12"
-                fill="#0F172A"
-                filter="drop-shadow(0 4px 6px rgba(15,23,42,0.3))"
+                fill="#111522"
+                filter="drop-shadow(0 4px 8px rgba(17,21,34,0.35))"
               />
               <text
                 x="0"
                 y="3.5"
                 textAnchor="middle"
-                fill="#FFFFFF"
+                fill="#ffdc45"
                 fontSize="10"
                 fontWeight="700"
                 fontFamily="JetBrains Mono"
@@ -419,7 +419,7 @@ export default function RevenueChart({ invoices }: RevenueChartProps) {
                 x={p.x}
                 y={height - 6}
                 textAnchor="middle"
-                fill={isSelected ? "#059669" : "#64748B"}
+                fill={isSelected ? "#111522" : "#697080"}
                 fontWeight={isSelected ? "800" : "500"}
                 fontSize={activeRange === "trim" ? "9" : "10"}
               >
