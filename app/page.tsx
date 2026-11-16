@@ -685,25 +685,25 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
         }}
         className="min-h-screen bg-[#111522] flex items-center justify-center p-6"
       >
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px" }}>
           <div
             style={{
-              width: "52px",
-              height: "52px",
-              borderRadius: "16px",
-              backgroundColor: "#ffdc45",
-              color: "#111522",
+              backgroundColor: "#ffffff",
+              borderRadius: "18px",
+              padding: "12px 20px",
+              boxShadow: "0 14px 36px rgba(0,0,0,0.4)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              fontWeight: 800,
-              fontSize: "20px",
-              transform: "rotate(-6deg)",
-              boxShadow: "0 8px 24px rgba(255,220,69,0.35)",
             }}
-            className="w-12 h-12 rounded-2xl bg-[#ffdc45] flex items-center justify-center text-[#111522] font-extrabold text-lg -rotate-6 shadow-[0_8px_24px_rgba(255,220,69,0.35)] animate-pulse"
+            className="bg-white rounded-2xl px-5 py-3 shadow-2xl border border-white/20 animate-pulse"
           >
-            A
+            <img
+              src="/logo-amomd.png"
+              alt="AMOMD Facture"
+              style={{ height: "54px", width: "auto", objectFit: "contain" }}
+              className="h-12 sm:h-14 w-auto object-contain"
+            />
           </div>
           <p
             style={{

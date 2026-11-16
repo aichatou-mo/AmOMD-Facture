@@ -399,7 +399,7 @@ export default function Header({
             </button>
 
             {isNotificationsOpen && (
-              <div className="absolute right-0 mt-2.5 w-80 bg-white rounded-3xl shadow-2xl border border-[#e8e7e2] overflow-hidden z-50 animate-scale-up">
+              <div className="absolute right-0 mt-2.5 w-[calc(100vw-24px)] max-w-[320px] sm:w-80 bg-white rounded-3xl shadow-2xl border border-[#e8e7e2] overflow-hidden z-50 animate-scale-up">
                 <div className="p-3.5 bg-[#f8f7f3] border-b border-[#edece6] flex items-center justify-between">
                   <h3 className="font-extrabold text-xs text-[#111522]">
                     {t.notifications || "Notifications"}

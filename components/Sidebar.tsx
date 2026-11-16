@@ -70,13 +70,17 @@ export default function Sidebar({
   const sidebarContent = (
     <div className="flex flex-col h-full max-h-screen bg-[#111522] text-[#c4c7d1] select-none shadow-2xl lg:shadow-none border-r border-white/10">
       {/* Brand Header */}
-      <div className="p-4 sm:p-5 pb-3.5 flex items-center justify-between border-b border-white/10 shrink-0">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-[10px] bg-[#ffdc45] flex items-center justify-center text-[#111522] font-extrabold text-sm -rotate-6 shadow-[0_4px_15px_rgba(255,220,69,0.4)] active:scale-95 transition-transform">
-            A
+      <div className="p-4 sm:p-5 pb-3.5 flex items-center justify-between border-b border-white/10 shrink-0 gap-2">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <div className="w-10 h-10 rounded-xl bg-white p-0.5 flex items-center justify-center shadow-[0_4px_15px_rgba(255,220,69,0.28)] active:scale-95 transition-transform shrink-0 overflow-hidden">
+            <img
+              src="/logo-amomd-icon.png"
+              alt="Logo AMOMD Facture"
+              className="w-full h-full object-contain"
+            />
           </div>
-          <span className="font-bold text-base sm:text-lg tracking-tight text-white">
-            AMOMD FACTURE
+          <span className="font-extrabold text-base sm:text-lg tracking-tight text-white truncate">
+            AMOMD <span className="text-[#ffdc45]">FACTURE</span>
           </span>
         </div>
 

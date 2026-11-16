@@ -184,15 +184,19 @@ export default function AuthPage({
       </header>
 
       {/* Main Content Area */}
-      <main className="relative z-10 flex-1 flex items-center justify-center px-4 py-8 sm:py-12">
-        <div className="w-full max-w-[400px] bg-white rounded-[30px] sm:rounded-[32px] border border-slate-100 shadow-[0_20px_50px_rgba(15,23,42,0.06)] p-7 sm:p-9 space-y-6">
+      <main className="relative z-10 flex-1 flex items-center justify-center px-4 py-6 sm:py-12">
+        <div className="w-full max-w-[400px] bg-white rounded-[28px] sm:rounded-[32px] border border-slate-100 shadow-[0_20px_50px_rgba(15,23,42,0.06)] p-6 sm:p-9 space-y-5 sm:space-y-6">
           
-          {/* Header: Title & Subtitle matching the reference */}
-          <div className="text-center">
-            <h1 className="text-2xl sm:text-[26px] font-black text-slate-900 tracking-tight">
-              AMOMD facture
-            </h1>
-            <p className="text-xs sm:text-sm text-slate-500 font-medium mt-1.5">
+          {/* Header: Official AMOMD Facture Logo & Subtitle */}
+          <div className="text-center space-y-2.5">
+            <div className="flex justify-center">
+              <img
+                src="/logo-amomd.png"
+                alt="AMOMD Facture — Facturez, Optimisez, Rentabilisez"
+                className="h-16 sm:h-20 w-auto max-w-full object-contain"
+              />
+            </div>
+            <p className="text-xs sm:text-sm text-slate-500 font-medium">
               Gérez vos factures en toute simplicité.
             </p>
           </div>
