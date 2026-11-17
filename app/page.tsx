@@ -235,9 +235,22 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
   useEffect(() => {
     let mounted = true;
 
+    // Récupération de la session locale de secours
+    const getLocalUser = (): User | null => {
+      if (typeof window === "undefined") return null;
+      try {
+        const raw = window.localStorage.getItem("izifacture_auth_user");
+        return raw ? (JSON.parse(raw) as User) : null;
+      } catch {
+        return null;
+      }
+    };
+
     // Timeout de sécurité pour éviter de rester bloqué sur l'écran de chargement
     const safetyTimer = setTimeout(() => {
       if (mounted) {
+        const fallback = getLocalUser();
+        if (fallback) setAuthUser(fallback);
         setIsAuthChecking(false);
       }
     }, 900);
@@ -247,12 +260,15 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
       .then(({ data }) => {
         if (!mounted) return;
         clearTimeout(safetyTimer);
-        setAuthUser(data.session?.user ?? null);
+        const resolved = data.session?.user ?? getLocalUser() ?? null;
+        setAuthUser(resolved);
         setIsAuthChecking(false);
       })
       .catch(() => {
         if (mounted) {
           clearTimeout(safetyTimer);
+          const fallback = getLocalUser();
+          setAuthUser(fallback);
           setIsAuthChecking(false);
         }
       });
@@ -262,7 +278,7 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
     } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!mounted) return;
       clearTimeout(safetyTimer);
-      const nextUser = session?.user ?? null;
+      const nextUser = session?.user ?? getLocalUser() ?? null;
       setAuthUser(nextUser);
       setIsAuthChecking(false);
 
@@ -349,7 +365,12 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
 
   const confirmLogout = async () => {
     setShowLogoutConfirm(false);
-    await supabase.auth.signOut();
+    try {
+      if (typeof window !== "undefined") {
+        window.localStorage.removeItem("izifacture_auth_user");
+      }
+      await supabase.auth.signOut();
+    } catch {}
     setAuthUser(null);
     setPublicView("landing");
     setInvoices([]);
@@ -736,6 +757,17 @@ function MainApp({ initialTab = "dashboard" }: { initialTab?: string }) {
       <AuthPage
         initialMode={publicView === "signup" ? "signup" : "login"}
         onBack={() => setPublicView("landing")}
+        onAuthenticated={(user) => {
+          if (user) {
+            setAuthUser(user);
+            try {
+              if (typeof window !== "undefined") {
+                window.localStorage.setItem("izifacture_auth_user", JSON.stringify(user));
+              }
+            } catch {}
+          }
+          setPublicView("landing");
+        }}
       />
     );
   }
